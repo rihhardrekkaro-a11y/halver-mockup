@@ -1,12 +1,263 @@
 /* ==========================================================================
    Halver — contact page (kontakt.html)
-   Team grid and embedded map frame. Both are single-page today.
+   Enquiry form layout, the two-unit band, the team grid and the map frame.
+   The shared primitives used inside these sections (.btn, .field, .contact-card,
+   .section-head) live in 02-components.css and are not redefined here.
+
+   Checkbox and radio styling did not exist anywhere in the system and could not
+   be added to the frozen component layer from this task, so it is authored here
+   in full. Every rule under "Choice groups" is a candidate for promotion into
+   02-components.css unchanged; see the T7 report.
    ========================================================================== */
 
+/* ---------- Enquiry section ---------- */
+
+.enquiry { border-bottom: 1px solid var(--border-soft); }
+
+/* Aside carries the routing and the checklist; the form carries the weight.
+   Same asymmetry as the home hero, mirrored, because here the wider column is
+   the second one. Collapses at 860px rather than 760px: a two-column form
+   beside a 280px aside is already cramped at the 768px capture. */
+.enquiry-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .enquiry-grid { grid-template-columns: 1fr; }
+}
+
+.enquiry-aside { display: flex; flex-direction: column; gap: 32px; }
+
+/* Mono structural heading, the same treatment .footer-col h3 already uses for a
+   column label. The display face would out-shout the form beside it. */
+.enquiry-aside h3 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.aside-list { list-style: none; margin: 14px 0 0; padding: 0; }
+.aside-list li {
+  padding-block: 10px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--fg-muted);
+}
+.aside-list li:first-child { border-top: 0; padding-top: 0; }
+
+/* Same three-part person block as .team-card (mono role, name, muted meta),
+   stacked on hairlines instead of sitting in a grid cell. */
+.route-list { margin-top: 14px; }
+.route { padding-block: 14px; border-top: 1px solid var(--border-soft); }
+.route:first-child { border-top: 0; padding-top: 0; }
+.route .role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-text);
+}
+.route .name { margin-top: 8px; font-weight: 600; }
+.route .meta { margin-top: 6px; font-size: 13px; color: var(--fg-muted); display: flex; flex-direction: column; gap: 3px; }
+.route .meta a { text-decoration: none; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+.route .meta a:hover { color: var(--accent-text); }
+
+/* ---------- Enquiry form ---------- */
+
+.enquiry-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.enquiry-form > .wide { grid-column: 1 / -1; }
+@media (max-width: 760px) {
+  .enquiry-form { grid-template-columns: 1fr; }
+}
+
+/* The frozen .field gives inputs a 1px --border edge, which measures 1.28:1
+   against the page. That is fine for a decorative rule and too quiet for the
+   boundary of a control the visitor has to find, so the whole form steps its
+   rest-state edge up to --fg-muted (5.86:1 light, 7.95:1 dark) and moves hover
+   to --fg. Scoped to .enquiry so no other page's fields change; promotion into
+   02-components.css is the integrator's call. */
+.enquiry .field input,
+.enquiry .field textarea,
+.enquiry .field select { border-color: var(--fg-muted); }
+.enquiry .field input:hover,
+.enquiry .field textarea:hover,
+.enquiry .field select:hover { border-color: var(--fg); }
+.enquiry .field.is-error input { border-color: var(--accent-text); }
+
+.enquiry .field input[type="tel"] { font-variant-numeric: tabular-nums; }
+
+/* Native file control. The button part is the outline button's treatment at the
+   interface step, not a third button variant: it is the affordance the browser
+   draws and it would otherwise ignore the system entirely. */
+.enquiry .field input[type="file"] {
+  padding: 9px;
+  font-size: 14.5px;
+  color: var(--fg-muted);
+}
+.enquiry .field input[type="file"]::file-selector-button {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--fg-muted);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  margin-right: 14px;
+  cursor: pointer;
+  transition: border-color 160ms var(--ease-out);
+}
+.enquiry .field input[type="file"]::file-selector-button:hover { border-color: var(--fg); }
+
+.enquiry-submit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+.enquiry-note { font-size: 13px; color: var(--fg-muted); max-width: 46ch; }
+.enquiry-note a { color: var(--accent-text); font-weight: 600; }
+
+/* DEMO STATE. Reproduces the global :focus-visible ring from 01-base.css on a
+   field that is not actually focused, so the focus pattern is visible in a
+   static mockup with no JavaScript. Identical declarations, not a second focus
+   treatment. Delete this rule and the is-focus-demo class before deployment. */
+.field.is-focus-demo input {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Choice groups (checkbox + radio) ---------- */
+
+/* Shape: both controls are 18px squares at var(--radius). The 2px Lock leaves no
+   room for a round radio, so single-select is marked by an inset filled square
+   (background-clip: content-box) and multi-select by a full fill. Neither draws
+   a glyph: a checkmark would need either a pseudo-element on an <input>, which
+   Firefox does not render, or a hard-coded hex inside an SVG data URI, and the
+   system forbids raw hexes.
+   Colour: the checked fill is --btn-primary-bg under --accent-contrast, the
+   token pair the system already defines for a filled accent surface. The fill
+   measures 4.70:1 against --bg in light and 6.86:1 in dark, past the 3:1 a
+   non-text indicator needs. The rest-state edge is --fg-muted for the same
+   reason the text fields are: --border cannot carry a control boundary. */
+
+.choice-group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.choice-group > legend {
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.choice-group > .helper {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+.choice-list { margin-top: 14px; display: grid; gap: 10px; }
+.choice-list.cols { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 760px) {
+  .choice-list.cols { grid-template-columns: 1fr; }
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  cursor: pointer;
+}
+.choice input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border: 1px solid var(--fg-muted);
+  border-radius: var(--radius);
+  background-color: var(--bg);
+  cursor: pointer;
+  transition: border-color 160ms var(--ease-out), background-color 160ms var(--ease-out);
+}
+.choice input[type="radio"] {
+  padding: 4px;
+  background-clip: content-box;
+  background-color: transparent;
+}
+.choice:hover input { border-color: var(--fg); }
+.choice input:checked {
+  border-color: var(--btn-primary-bg);
+  background-color: var(--btn-primary-bg);
+}
+.choice:hover input:checked { border-color: var(--btn-primary-bg); }
+
+/* ---------- Production units ---------- */
+
+/* One card template, one alignment, one raised band under both, so neither unit
+   reads as the primary one. Flex column plus an auto margin on the links block
+   pins both maps to the bottom edge, so the cards stay parallel even when a
+   translation makes one address a line longer. */
+.units { background: var(--bg-raised); border-bottom: 1px solid var(--border-soft); }
+.units .contact-card { display: flex; flex-direction: column; }
+.units .contact-card .links { margin-bottom: auto; }
+.units .contact-card .links a { font-variant-numeric: tabular-nums; }
+.units .contact-card .map-frame { margin-top: 20px; }
+
+/* --bg-raised behind the frame is the media-well pattern DESIGN.md sets for a
+   well that has to hold its layout before its content paints. It earns its keep
+   here: openstreetmap.org's embed draws its tiles into a canvas, which headless
+   Chromium cannot paint, so the frame is blank in every screenshot of this page
+   even though it renders normally in a real browser. Without a background it
+   read as a hole punched in the card. */
+.map-frame {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--bg-raised);
+}
+.map-frame iframe { width: 100%; height: 100%; border: 0; }
+
+/* Mono at 0.03em, the tracking row for a caption naming a real place. The
+   figures are the marker coordinates already carried in the two embed URLs. */
+.coords {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--fg-muted);
+}
+
+/* ---------- Team ---------- */
+
+/* A grid has exactly as many cells as it has content. At minmax(220px) the
+   twelve people laid out five across at 1440px and left three empty cells
+   painting the grid's own --border-soft background. Raising the minimum to
+   280px caps the track count at four, because --max is 1360px and five tracks
+   would need 1404px: every width from 375px up now resolves to 1, 2, 3 or 4
+   columns, all of which divide 12 exactly. Gap also moves 1px -> 2px, the
+   value DESIGN.md sets for new grids (it flags this grid's 1px as the
+   artifact's one inconsistency). */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2px;
   background: var(--border-soft);
   border: 1px solid var(--border-soft);
 }
@@ -14,13 +265,5 @@
 .team-card .role { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-text); }
 .team-card .name { margin-top: 8px; font-weight: 600; font-size: 16px; }
 .team-card .meta { margin-top: 10px; font-size: 13px; color: var(--fg-muted); display: flex; flex-direction: column; gap: 3px; }
-.team-card .meta a { text-decoration: none; color: var(--fg-muted); }
+.team-card .meta a { text-decoration: none; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
 .team-card .meta a:hover { color: var(--accent-text); }
-
-.map-frame {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 16/9;
-}
-.map-frame iframe { width: 100%; height: 100%; border: 0; }

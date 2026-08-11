@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Komponendid · Halver</title>
+<meta name="description" content="Halveri mockup'i komponendikiht. Iga taaskasutatav element, klassinimega mono kirjas.">
+<link rel="stylesheet" href="styles/00-tokens.css">
+<link rel="stylesheet" href="styles/01-base.css">
+<link rel="stylesheet" href="styles/02-components.css">
+<link rel="icon" href="data:,">
+<style>
+  /* Kitchen-sink chrome only. Not part of the design system and not
+     reusable: this is page-scoped plumbing so real components (used below
+     with their real classes from 02-components.css) can be shown outside
+     the page partials that normally size their containers. A parallel
+     agent should copy the ks-tag'd class names, never the ks- classes
+     themselves. */
+  .ks-group { border-top: 1px solid var(--border-soft); }
+  .ks-row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 24px; }
+  .ks-item { display: flex; flex-direction: column; gap: 10px; }
+  .ks-tag {
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--fg-muted);
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    border-radius: var(--radius);
+  }
+  .ks-frame { position: relative; overflow: hidden; border-radius: var(--radius); width: 100%; margin: 0; }
+  .ks-frame--tag { max-width: 300px; aspect-ratio: 4/5; background: var(--fixed-dark); }
+  .ks-frame--work { max-width: 240px; aspect-ratio: 3/4; background: var(--bg-raised); }
+  .ks-frame--gallery { max-width: 240px; aspect-ratio: 4/5; background: var(--bg-raised); }
+  .ks-frame img { width: 100%; height: 100%; object-fit: cover; }
+  .ks-col { width: 100%; max-width: 340px; }
+  .ks-spec-row { background: var(--fixed-dark); padding: 2px; gap: 2px; }
+  .ks-spec-row .spec-tile { width: 260px; }
+  .ks-spec-row .spec-tile.stat { min-height: 160px; }
+  .ks-spec-row .spec-tile.photo { min-height: 220px; }
+  .ks-form { width: 100%; max-width: 360px; display: flex; flex-direction: column; gap: 20px; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Halver, avaleht">
+      <img src="assets/images/halver-logo.png" alt="Halver">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+      <li><a href="index.html#tootmisvoimekus">Tootmine</a></li>
+      <li><a href="tood.html">Tööd</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-outline" href="https://shop.halver.ee" target="_blank" rel="noopener">E-pood</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ava menüü" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+    <li><a href="index.html#tootmisvoimekus">Tootmine</a></li>
+    <li><a href="tood.html">Tööd</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <a class="btn btn-primary" href="https://shop.halver.ee" target="_blank" rel="noopener">Ava e-pood</a>
+</div>
+
+<header class="page-header wrap">
+  <span class="eyebrow">Komponendid</span>
+  <h1>Komponentide stiiliraamat.</h1>
+  <p>Kõik <code>styles/02-components.css</code> taaskasutatavad elemendid ühel lehel, klassinimega mono kirjas. Vaata siit enne uue nupu-, kaardi- või märgisstiili leiutamist. See leht ei kuulu päris saidi navigatsiooni.</p>
+</header>
+
+<section class="ks-group" id="buttons">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Nupud.</h2>
+      <p>Kaks varianti: täidetud esmane tegevus ja äärisega teisene tegevus. Kolmandat varianti (nn "quiet") süsteemis ei ole, tsiteeri äärisnuppu või linki selle asemel.</p>
+    </div>
+    <div class="ks-row">
+      <div class="ks-item">
+        <span class="ks-tag">.btn .btn-primary</span>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#">Küsi pakkumist</a>
+        </div>
+      </div>
+      <div class="ks-item">
+        <span class="ks-tag">.btn .btn-outline</span>
+        <div class="hero-actions">
+          <a class="btn btn-outline" href="#">Ava e-pood</a>
+        </div>
+      </div>
+      <div class="ks-item">
+        <span class="ks-tag">.hero-actions (rida koos)</span>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#">Küsi pakkumist</a>
+          <a class="btn btn-outline" href="#">Ava e-pood</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="navigation">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Navigatsioon.</h2>
+      <p>Näide töötab selle lehe enda päises. Alla 860px laiuse akna juures asendub link-loend hamburgeriga, mis avab <span class="ks-tag">.mobile-menu</span>; proovi akent kitsendada.</p>
+    </div>
+    <div class="ks-row">
+      <div class="ks-item"><span class="ks-tag">.site-nav .brand .nav-links .nav-actions .nav-toggle</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="page-header">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Lehepäis ja eyebrow.</h2>
+      <p>Selle lehe enda päis (üleval) on näide. Eyebrow ilmub kuni korra lehe kohta, ainult <span class="ks-tag">.page-header</span> sees, nimetamaks saidi jaotist.</p>
+    </div>
+    <div class="ks-row">
+      <div class="ks-item"><span class="ks-tag">.page-header .eyebrow h1 p</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="section-head">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Sektsioonipäis.</h2>
+      <p>Iga selle lehe pealkiri-plokk, nagu see ise, on <span class="ks-tag">.section-head</span> näide: h2 pealkiri pluss üks toetav lõik kuni 52 tähemärgi laiuselt.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group trust" id="trust-strip">
+  <div class="wrap">
+    <p class="trust-line">Eesti Kaubandus- ja Tööstuskoja liige</p>
+    <div class="trust-marks">
+      <img src="assets/images/badges/since-1992.png" alt="Mööblitootmise kogemus aastast 1992">
+      <img src="assets/images/badges/creditinfo.png" alt="Creditinfo usaldusväärsuse märgis">
+      <img src="assets/images/badges/top-ettevote-2021.png" alt="TOP ettevõte 2021 märgis">
+      <img src="assets/images/badges/eas-mkm.jpg" alt="EAS ja Majandus- ja Kommunikatsiooniministeeriumi ressursitõhususe investeeringu toetus">
+    </div>
+    <span class="ks-tag">.trust .trust-line .trust-marks</span>
+  </div>
+</section>
+
+<section class="ks-group" id="tile-with-scrim">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Fotokaart varjundiga.</h2>
+      <p><span class="ks-tag">.line-card</span> allkorjab läbipaistmatuse kohustuse fotol lasuva teksti alt ainult siis, kui varjund on arvutatud; vt Opaque Floor Rule DESIGN.md's.</p>
+    </div>
+    <div class="ks-row">
+      <div class="ks-col">
+        <article class="line-card">
+          <img src="assets/images/work/foto-2.jpg" alt="Halveri valmistatud köök marmorplaadiga tööpinnaga">
+          <div class="line-card-body">
+            <p class="entity">Halver Mööbel OÜ</p>
+            <h3>Eritellimusmööbel</h3>
+            <p>Kontorite, kaupluste, kodude, laevade ja hotellide sisustus.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="caption-chip">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Mono-pealdis.</h2>
+      <p>Läbipaistmatu kiibimuster fotol asuva teksti jaoks: <span class="ks-tag">--fixed-dark</span> 70&ndash;78% all <span class="ks-tag">--fixed-light</span> mono tekst. Kolm kasutuskohta, iga oma selektoriga.</p>
+    </div>
+    <div class="ks-row">
+      <div class="ks-item">
+        <span class="ks-tag">.hero-visual .tag</span>
+        <div class="ks-frame ks-frame--tag hero-visual">
+          <img src="assets/images/production/Holzma-scaled.jpg" alt="Holzma paneelisaag lõikab plaatmaterjali">
+          <span class="tag">Holzma paneelisaag, Kose tootmine</span>
+        </div>
+      </div>
+      <div class="ks-item">
+        <span class="ks-tag">.work-item .cat</span>
+        <div class="ks-frame ks-frame--work work-item">
+          <img src="assets/images/work/IMG_9970.jpeg" alt="Sisustatud köök ja söögituba">
+          <span class="cat">Kodu</span>
+        </div>
+      </div>
+      <div class="ks-item">
+        <span class="ks-tag">.gallery figcaption</span>
+        <figure class="ks-frame ks-frame--gallery gallery">
+          <img src="assets/images/production/Skipper-130-1-scaled.jpg" alt="CNC töötluskeskus Halveri tootmises">
+          <figcaption>Tootmine</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="spec-tile">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Tehniline paan.</h2>
+      <p><span class="ks-tag">.spec-tile</span> on tootmisvõimekuse paneeli üksikruut, kahes variandis: mõõdetud arv (<span class="ks-tag">.stat</span>) ja masinafoto (<span class="ks-tag">.photo</span>). Alati <span class="ks-tag">--fixed-dark</span> taustal, sõltumata teemast.</p>
+    </div>
+    <div class="ks-row ks-spec-row">
+      <div class="spec-tile stat">
+        <p class="num xl">45 000 m²</p>
+        <p class="label">plaatmaterjali saetakse kuus</p>
+      </div>
+      <div class="spec-tile photo">
+        <img src="assets/images/production/Weeke-BHX500-scaled.jpg" alt="Weeke CNC töötluskeskus puurib ja freesib detaile">
+        <p class="cap">Weeke CNC töötluskeskus</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="material-chip">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Materjali märgis.</h2>
+      <p>Staatiline, mitte klõpsitav. <span class="ks-tag">.material-chip</span> (ümber nimetatud, endine <span class="ks-tag">.material-pill</span>, ei olnud kunagi ümar 999px, ainult nimi muutus).</p>
+    </div>
+    <div class="ks-row">
+      <span class="material-chip">Melamiin</span>
+      <span class="material-chip">Spoon</span>
+      <span class="material-chip">Täispuit</span>
+      <span class="material-chip">Tehiskivi</span>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="filter-chip">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Filtrimärgis.</h2>
+      <p>Klõpsitav, kolmes olekus: puhkeasend, hõljumine, aktiivne. <span class="ks-tag">.filter-chip</span> (ümber nimetatud, endine <span class="ks-tag">.filter-pill</span>).</p>
+    </div>
+    <div class="ks-row">
+      <button class="filter-chip is-active" type="button">Kõik</button>
+      <button class="filter-chip" type="button">Kodu</button>
+      <button class="filter-chip" type="button">Tootmine</button>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="contact-card">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Kontaktikaart.</h2>
+      <p><span class="ks-tag">.contact-grid</span> koos kahe <span class="ks-tag">.contact-card</span>'iga, samad kaardid, mis kodulehel ja kontaktlehel.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Kose tootmine</h3>
+        <p class="entity">Halver Mööbel OÜ</p>
+        <address>Karla küla, Kose vald<br>Harjumaa, 75106, Eesti</address>
+        <div class="links">
+          <a href="tel:+37260565076">+372 605 6076</a>
+          <a href="mailto:info@halver.ee">info@halver.ee</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Haljala tootmine</h3>
+        <p class="entity">Halver Arendus OÜ</p>
+        <address>Vanamõisa küla, Haljala vald<br>Lääne-Virumaa, 45319, Eesti</address>
+        <div class="links">
+          <a href="mailto:birgit@halver.ee">birgit@halver.ee</a>
+          <a href="mailto:puit@halver.ee">puit@halver.ee</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ks-group" id="form-field">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Vormiväli.</h2>
+      <p><span class="ks-tag">.field</span>, koos sildi, abiteksti ja veaolekuga. Autoritud selle liigenduse jaoks värskelt, kuna vorm ise saidil veel puudub. Veaolek kasutab <span class="ks-tag">--accent-text</span>, süsteemi ainsat väikese aktsentteksti tooni; eraldi punast tooni ei ole, sest tokenid on külmutatud.</p>
+    </div>
+    <form class="ks-form" novalidate>
+      <div class="field">
+        <label for="ks-name">Nimi</label>
+        <input id="ks-name" type="text" name="name" placeholder="Eesnimi Perekonnanimi">
+        <span class="helper">Nii pöördume sinu poole pakkumises.</span>
+      </div>
+      <div class="field">
+        <label for="ks-message">Sõnum</label>
+        <textarea id="ks-message" name="message" placeholder="Joonised, mõõdud või kirjeldus"></textarea>
+      </div>
+      <div class="field is-error">
+        <label for="ks-email">E-post</label>
+        <input id="ks-email" type="email" name="email" value="pole-kehtiv-aadress">
+        <span class="error">Kontrolli e-posti aadressi vormingut.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/images/halver-logo.png" alt="Halver">
+        <p>Eritellimusmööbel ja mööblikomponendid. Tootmises Kosel ja Haljalas alates 1992. aastast.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h3>Sisukord</h3>
+          <ul>
+            <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+            <li><a href="index.html#tootmisvoimekus">Tootmine</a></li>
+            <li><a href="tood.html">Tööd</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Ostjatele</h3>
+          <ul>
+            <li><a href="https://shop.halver.ee" target="_blank" rel="noopener">E-pood</a></li>
+            <li><a href="mailto:info@halver.ee">Küsi pakkumist</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Kontakt</h3>
+          <ul>
+            <li><a href="tel:+37260565076">+372 605 6076</a></li>
+            <li><a href="mailto:info@halver.ee">info@halver.ee</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Halver Mööbel OÜ · Halver Arendus OÜ</span>
+      <span>Eesti Kaubandus- ja Tööstuskoja liige</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

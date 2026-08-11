@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tööd — Halver</title>
+<title>Tööd · Halver</title>
 <meta name="description" content="Väljavõte Halveri valmistatud sisustuslahendustest ja tootmisest Kosel ning Haljalas.">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles/00-tokens.css">
+<link rel="stylesheet" href="styles/01-base.css">
+<link rel="stylesheet" href="styles/02-components.css">
+<link rel="stylesheet" href="styles/11-page-work.css">
 <link rel="icon" href="data:,">
 </head>
 <body>
@@ -48,9 +51,9 @@
 <section>
   <div class="wrap">
     <div class="filters" role="group" aria-label="Filtreeri kategooria järgi">
-      <button class="filter-pill is-active" data-filter="all">Kõik</button>
-      <button class="filter-pill" data-filter="kodu">Kodu</button>
-      <button class="filter-pill" data-filter="tootmine">Tootmine</button>
+      <button class="filter-chip is-active" data-filter="all">Kõik</button>
+      <button class="filter-chip" data-filter="kodu">Kodu</button>
+      <button class="filter-chip" data-filter="tootmine">Tootmine</button>
     </div>
     <div class="gallery" id="gallery">
       <figure data-category="kodu">

@@ -12,7 +12,7 @@
     }));
   }
 
-  const filterPills = document.querySelectorAll('.filter-pill');
+  const filterPills = document.querySelectorAll('.filter-chip');
   const galleryItems = document.querySelectorAll('#gallery [data-category]');
   if (filterPills.length && galleryItems.length) {
     filterPills.forEach(pill => {
@@ -39,6 +39,15 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
     items.forEach(el => {
+      // Elements already inside the viewport at load time (the hero's
+      // section-head, above-the-fold grids) are shown as-is: only content
+      // the reader has to scroll to gets the pending state and the reveal
+      // transition. This is what stops a screenshot or a fast scroll from
+      // showing blank bands while IntersectionObserver's first, async
+      // callback is still in flight.
+      const rect = el.getBoundingClientRect();
+      const alreadyVisible = rect.top < window.innerHeight - 60 && rect.bottom > 0;
+      if (alreadyVisible) return;
       el.classList.add('reveal-pending');
       io.observe(el);
     });

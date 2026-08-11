@@ -1,0 +1,504 @@
+/* ==========================================================================
+   Halver — components
+   Every reusable primitive shared by two or more pages, plus a handful the
+   build plan names explicitly as shared even though only one page uses them
+   today (trust strip, tile-with-scrim, spec tile, material/filter chip).
+   See components.html for a rendered reference of everything below.
+
+   Renames applied here per DESIGN.md's Shapes section ("the pills are
+   dead"): .material-pill -> .material-chip, .filter-pill -> .filter-chip.
+   Both classes were already var(--radius) (2px), not 999px; only the name
+   was queued for this split. index.html, tood.html and nav.js were updated
+   to match.
+   ========================================================================== */
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14.5px;
+  padding: 14px 24px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 160ms var(--ease-out), background 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--accent-contrast);
+}
+.btn-primary:hover { background: var(--btn-primary-bg-hover); }
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--fg);
+}
+.btn-outline:hover { border-color: var(--fg); }
+
+/* Button-row layout, used wherever a primary and a secondary action sit
+   side by side (home hero, work-page CTA card). */
+.hero-actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* ---------- Nav ---------- */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.site-nav .wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.brand img { height: 26px; width: auto; }
+
+@media (prefers-color-scheme: dark) {
+  .brand img { filter: invert(1) brightness(1.6); }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--fg-muted);
+  transition: color 160ms var(--ease-out);
+}
+.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--fg); }
+
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--fg);
+}
+.nav-toggle svg { width: 22px; height: 22px; }
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .nav-actions .btn-outline { display: none; }
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  background: var(--bg);
+  z-index: 39;
+  padding: 32px var(--gutter);
+  overflow-y: auto;
+}
+.mobile-menu.is-open { display: block; }
+.mobile-menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.mobile-menu ul a {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-soft);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--fg);
+}
+.mobile-menu .btn { margin-top: 24px; width: 100%; justify-content: center; }
+
+/* ---------- Eyebrow + page header ---------- */
+
+/* At most once per page, inside .page-header, to name the section of the
+   site the reader is in. Not a decorative kicker over every section. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.page-header {
+  padding-top: clamp(32px, 5vw, 64px);
+  padding-bottom: clamp(28px, 4vw, 48px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.page-header .eyebrow { margin-bottom: 12px; }
+.page-header h1 { font-size: clamp(34px, 5vw, 56px); }
+.page-header p { margin-top: 16px; max-width: 56ch; color: var(--fg-muted); font-size: 16px; }
+
+/* ---------- Section head ---------- */
+
+.section-head { max-width: 62ch; margin-bottom: clamp(32px, 5vw, 56px); }
+.section-head h2 { font-size: clamp(30px, 3.6vw, 46px); }
+.section-head p { margin-top: 14px; font-size: 16px; color: var(--fg-muted); max-width: 52ch; }
+
+/* ---------- Trust strip ---------- */
+
+.trust {
+  padding-block: 28px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.trust .wrap {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 5vw, 56px);
+  flex-wrap: wrap;
+}
+.trust-line {
+  font-size: 14.5px;
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+.trust-marks {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 4vw, 40px);
+  flex-wrap: wrap;
+}
+.trust-marks img {
+  height: 44px;
+  width: auto;
+  opacity: 0.86;
+}
+@media (prefers-color-scheme: dark) {
+  .trust-marks img { filter: brightness(0.92) contrast(1.05); opacity: 0.95; }
+}
+
+/* ---------- Tile with scrim (photo card) ---------- */
+
+.line-card {
+  position: relative;
+  background: var(--bg);
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.line-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-in-out);
+}
+.line-card:hover img { transform: scale(1.04); }
+.line-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--fixed-dark) 88%, transparent) 100%);
+}
+.line-card-body {
+  position: relative;
+  padding: clamp(24px, 3vw, 36px);
+  color: var(--fixed-light);
+}
+.line-card-body .entity {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--fixed-light) 70%, transparent);
+}
+.line-card-body h3 {
+  margin-top: 10px;
+  font-size: clamp(24px, 2.6vw, 32px);
+  color: var(--fixed-light);
+}
+.line-card-body p {
+  margin-top: 10px;
+  max-width: 42ch;
+  font-size: 16px;
+  color: color-mix(in srgb, var(--fixed-light) 82%, transparent);
+}
+@media (max-width: 760px) {
+  .line-card { min-height: 360px; }
+}
+
+/* ---------- Caption chip ---------- */
+
+/* The opaque-floor overlay pattern: --fixed-dark at 70-78% under
+   --fixed-light mono text. Reuse this rather than reinventing an overlay
+   on a photograph. Three call sites, each its own selector because each
+   sits on a different parent (do not merge into one class without a
+   markup change, which is out of this refactor's scope). */
+.hero-visual .tag {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: color-mix(in srgb, var(--fixed-dark) 78%, transparent);
+  color: var(--fixed-light);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  letter-spacing: 0.02em;
+}
+
+.work-item .cat {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fixed-light);
+  background: color-mix(in srgb, var(--fixed-dark) 70%, transparent);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+}
+
+.gallery figcaption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fixed-light);
+  background: color-mix(in srgb, var(--fixed-dark) 70%, transparent);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+}
+
+/* ---------- Spec tile (signature element) ---------- */
+
+.spec-tile {
+  position: relative;
+  background: var(--fixed-dark);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.spec-tile .num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--fixed-light);
+  line-height: 1;
+}
+.spec-tile .label {
+  font-size: 13px;
+  color: color-mix(in srgb, var(--fixed-light) 66%, transparent);
+  max-width: 24ch;
+}
+.spec-tile.photo { padding: 0; }
+.spec-tile.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.15) contrast(1.05);
+}
+.spec-tile.photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--fixed-dark) 10%, transparent) 0%, color-mix(in srgb, var(--fixed-dark) 82%, transparent) 100%);
+}
+.spec-tile.photo .cap {
+  position: relative;
+  padding: 18px;
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: color-mix(in srgb, var(--fixed-light) 82%, transparent);
+  letter-spacing: 0.03em;
+}
+
+.spec-tile.stat { grid-column: span 2; grid-row: span 1; }
+.spec-tile.photo { grid-column: span 2; grid-row: span 2; }
+
+.spec-tile .num.xl { font-size: clamp(30px, 3vw, 44px); }
+.spec-tile .num.lg { font-size: clamp(24px, 2.2vw, 30px); }
+
+@media (max-width: 960px) {
+  .spec-tile.stat { grid-column: span 2; grid-row: auto; min-height: 180px; }
+  .spec-tile.photo { grid-column: span 2; grid-row: span 1; min-height: 260px; }
+}
+
+/* ---------- Material chip ---------- */
+
+.material-chip {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg);
+  white-space: nowrap;
+}
+
+/* ---------- Filter chip ---------- */
+
+.filter-chip {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out), background 160ms var(--ease-out);
+}
+.filter-chip:hover { color: var(--fg); border-color: var(--fg); }
+.filter-chip.is-active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+@media (prefers-color-scheme: dark) {
+  .filter-chip.is-active { background: var(--white); color: var(--ink); border-color: var(--white); }
+}
+
+/* ---------- Contact card ---------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+}
+@media (max-width: 760px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+.contact-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(22px, 3vw, 32px);
+  background: var(--bg);
+}
+.contact-card .entity {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+.contact-card h3 { margin-top: 10px; font-size: 24px; }
+.contact-card address { font-style: normal; margin-top: 14px; color: var(--fg-muted); line-height: 1.7; }
+.contact-card .links { margin-top: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; }
+.contact-card .links a { text-decoration: none; color: var(--fg); font-weight: 600; }
+.contact-card .links a:hover { color: var(--accent-text); }
+
+/* ---------- Form field ---------- */
+
+/* Authored fresh for T7 (contact form): no existing markup to derive this
+   from. Built against the tokens above, not new ones. Labels sit at the
+   interface step (14.5px/600, same weight as nav/button text) because the
+   reader has to act on them; field text is the read step (16px), since
+   what a buyer types is read back. Helper and error share the annotate
+   step (13px), matching stat labels and contact meta.
+
+   Error state: this system has exactly one accent hue reserved for three
+   jobs (focus ring, button fill, small accent text — see the Three-Orange
+   Rule in DESIGN.md) and no dedicated error/red token, and 00-tokens.css is
+   frozen. Error text and border reuse --accent-text, the token already
+   defined as "every piece of small accent text": a validation message is
+   exactly that. Do not introduce a red hex here; ask the integrator for a
+   token first. Focus is not restyled here — the global :focus-visible ring
+   already covers inputs, textareas and selects, and DESIGN.md says never to
+   replace it per component. */
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.field input,
+.field textarea,
+.field select {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  width: 100%;
+  transition: border-color 160ms var(--ease-out);
+}
+.field textarea { resize: vertical; min-height: 120px; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--fg-muted); }
+.field input:hover,
+.field textarea:hover,
+.field select:hover { border-color: var(--fg-muted); }
+.field .helper {
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+.field .error {
+  font-size: 13px;
+  color: var(--accent-text);
+}
+.field.is-error input,
+.field.is-error textarea,
+.field.is-error select { border-color: var(--accent-text); }
+
+/* ---------- Footer ---------- */
+
+.site-footer { border-top: 1px solid var(--border-soft); padding-block: 48px; }
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.footer-brand img { height: 24px; }
+@media (prefers-color-scheme: dark) { .footer-brand img { filter: invert(1) brightness(1.6); } }
+.footer-brand p { margin-top: 12px; font-size: 14.5px; color: var(--fg-muted); max-width: 32ch; }
+.footer-cols { display: flex; gap: clamp(32px, 6vw, 80px); flex-wrap: wrap; }
+.footer-col h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); font-weight: 600; margin: 0 0 14px; }
+.footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; }
+.footer-col a { text-decoration: none; color: var(--fg); }
+.footer-col a:hover { color: var(--accent-text); }
+.footer-bottom { padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--fg-muted); }

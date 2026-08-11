@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Halver — design tokens
+   Palette: cold graphite + steel, off-white paper, refined trade orange,
+   oak/walnut veneer accent. Grounded in real materials (panel, veneer, steel
+   machinery) rather than a generic AI default.
+   Type: Big Shoulders Display (condensed industrial headline) + Archivo
+   (body/UI) + IBM Plex Mono (measurements, capability data).
+
+   Frozen after T1 (the CSS partial split). Do not change a token value from
+   a parallel task; request the change in your task report instead.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/Archivo-variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/Archivo-italic-variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 600 900;
+  font-display: swap;
+  src: url('../assets/fonts/BigShouldersDisplay-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/IBMPlexMono-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/IBMPlexMono-600.woff2') format('woff2');
+}
+
+:root {
+  /* color */
+  --ink: #17191c;
+  --ink-soft: #2b2e33;
+  --steel: #565c63;
+  --steel-soft: #7a8087;
+  --paper: #eeefed;
+  --paper-raised: #f6f6f4;
+  --line: #d3d5d2;
+  --line-soft: #e2e3e0;
+  --orange: #e2591f;
+  --orange-dark: #b8440f;
+  --orange-darker: #9f3e15;
+  --veneer: #9c7a4e;
+  --white: #fbfbfa;
+
+  /* Fixed tones: do NOT redefine inside the dark-mode block. Used for
+     surfaces that must look the same regardless of page theme, a photo
+     caption scrim or the always-dark capability panel, since --ink/--white
+     invert meaning in dark mode and would make these illegible. */
+  --fixed-dark: #17191c;
+  --fixed-light: #fbfbfa;
+
+  --bg: var(--paper);
+  --bg-raised: var(--paper-raised);
+  --fg: var(--ink);
+  --fg-muted: var(--steel);
+  --border: var(--line);
+  --border-soft: var(--line-soft);
+  --accent: var(--orange);
+  --accent-contrast: var(--white);
+  /* Text-safe darker orange: --orange fails 4.5:1 as small text on --bg. */
+  --accent-text: var(--orange-darker);
+  --btn-primary-bg: var(--orange-dark);
+  --btn-primary-bg-hover: var(--orange-darker);
+
+  /* type */
+  --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --font-body: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* layout */
+  --max: 1360px;
+  --gutter: clamp(20px, 4vw, 64px);
+  --radius: 2px;
+  --nav-h: 72px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f2f1ee;
+    --ink-soft: #d8d9d6;
+    --steel: #a9aeb3;
+    --steel-soft: #7d8288;
+    --paper: #17181a;
+    --paper-raised: #1e2022;
+    --line: #35383b;
+    --line-soft: #292b2e;
+    --orange: #ff7a3d;
+    --orange-dark: #ff9760;
+    --veneer: #c39a68;
+    --white: #101112;
+
+    --bg: var(--paper);
+    --bg-raised: var(--paper-raised);
+    --fg: var(--ink);
+    --fg-muted: var(--steel);
+    --border: var(--line);
+    --border-soft: var(--line-soft);
+    --accent: var(--orange);
+    --accent-contrast: #17181a;
+    /* --orange already passes 4.5:1 as text against the dark backgrounds. */
+    --accent-text: var(--orange);
+    --btn-primary-bg: var(--orange);
+    --btn-primary-bg-hover: var(--orange-dark); /* #ff9760, lighter: dark mode hover brightens, not darkens */
+  }
+}

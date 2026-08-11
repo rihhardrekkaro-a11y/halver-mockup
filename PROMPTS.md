@@ -18,23 +18,36 @@ T1 was verified independently: pixel-diffed against a `git archive` of the pre-r
 tree, **0 pixels differing**, page height identical at 5589px. Stylesheets are linked as
 separate `<link>` tags in dependency order, not `@import`. The old `styles.css` is gone.
 
-**Next up: Wave 1, seven tasks in parallel** (T3 to T9). Then Wave 2 (T10, T11), Wave 3
+| Prep | Playwright installed, `shots.mjs` page filter, `cramped-padding` suppressed | `01fee61` |
+
+**In flight: Wave 1, seven tasks in parallel** (T3 to T9). Then Wave 2 (T11 alone), Wave 3
 (T12, T13, T14), Wave 4 (T15).
 
-## Open decisions, resolve before launching Wave 1
+## Resolved decisions
 
-1. **Finnish in scope?** Currently planned ET + EN. Halver has a named Finnish
-   salesperson and a `halver.fi` address, so FI is a real market.
-2. **Shop portal in scope?** T9 to T11 is roughly a third of the build. Dropping it makes
-   Wave 1 the last real work batch.
-3. **impeccable `cramped-padding` noise.** 24 of 27 hook findings are verified false
-   positives: the flagged containers have 28px to 112px of real padding, measured in a
-   live browser. The detector loses it because the padding rule and the border rule now
-   live in different partials after the T1 split. Two more (`.lines-grid`, `.work-grid`)
-   are intentional gapless photo grids whose children are images, not text. One
-   (`hero-eyebrow-chip`) was real and is fixed. Recommended suppression, not yet applied
-   because it needs explicit sign-off:
-   `/impeccable hooks ignore-value cramped-padding "*" --file components.html --shared`
+1. **Finnish is out of scope.** ET + EN only. This is a pitch mockup, and one mirrored
+   locale already proves the system works; a third triples the drift surface for no extra
+   pitch value. FI is named as the obvious next step in `vordlus.html`, not built.
+2. **Shop is T9 shell plus T11 product page. T10 browse is cut.** The shell carries the
+   strongest pitch fact, that the shop does not read as the same company, plus the 2.23:1
+   breadcrumb fix. T11's spec table is where the mono-dimension signature pays off. Wave 2
+   is now T11 alone. Cut with it: the 2.43:1 category-label finding and the SKU filter
+   rail, so T15 must not cite those as before/after anchors unless it re-sources them.
+3. **`cramped-padding` is suppressed project-wide**, not file-scoped. 24 of 27 findings
+   were verified false, with 28px to 112px of real padding measured live; the detector
+   cannot resolve padding across the partials split in T1. File-scoping to
+   `components.html` as originally drafted would have left Wave 1's seven new pages
+   tripping the same rule. The detector is **not** running degraded: `htmlparser2`,
+   `css-select`, `css-tree` and `domutils` are all present in `~/.claude/node_modules`.
+   T14 measures computed padding in a live browser independently of the detector.
+
+## Wave 1 asset constraints, verified before launch
+
+- `assets/images/work/` holds **five** photographs, not twelve. T4's card count follows
+  the photo count; padding the grid with duplicates or placeholders is forbidden.
+- `assets/images/production/` holds six files but **five distinct machines**: two are
+  Holzma, and there is **no Drillteq D-500 photograph** despite the machine being named
+  in T6's brief. T6 must not label another machine as the Drillteq.
 
 ---
 
@@ -66,12 +79,18 @@ Prepend this to every task prompt below.
 > numbers. Mark anything you had to invent in an HTML comment. Zero em-dashes in visible
 > copy. Radius stays `var(--radius)` (2px).
 >
-> **Screenshots:** serve with `npm run dev` (port 8899). Use the Playwright MCP tools.
-> `npm install` has not been run, so `npm run shots` will not work. **Before every
-> screenshot, scroll the full page height in steps and return to top.** Blank bands below
-> the fold in an unscrolled capture are the scroll-reveal working correctly, not a defect;
-> do not "fix" them. Capture at 1440, 768 and 375 in both colour schemes, and fix what the
-> screenshots show before reporting.
+> **Screenshots:** `npm install` and Chromium are now installed, so screenshots work. Run
+> `node scripts/shots.mjs <your-page>` with only your own pages as arguments; it starts a
+> dev server on 8899 if one is not up, reuses it if it is, and writes
+> `screenshots/<slug>-<width>-<scheme>.png` at 1440, 768 and 375 in both colour schemes.
+> Never run a bare `npm run shots` while other agents are working; it walks the whole repo.
+> The script already scrolls the full page height in steps and returns to top before
+> capturing. Blank bands below the fold in an unscrolled capture are the scroll-reveal
+> working correctly, not a defect; do not "fix" them. Fix what the screenshots show before
+> reporting.
+>
+> **impeccable:** `cramped-padding` is suppressed project-wide. Do not chase it, do not
+> re-enable it.
 >
 > **Contrast:** every text and background pair meets 4.5:1, or 3:1 for text 24px and above.
 > Verify by sampling rendered pixels, including text over photographs, not by eye.
@@ -186,18 +205,10 @@ now. Deliver `shop/index.html` as a shell demo plus the partial.
 
 ---
 
-# Wave 2, two in parallel, after T9
+# Wave 2, T11 alone, after T9
 
-## T10 - Shop browse
-Owns `shop/tooted.html`, `shop/kataloogid.html`, `styles/21-shop-browse.css`.
-
-Two problems. The live category labels are `#A6A6A6` on white at **2.43:1**, the shop's
-primary browse control styled to look disabled. And the filter rail is roughly 45 bare SKU
-codes (`KY H=450`, `KKK60UM H=2202`, `SYME H=284`) with no plain-language names; group
-them and give each a human label alongside the code.
-
-The catalogues page currently contains two unlinked LED-panel images and the literal text
-"Avaleht Kataloogid". Build a real catalogue index with downloadable items.
+> T10 shop browse was cut. See resolved decision 2. Do not build `shop/tooted.html` or
+> `shop/kataloogid.html`.
 
 ## T11 - Shop product
 Owns `shop/toode-*.html`, `styles/22-shop-product.css`.
@@ -216,7 +227,7 @@ edges do not vanish, which is what happens on the live site.
 # Wave 3, three in parallel
 
 ## T12 - English locale
-Owns `en/`. No CSS.
+Owns `en/`. No CSS. **ET + EN only, no Finnish.** See resolved decision 1.
 
 Mirror the marketing pages. Fix the drift found in the audit, do not copy it. The live
 English says "over 45 000 sq meters" where Estonian says "u." (approximately). It drops
@@ -271,7 +282,13 @@ Build `vordlus.html`, a side-by-side before and after page for the client meetin
 the live-site screenshots in `/Users/rihhard/Claude/.playwright-mcp/halver/` against the new
 mockup. Anchor each pairing to a measured fact, not an adjective:
 
-- primary nav at 2.43:1 against the new ratio
+- primary nav at 2.43:1 against the new ratio. **Verify this anchor before using it.**
+  2.43:1 is recorded nowhere in `BUILD-PLAN.md` or `DESIGN.md`; it appears only here and
+  in the cut T10 brief, where it described the shop's category labels (`#A6A6A6` on
+  white). If those were the same measurement, this anchor died with T10, because there is
+  no rebuilt browse page to compare against. Re-measure the live marketing nav from the
+  screenshots in `/Users/rihhard/Claude/.playwright-mcp/halver/` and either restate the
+  real figure or drop the pairing. Do not print a ratio you have not sampled.
 - zero forms and zero buttons across four pages against the enquiry form
 - portfolio page at 47x47px thumbnails and 50% map on mobile against the new work grid
 - no footer on either property against the new footer

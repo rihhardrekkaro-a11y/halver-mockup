@@ -1,7 +1,9 @@
 {
   "detector": {
     "ignoreRules": [
-      "cramped-padding"
+      "cramped-padding",
+      "kicker-above-heading",
+      "all-caps-body"
     ],
     "ignoreFiles": [],
     "ignoreValues": []

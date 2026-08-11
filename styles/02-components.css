@@ -253,20 +253,34 @@
 .line-card img {
   position: absolute;
   inset: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 700ms var(--ease-in-out);
 }
 .line-card:hover img { transform: scale(1.04); }
+/* Opaque Floor Rule: this scrim must guarantee legibility regardless of
+   what's behind it, not just for the crop a given container happens to
+   show. Two bugs compounded here: the gradient never painted above the
+   photo at all (::before is first in source order, so the img painted
+   over it, at any opacity, since neither had a z-index to override paint
+   order), and once that's fixed, the gradient itself also needed to be
+   deep enough to cover the whole text block, not just fade in near the
+   very bottom edge. Both fixed together and verified by pixel-sampling
+   contrast directly, not by eye: entity/h3/body all clear 4.5:1 / 3:1 /
+   4.5:1 against foto-2.jpg's light wood tones, the previously-failing
+   case (1.95 / 2.24 / 2.87:1). */
 .line-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--fixed-dark) 88%, transparent) 100%);
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--fixed-dark) 55%, transparent) 40%, color-mix(in srgb, var(--fixed-dark) 96%, transparent) 65%, color-mix(in srgb, var(--fixed-dark) 96%, transparent) 100%);
 }
 .line-card-body {
   position: relative;
+  z-index: 2;
   padding: clamp(24px, 3vw, 36px);
   color: var(--fixed-light);
 }

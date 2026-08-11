@@ -109,6 +109,48 @@ Also built in T0.2: `components.html`, a kitchen-sink page rendering every
 primitive in both themes, so parallel agents can see what exists instead of
 inventing a fifth button style.
 
+## 5b. Task dependencies
+
+Only four tasks block anything. Twelve of sixteen run in parallel.
+
+```
+T0  Design contract                    <- nothing starts before this
+     |
+     +------------------+
+     |                  |
+T1  CSS partials    T2  Repo tooling   <- 2 at once
+     |                  (blocks nothing)
+     |
+     +-- T3   Home
+     +-- T4   Selected work
+     +-- T5   Project detail
+     +-- T6   Capabilities              <- 7 AT ONCE
+     +-- T7   Contact + form
+     +-- T8   Grant page
+     +-- T9   Shop shell
+              |
+              +-- T10  Shop browse      <- 2 at once
+              +-- T11  Shop product
+                   |
+     +-------------+-------------+
+     |             |             |
+T12 English   T13 Responsive  T14 Audit <- 3 at once
+     +-------------+-------------+
+                   |
+              T15  Deploy               <- serial, last
+```
+
+| Blocker | Blocks | Reason |
+| --- | --- | --- |
+| T0 | everything | `DESIGN.md` is the contract all seven Wave 1 agents code against. Without it they each invent their own system. |
+| T1 | all screen work | Until `styles.css` is split into per-page partials, parallel agents overwrite each other. |
+| T9 | T10, T11 | They build on the shop shell. Nothing to build on until it exists. |
+| T15 | nothing | Consumes `AUDIT.md` and final screenshots, so it must run last. |
+
+Critical path is six steps: T0, T1, T9, T10, T14, T15. Peak concurrency is seven
+agents in Wave 1. Dropping the shop (T9 to T11) shortens the critical path to
+four steps and makes Wave 1 six parallel tasks.
+
 ## 6. Element inventory
 
 ### Foundations

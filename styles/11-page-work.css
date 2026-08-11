@@ -1,19 +1,193 @@
 /* ==========================================================================
    Halver — selected work page (tood.html)
-   Filter chip and caption chip themselves live in 02-components.css; this
-   file holds only the filter row and gallery grid layout around them.
+   Project cards carrying drawing-title-block metadata. Only the card shell,
+   the media well, the title block and the sector rail live here; the mono
+   chip, the contact card and the buttons come from 02-components.css
+   unchanged.
+
+   Replaces the previous .filters + .gallery rules. Both were consumed only by
+   tood.html: the twelve-thumbnail gallery is gone, and with it the JS category
+   filter (nav.js guards on #gallery being present, so it simply does not run).
+   .gallery figcaption still lives in 02-components.css and still renders in
+   components.html, which does not load this partial.
    ========================================================================== */
 
-.filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: clamp(24px, 4vw, 40px); }
+/* ---------- Sector rail ---------- */
 
-.gallery {
+/* The sectors Halver names, stated as a list. A sector with no photograph is
+   named here without being given a card; see the note in tood.html. Reuses
+   .material-chip, the system's static, non-interactive mono chip. */
+.sector-rail { margin-bottom: clamp(24px, 4vw, 40px); }
+.sector-rail-label {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.sector-track { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ---------- Project grid ---------- */
+
+/* Hairline grid: the 2px gap over --border-soft draws the rules, each cell
+   paints its own opaque background, and cells carry no corner radius. Do not
+   add a border to a card; it would double the line. */
+/* Two equal columns, six cells, three rows, filled exactly. Equal columns
+   rather than an asymmetric pair so the media wells, and therefore the title
+   blocks, line up across a row; in a hairline grid a half-step is visible. */
+.work-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2px;
   background: var(--border-soft);
   border: 1px solid var(--border-soft);
 }
-.gallery figure { margin: 0; position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--bg-raised); }
-.gallery figure img { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-in-out); }
-.gallery figure:hover img { transform: scale(1.05); }
-@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+
+.work-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* 4/3, never square: these are interiors and a square crop cuts the room in
+   half. Three of the five photographs are natively 4/3. */
+.work-card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bg-raised);
+}
+.work-card-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.work-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: clamp(22px, 3vw, 32px);
+}
+.work-card-foot { margin-top: 10px; }
+
+.work-card-sector {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.work-card h3 { font-size: clamp(24px, 2.6vw, 32px); }
+
+/* ---------- Title block ---------- */
+
+/* Two fields per card. There is no client, site or year row: PRODUCT.md
+   records none of the three for any of these photographs, and an invented one
+   is a liability in front of a procurement buyer. If Halver supplies them,
+   add rows here; the block is built to take more. */
+.work-card-spec {
+  margin: 20px 0 0;
+  border-top: 1px solid var(--border-soft);
+}
+.work-card-spec > div {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  align-items: baseline;
+  gap: 14px;
+  padding-block: 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.work-card-spec dt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.work-card-spec dd {
+  margin: 0;
+  font-size: 13px;
+  color: var(--fg);
+}
+
+/* ---------- Case-study card ---------- */
+
+/* The one cell without a photograph, because Halver has none of a ship
+   interior. Fixed-tone surface so it reads identically in both schemes, per
+   the Fixed-Tone Rule. Note that neither --accent nor --accent-text may be
+   used on this card: --accent-text over --fixed-dark measures 2.67:1 in the
+   light theme. Every tone below is a --fixed-light mix over an opaque floor.
+
+   The 1px --fixed-light edge is not decoration and it does not double the grid
+   rule. In dark mode --fixed-dark (#17191c) sits on a #17181a page at 1.01:1
+   and the 2px --border-soft seam around it measures 1.25:1, so without the
+   edge the cell dissolves into the page and reads as an unfilled hole. At 34%
+   the edge measures 3.09:1 against the dark page, sampled from a rendered
+   screenshot. The capability panel solves the same problem the same way. */
+.work-card--feature {
+  background: var(--fixed-dark);
+  color: var(--fixed-light);
+  border: 1px solid color-mix(in srgb, var(--fixed-light) 34%, transparent);
+  text-decoration: none;
+  transition: background 160ms var(--ease-out);
+}
+.work-card--feature:hover {
+  background: color-mix(in srgb, var(--fixed-dark) 92%, var(--fixed-light));
+}
+.work-card--feature .work-card-body { justify-content: space-between; gap: 32px; }
+.work-card--feature .work-card-foot { margin-top: 0; }
+/* The label sits on a rule across the card. Without it the label floats alone
+   above a large unbroken field and the cell reads as unfinished; with it the
+   field is framed and deliberate, which is the job the photograph does in
+   .line-card. */
+.work-card--feature .work-card-sector {
+  padding-bottom: 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--fixed-light) 22%, transparent);
+  color: color-mix(in srgb, var(--fixed-light) 70%, transparent);
+}
+.work-card--feature h3 { color: var(--fixed-light); }
+.work-card--feature .work-card-lead {
+  margin-top: 14px;
+  max-width: 42ch;
+  font-size: 16px;
+  color: color-mix(in srgb, var(--fixed-light) 82%, transparent);
+}
+.work-card--feature .work-card-spec,
+.work-card--feature .work-card-spec > div {
+  border-color: color-mix(in srgb, var(--fixed-light) 22%, transparent);
+}
+.work-card--feature .work-card-spec dt {
+  color: color-mix(in srgb, var(--fixed-light) 70%, transparent);
+}
+.work-card--feature .work-card-spec dd { color: var(--fixed-light); }
+
+.work-card-cta {
+  display: inline-block;
+  margin-top: 24px;
+  padding-bottom: 4px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fixed-light);
+  border-bottom: 1px solid color-mix(in srgb, var(--fixed-light) 40%, transparent);
+  transition: border-color 160ms var(--ease-out);
+}
+.work-card--feature:hover .work-card-cta { border-bottom-color: var(--fixed-light); }
+
+/* ---------- Closing call to action ---------- */
+
+.work-cta-section { padding-top: 0; }
+.work-cta { max-width: 640px; }
+.work-cta h2 { font-size: clamp(30px, 3.6vw, 46px); }
+.work-cta p { margin-top: 14px; color: var(--fg-muted); max-width: 52ch; }
+
+/* ---------- Responsive ---------- */
+
+/* One column below 760px. Six cells divide by two and by one, so no
+   breakpoint leaves an empty cell. */
+@media (max-width: 760px) {
+  .work-grid { grid-template-columns: 1fr; }
+}

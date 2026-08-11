@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tööd · Halver</title>
-<meta name="description" content="Väljavõte Halveri valmistatud sisustuslahendustest ja tootmisest Kosel ning Haljalas.">
+<meta name="description" content="Valik Halveri valmistatud sisustusest: köögid, pehmemööbli karkassid ja kruiisilaevade sisustus. Iga töö juures on kirjas, mis valmis ja millised pinnad.">
 <link rel="stylesheet" href="styles/00-tokens.css">
 <link rel="stylesheet" href="styles/01-base.css">
 <link rel="stylesheet" href="styles/02-components.css">
@@ -45,59 +45,195 @@
 
 <header class="page-header wrap">
   <h1>Valminud tööd.</h1>
-  <p>Väljavõte Halveri valmistatud sisustuslahendustest ja tootmisest Kosel ning Haljalas.</p>
+  <p>Halver sisustab kruiisilaevu, hotelle, kontoreid ja kauplusi ning valmistab köögimööblit ja mööblikomponente.</p>
 </header>
 
 <section>
   <div class="wrap">
-    <div class="filters" role="group" aria-label="Filtreeri kategooria järgi">
-      <button class="filter-chip is-active" data-filter="all">Kõik</button>
-      <button class="filter-chip" data-filter="kodu">Kodu</button>
-      <button class="filter-chip" data-filter="tootmine">Tootmine</button>
+    <div class="section-head" data-reveal>
+      <h2>Valik töid.</h2>
+      <!-- The "no client, no site" line is not a flourish: PRODUCT.md records that
+           not one completed-work photograph is attributable to a named customer,
+           and no project dates exist. Rather than leave the omission unexplained,
+           the page states it. Title blocks below therefore carry sector, scope and
+           surfaces, and no client, location or year field. -->
+      <p>Fotod on Halveri enda objektidelt ja tootmisest. Objektide tellijaid ja asukohti siin ei avaldata.</p>
     </div>
-    <div class="gallery" id="gallery">
-      <figure data-category="kodu">
-        <img src="assets/images/work/foto.jpg" alt="Puitviimistlusega köök kalasabamustriga põrandaga" loading="lazy">
-        <figcaption>Kodu</figcaption>
-      </figure>
-      <figure data-category="kodu">
-        <img src="assets/images/work/foto-2.jpg" alt="Köök marmorplaadist tagaseina ja tööpinnaga" loading="lazy">
-        <figcaption>Kodu</figcaption>
-      </figure>
-      <figure data-category="kodu">
-        <img src="assets/images/work/foto-3.jpg" alt="Valge köögimööbel avatud riiulitega" loading="lazy">
-        <figcaption>Kodu</figcaption>
-      </figure>
-      <figure data-category="kodu">
-        <img src="assets/images/work/IMG_9970.jpeg" alt="Sisustatud köök ja söögituba tammeparketiga" loading="lazy">
-        <figcaption>Kodu</figcaption>
-      </figure>
-      <figure data-category="tootmine">
-        <img src="assets/images/work/karkass.jpg" alt="Pehmemööbli karkassid Halveri Arenduse tootmises" loading="lazy">
-        <figcaption>Tootmine</figcaption>
-      </figure>
-      <figure data-category="tootmine">
-        <img src="assets/images/production/Holzma-2-scaled.jpg" alt="Lõigatud plaatmaterjal Halveri tootmises" loading="lazy">
-        <figcaption>Tootmine</figcaption>
-      </figure>
-      <figure data-category="tootmine">
-        <img src="assets/images/production/Skipper-130-1-scaled.jpg" alt="CNC töötluskeskus Halveri tootmises" loading="lazy">
-        <figcaption>Tootmine</figcaption>
-      </figure>
-      <figure data-category="tootmine">
-        <img src="assets/images/production/Omal-2-scaled.jpg" alt="Servamisliin Halveri tootmises" loading="lazy">
-        <figcaption>Tootmine</figcaption>
-      </figure>
+
+    <!-- Sector rail. Halver names five sectors; only some of them have a
+         photograph in assets/images/work/, so the sectors are stated here as a
+         list and the grid below carries only the work that has a real photo. -->
+    <div class="sector-rail">
+      <span class="sector-rail-label">Sektorid</span>
+      <div class="sector-track">
+        <span class="material-chip">Kruiisilaevade sisustus</span>
+        <span class="material-chip">Hotellide sisustamine</span>
+        <span class="material-chip">Köögid</span>
+        <span class="material-chip">Kontorid</span>
+        <span class="material-chip">Kauplused</span>
+      </div>
+    </div>
+
+    <!-- Six cells in a 3x3 grid: the 2x2 case-study card plus exactly one card
+         per photograph in assets/images/work/ (five). No photo is used twice and
+         there is no empty cell at any of the three breakpoints. -->
+    <div class="work-grid" data-reveal>
+
+      <!-- The one card that links out. projekt-kruiisilaeva-sisustus.html is
+           built by T5; the filename is fixed and must not change. Halver has no
+           photograph of a ship interior, so this card is typographic by design
+           rather than a photo card with a stand-in image. -->
+      <a class="work-card work-card--feature" href="projekt-kruiisilaeva-sisustus.html">
+        <div class="work-card-body">
+          <p class="work-card-sector">Kruiisilaevade sisustus</p>
+          <div class="work-card-foot">
+            <h3>Sisustus laevale.</h3>
+            <p class="work-card-lead">Halveri eritellimusmööbel läheb ka laevade siseruumidesse, kliendi jooniste ja mõõtude järgi.</p>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Töö</dt>
+                <dd>Mõõtu valmistatud sisustus kliendi jooniste järgi</dd>
+              </div>
+              <div>
+                <dt>Teostus</dt>
+                <dd>Halver Mööbel OÜ</dd>
+              </div>
+            </dl>
+            <span class="work-card-cta">Vaata projekti</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- The five photo cards are not links. Their project pages do not exist
+           yet, and a pitch mockup that 404s when the reviewer clicks a card is
+           worse than a card that plainly is not clickable. Each carries its
+           agreed target in data-project, so the integrator can turn them into
+           anchors unchanged once the pages land. Filename convention:
+           projekt-<slug>.html, same as T5's page. -->
+      <article class="work-card" data-project="projekt-kook-ja-soogituba.html">
+        <div class="work-card-media">
+          <img src="assets/images/work/IMG_9970.jpeg" width="4032" height="3024" loading="lazy" alt="Köök ja söögituba: puidumustriga ülekapid, matt hallid frontid, must kivimustriga tagasein ning söögilaud siniste tugitoolidega.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Köögid</p>
+          <div class="work-card-foot">
+            <h3>Köök ja söögituba ühes ruumis.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Töö</dt>
+                <dd>Köögimööbel, kõrgkapid ja integreeritud tehnika</dd>
+              </div>
+              <div>
+                <dt>Pinnad</dt>
+                <dd>Puidumustriga ülekapid, matt hall front, must kivimustriga pind</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card" data-project="projekt-nurgakook.html">
+        <div class="work-card-media">
+          <img src="assets/images/work/foto.jpg" width="1512" height="2016" loading="lazy" alt="Nurgaköök: puidumustriga ülekapid ja tagasein, matt heledad alumised frontid, kalasabamustriga parkett.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Köögid</p>
+          <div class="work-card-foot">
+            <h3>Nurgaköök valgustatud tagaseinaga.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Töö</dt>
+                <dd>Köögimööbel, kõrgkapp, pudeliriiul</dd>
+              </div>
+              <div>
+                <dt>Pinnad</dt>
+                <dd>Puidumustriga ülekapid ja tagasein, matt heledad frontid</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card" data-project="projekt-aknaesine-kook.html">
+        <div class="work-card-media">
+          <img src="assets/images/work/foto-2.jpg" width="2016" height="1512" loading="lazy" alt="Köögimööbel akna ümber: matt valged frontid, puidumustriga ülekapid ja avatud riiulid.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Köögid</p>
+          <div class="work-card-foot">
+            <h3>Köögimööbel akna ümber.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Töö</dt>
+                <dd>Köögimööbel, kõrgkapid, avatud riiulid</dd>
+              </div>
+              <div>
+                <dt>Pinnad</dt>
+                <dd>Matt valged frontid, puidumustriga ülekapid ja tagasein</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card" data-project="projekt-raamfrontidega-kook.html">
+        <div class="work-card-media">
+          <img src="assets/images/work/foto-3.jpg" width="2016" height="1512" loading="lazy" alt="Raamfrontidega köök: heledad matt frontid, marmormustriga tagasein ja tööpind, pudeliriiul.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Köögid</p>
+          <div class="work-card-foot">
+            <h3>Raamfrontidega köök.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Töö</dt>
+                <dd>Köögimööbel, kõrgkapid, pudeliriiul</dd>
+              </div>
+              <div>
+                <dt>Pinnad</dt>
+                <dd>Matt värvitud raamfrondid, marmormustriga tagasein ja tööpind</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <!-- karkass.jpg is a component shot, not a finished interior, so this card
+           is labelled as the component line rather than as one of the five
+           sectors. Halver Arendus OÜ makes upholstery frames; the same photo is
+           already captioned that way on index.html. -->
+      <article class="work-card" data-project="projekt-pehmemoobli-karkassid.html">
+        <div class="work-card-media">
+          <img src="assets/images/work/karkass.jpg" width="3660" height="2556" loading="lazy" alt="Pehmemööbli karkassid Halveri tootmises: vineerist ja puitliistudest raamid siksakvedrudega.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Mööblikomponendid</p>
+          <div class="work-card-foot">
+            <h3>Pehmemööbli karkassid.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Töö</dt>
+                <dd>Pehmemööbli karkassid ja mööblikomponendid</dd>
+              </div>
+              <div>
+                <dt>Materjalid</dt>
+                <dd>Vineer, puitliistud, siksakvedrud</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
 
-<section style="padding-top:0;">
+<section class="work-cta-section">
   <div class="wrap">
-    <div class="contact-card" style="max-width:640px;">
+    <div class="contact-card work-cta">
       <h2>Räägime, mida on vaja ehitada.</h2>
-      <p style="margin-top:12px;color:var(--fg-muted);">Saada oma joonised või kirjeldus ja saad pakkumise Halveri tootmiselt.</p>
-      <div class="hero-actions" style="margin-top:20px;">
+      <p>Saada oma joonised või kirjeldus ja saad pakkumise Halveri tootmiselt.</p>
+      <div class="hero-actions">
         <a class="btn btn-primary" href="kontakt.html">Küsi pakkumist</a>
       </div>
     </div>

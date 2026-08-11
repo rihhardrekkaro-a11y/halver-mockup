@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work · Halver</title>
+<meta name="description" content="A selection of Halver's completed fit-outs: kitchens, upholstery frames and cruise ship interiors. Each project lists what was made and which surfaces were used.">
+<link rel="stylesheet" href="../styles/00-tokens.css">
+<link rel="stylesheet" href="../styles/01-base.css">
+<link rel="stylesheet" href="../styles/02-components.css">
+<link rel="stylesheet" href="../styles/11-page-work.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Halver, homepage">
+      <img src="../assets/images/halver-logo.png" alt="Halver">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#ettevottest">About</a></li>
+      <li><a href="tootmine.html">Production</a></li>
+      <li><a href="tood.html" aria-current="page">Work</a></li>
+      <li><a href="kontakt.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <a href="../tood.html" hreflang="et">ET</a>
+        <a href="tood.html" hreflang="en" aria-current="true">EN</a>
+      </div>
+      <a class="btn btn-outline" href="https://shop.halver.ee" target="_blank" rel="noopener">Shop</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#ettevottest">About</a></li>
+    <li><a href="tootmine.html">Production</a></li>
+    <li><a href="tood.html">Work</a></li>
+    <li><a href="kontakt.html">Contact</a></li>
+  </ul>
+  <div class="lang-switch">
+    <a href="../tood.html" hreflang="et">ET</a>
+    <a href="tood.html" hreflang="en" aria-current="true">EN</a>
+  </div>
+  <a class="btn btn-primary" href="https://shop.halver.ee" target="_blank" rel="noopener">Open shop</a>
+</div>
+
+<header class="page-header wrap">
+  <h1>Completed work.</h1>
+  <p>Halver fits out cruise ships, hotels, offices and shops, and makes kitchen furniture and furniture components.</p>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <h2>A selection of work.</h2>
+      <!-- The "no client, no site" line is not a flourish: PRODUCT.md records that
+           not one completed-work photograph is attributable to a named customer,
+           and no project dates exist. Rather than leave the omission unexplained,
+           the page states it. Title blocks below therefore carry sector, scope and
+           surfaces, and no client, location or year field. Mirrors tood.html. -->
+      <p>Photos are from Halver's own projects and production. Client and location details for these projects are not published here.</p>
+    </div>
+
+    <!-- Sector rail. Halver names five sectors; only some of them have a
+         photograph in assets/images/work/, so the sectors are stated here as a
+         list and the grid below carries only the work that has a real photo. -->
+    <div class="sector-rail">
+      <span class="sector-rail-label">Sectors</span>
+      <div class="sector-track">
+        <span class="material-chip">Cruise ship fit-out</span>
+        <span class="material-chip">Hotel fit-out</span>
+        <span class="material-chip">Kitchens</span>
+        <span class="material-chip">Offices</span>
+        <span class="material-chip">Shops</span>
+      </div>
+    </div>
+
+    <!-- Six cells in a 3x3 grid: the 2x2 case-study card plus exactly one card
+         per photograph in assets/images/work/ (five). No photo is used twice and
+         there is no empty cell at any of the three breakpoints. Mirrors tood.html. -->
+    <div class="work-grid" data-reveal>
+
+      <!-- The one card that links out. projekt-kruiisilaeva-sisustus.html is the
+           fixed filename for this project page's English mirror, same convention
+           as the Estonian page. Halver has no photograph of a ship interior, so
+           this card is typographic by design rather than a photo card with a
+           stand-in image. -->
+      <a class="work-card work-card--feature" href="projekt-kruiisilaeva-sisustus.html">
+        <div class="work-card-body">
+          <p class="work-card-sector">Cruise ship fit-out</p>
+          <div class="work-card-foot">
+            <h3>Fit-out for a ship.</h3>
+            <p class="work-card-lead">Halver's made-to-order furniture also goes into ship interiors, built to the client's drawings and dimensions.</p>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Work</dt>
+                <dd>Made-to-measure fit-out to the client's drawings</dd>
+              </div>
+              <div>
+                <dt>Delivered by</dt>
+                <dd>Halver Mööbel OÜ</dd>
+              </div>
+            </dl>
+            <span class="work-card-cta">View project</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- The five photo cards are not links. Their project pages do not exist
+           yet, and a pitch mockup that 404s when the reviewer clicks a card is
+           worse than a card that plainly is not clickable. Mirrors tood.html,
+           including its data-project targets, which stay unchanged since those
+           filenames are not locale-specific in the source markup. -->
+      <article class="work-card" data-project="projekt-kook-ja-soogituba.html">
+        <div class="work-card-media">
+          <img src="../assets/images/work/IMG_9970.jpeg" width="4032" height="3024" loading="lazy" alt="Kitchen and dining room: wood-look wall cabinets, matte grey fronts, a black stone-look wall panel and a dining table with blue armchairs.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Kitchens</p>
+          <div class="work-card-foot">
+            <h3>Kitchen and dining room in one space.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Work</dt>
+                <dd>Kitchen furniture, tall cabinets and integrated appliances</dd>
+              </div>
+              <div>
+                <dt>Surfaces</dt>
+                <dd>Wood-look wall cabinets, matte grey front, black stone-look surface</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card" data-project="projekt-nurgakook.html">
+        <div class="work-card-media">
+          <img src="../assets/images/work/foto.jpg" width="1512" height="2016" loading="lazy" alt="Corner kitchen: wood-look wall cabinets and wall panel, matte light lower fronts, herringbone parquet flooring.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Kitchens</p>
+          <div class="work-card-foot">
+            <h3>Corner kitchen with a lit wall panel.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Work</dt>
+                <dd>Kitchen furniture, tall cabinet, bottle rack</dd>
+              </div>
+              <div>
+                <dt>Surfaces</dt>
+                <dd>Wood-look wall cabinets and wall panel, matte light fronts</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card" data-project="projekt-aknaesine-kook.html">
+        <div class="work-card-media">
+          <img src="../assets/images/work/foto-2.jpg" width="2016" height="1512" loading="lazy" alt="Kitchen furniture around a window: matte white fronts, wood-look wall cabinets and open shelving.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Kitchens</p>
+          <div class="work-card-foot">
+            <h3>Kitchen furniture around a window.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Work</dt>
+                <dd>Kitchen furniture, tall cabinets, open shelving</dd>
+              </div>
+              <div>
+                <dt>Surfaces</dt>
+                <dd>Matte white fronts, wood-look wall cabinets and wall panel</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card" data-project="projekt-raamfrontidega-kook.html">
+        <div class="work-card-media">
+          <img src="../assets/images/work/foto-3.jpg" width="2016" height="1512" loading="lazy" alt="Kitchen with framed fronts: light matte fronts, marble-look wall panel and worktop, bottle rack.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Kitchens</p>
+          <div class="work-card-foot">
+            <h3>Kitchen with framed fronts.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Work</dt>
+                <dd>Kitchen furniture, tall cabinets, bottle rack</dd>
+              </div>
+              <div>
+                <dt>Surfaces</dt>
+                <dd>Matte painted framed fronts, marble-look wall panel and worktop</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <!-- karkass.jpg is a component shot, not a finished interior, so this card
+           is labelled as the component line rather than as one of the five
+           sectors. Mirrors tood.html. -->
+      <article class="work-card" data-project="projekt-pehmemoobli-karkassid.html">
+        <div class="work-card-media">
+          <img src="../assets/images/work/karkass.jpg" width="3660" height="2556" loading="lazy" alt="Upholstery frames in Halver's production: plywood and timber-batten frames with zigzag springs.">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-sector">Furniture components</p>
+          <div class="work-card-foot">
+            <h3>Upholstery frames.</h3>
+            <dl class="work-card-spec">
+              <div>
+                <dt>Work</dt>
+                <dd>Upholstery frames and furniture components</dd>
+              </div>
+              <div>
+                <dt>Materials</dt>
+                <dd>Plywood, timber battens, zigzag springs</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="work-cta-section">
+  <div class="wrap">
+    <div class="contact-card work-cta">
+      <h2>Let's talk about what needs building.</h2>
+      <p>Send your drawings or a description and get a quote from Halver's production.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="kontakt.html">Request a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/images/halver-logo.png" alt="Halver">
+        <p>Made-to-order furniture and furniture components. In production in Kose and Haljala since 1992.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h3>Site map</h3>
+          <ul>
+            <li><a href="index.html#ettevottest">About</a></li>
+            <li><a href="tootmine.html">Production</a></li>
+            <li><a href="tood.html">Work</a></li>
+            <li><a href="kontakt.html">Contact</a></li>
+            <li><a href="toetused.html">Grants</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>For buyers</h3>
+          <ul>
+            <li><a href="https://shop.halver.ee" target="_blank" rel="noopener">Shop</a></li>
+            <li><a href="mailto:info@halver.ee">Request a quote</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul>
+            <li><a href="tel:+3726056076">+372 605 6076</a></li>
+            <li><a href="mailto:info@halver.ee">info@halver.ee</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Halver Mööbel OÜ · Halver Arendus OÜ</span>
+      <span>Member of the Estonian Chamber of Commerce and Industry.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+</body>
+</html>

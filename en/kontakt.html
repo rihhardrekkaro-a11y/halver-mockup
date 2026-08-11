@@ -1,38 +1,36 @@
 <!DOCTYPE html>
-<html lang="et">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kontakt · Halver</title>
-<meta name="description" content="Saada Halverile päring joonistega. Halver Mööbel OÜ ja Halver Arendus OÜ kontaktid, tootmisüksuste aadressid ja meeskond.">
-<link rel="stylesheet" href="styles/00-tokens.css">
-<link rel="stylesheet" href="styles/01-base.css">
-<link rel="stylesheet" href="styles/02-components.css">
-<link rel="stylesheet" href="styles/12-page-contact.css">
+<title>Contact · Halver</title>
+<meta name="description" content="Send Halver an enquiry with your drawings. Halver Mööbel OÜ and Halver Arendus OÜ contacts, production unit addresses and team.">
+<link rel="stylesheet" href="../styles/00-tokens.css">
+<link rel="stylesheet" href="../styles/01-base.css">
+<link rel="stylesheet" href="../styles/02-components.css">
+<link rel="stylesheet" href="../styles/12-page-contact.css">
 <link rel="icon" href="data:,">
 </head>
 <body>
 
 <nav class="site-nav">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Halver, avaleht">
-      <img src="assets/images/halver-logo.png" alt="Halver">
+    <a class="brand" href="index.html" aria-label="Halver, homepage">
+      <img src="../assets/images/halver-logo.png" alt="Halver">
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#ettevottest">Ettevõttest</a></li>
-      <li><a href="tootmine.html">Tootmine</a></li>
-      <li><a href="tood.html">Tööd</a></li>
-      <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
+      <li><a href="index.html#ettevottest">About</a></li>
+      <li><a href="tootmine.html">Production</a></li>
+      <li><a href="tood.html">Work</a></li>
+      <li><a href="kontakt.html" aria-current="page">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <!-- Language switcher, copied from shop/index.html's .lang-switch
-           pattern (T12). ET is the current locale here; EN mirrors to en/. -->
       <div class="lang-switch">
-        <a href="kontakt.html" hreflang="et" aria-current="true">ET</a>
-        <a href="en/kontakt.html" hreflang="en">EN</a>
+        <a href="../kontakt.html" hreflang="et">ET</a>
+        <a href="kontakt.html" hreflang="en" aria-current="true">EN</a>
       </div>
-      <a class="btn btn-outline" href="https://shop.halver.ee" target="_blank" rel="noopener">E-pood</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Ava menüü" aria-expanded="false" aria-controls="mobileMenu">
+      <a class="btn btn-outline" href="https://shop.halver.ee" target="_blank" rel="noopener">Shop</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
     </div>
@@ -41,58 +39,58 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <ul>
-    <li><a href="index.html#ettevottest">Ettevõttest</a></li>
-    <li><a href="tootmine.html">Tootmine</a></li>
-    <li><a href="tood.html">Tööd</a></li>
-    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="index.html#ettevottest">About</a></li>
+    <li><a href="tootmine.html">Production</a></li>
+    <li><a href="tood.html">Work</a></li>
+    <li><a href="kontakt.html">Contact</a></li>
   </ul>
   <div class="lang-switch">
-    <a href="kontakt.html" hreflang="et" aria-current="true">ET</a>
-    <a href="en/kontakt.html" hreflang="en">EN</a>
+    <a href="../kontakt.html" hreflang="et">ET</a>
+    <a href="kontakt.html" hreflang="en" aria-current="true">EN</a>
   </div>
-  <a class="btn btn-primary" href="https://shop.halver.ee" target="_blank" rel="noopener">Ava e-pood</a>
+  <a class="btn btn-primary" href="https://shop.halver.ee" target="_blank" rel="noopener">Open shop</a>
 </div>
 
 <header class="page-header wrap">
-  <h1>Räägime su projektist.</h1>
-  <p>Saada joonised, mõõdud või kirjeldus ning saad pakkumise Halveri tootmiselt. Kaks tootmisüksust: Kose ja Haljala.</p>
+  <h1>Let's talk about your project.</h1>
+  <p>Send drawings, dimensions or a description and get a quote from Halver's production. Two production units: Kose and Haljala.</p>
 </header>
 
 <!-- ENQUIRY FORM
-     halver.ee has no form and no button on any of its four pages, so every
-     field, option and helper string below is authored for this mockup. The
-     sector options are the five sectors Halver names for itself (kruiisilaevade
-     sisustus, hotellide sisustamine, köögid, kontorid, kauplused) and are kept
-     identical to the ones used on tood.html. No number here is a Halver claim:
-     the form asks the buyer for the buyer's own quantities and dates.
-     There is no form backend in this artifact (PRODUCT.md), so the form makes
-     no claim to send: method="post" with no action keeps typed data out of the
-     URL, and the note beside the button names the channel that actually works.
-     Routing (custom furniture, components, Finland) is Halver's real routing;
-     the three people named are the ones the live site lists for those areas. -->
+     Mirrors kontakt.html's own note: halver.ee has no form and no button on
+     any of its four pages, so every field, option and helper string below is
+     authored for this mockup, translated from the same source. The sector
+     options are the same five sectors used on tood.html. No number here is a
+     Halver claim: the form asks the buyer for the buyer's own quantities and
+     dates. There is no form backend in this artifact (PRODUCT.md), so the
+     form makes no claim to send: method="post" with no action keeps typed
+     data out of the URL, and the note beside the button names the channel
+     that actually works. Routing (custom furniture, components, Finland) is
+     Halver's real routing; the three people named are the ones the live site
+     lists for those areas. -->
 <section class="enquiry" id="paring">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <h2>Päring tootmisele.</h2>
-      <p>Mida täpsem on sisend, seda täpsem on pakkumine. Joonised, mõõdud ja materjalid võib lisada kohe.</p>
+      <h2>Enquiry to production.</h2>
+      <p>The more precise the input, the more precise the quote. Drawings, dimensions and materials can be added right away.</p>
     </div>
 
     <div class="enquiry-grid" data-reveal>
       <aside class="enquiry-aside">
         <div class="aside-block">
-          <h3>Mida päringule lisada</h3>
+          <h3>What to include with your enquiry</h3>
           <ul class="aside-list">
-            <li>Joonised või mõõdud millimeetrites</li>
-            <li>Materjal ja viimistlus</li>
-            <li>Kogus</li>
-            <li>Soovitud tarneaeg</li>
+            <li>Drawings or dimensions in millimetres</li>
+            <li>Material and finish</li>
+            <li>Quantity</li>
+            <li>Desired delivery time</li>
           </ul>
         </div>
         <div class="aside-block">
-          <h3>Kuhu päring läheb</h3>
+          <h3>Where your enquiry goes</h3>
           <div class="route-list">
             <div class="route">
-              <p class="role">Eritellimusmööbel</p>
+              <p class="role">Made-to-order furniture</p>
               <p class="name">Indrek Lillemäe</p>
               <div class="meta">
                 <a href="tel:+3726056076">+372 605 6076</a>
@@ -100,7 +98,7 @@
               </div>
             </div>
             <div class="route">
-              <p class="role">Mööblikomponendid</p>
+              <p class="role">Furniture components</p>
               <p class="name">Birgit</p>
               <div class="meta">
                 <a href="tel:+37256628507">+372 5662 8507</a>
@@ -108,7 +106,7 @@
               </div>
             </div>
             <div class="route">
-              <p class="role">Müük Soome</p>
+              <p class="role">Sales, Finland</p>
               <p class="name">Ilkka Ahola</p>
               <div class="meta">
                 <a href="tel:+358406309630">+358 40 630 9630</a>
@@ -121,153 +119,148 @@
 
       <form class="enquiry-form" method="post" novalidate>
         <fieldset class="choice-group wide" aria-describedby="projekt-helper">
-          <legend>Projekti tüüp</legend>
-          <span class="helper" id="projekt-helper">Suunab päringu õigele müügile.</span>
+          <legend>Project type</legend>
+          <span class="helper" id="projekt-helper">Routes the enquiry to the right sales contact.</span>
           <div class="choice-list">
             <label class="choice">
               <input type="radio" name="projekt" value="eritellimusmoobel" checked>
-              <span>Eritellimusmööbel</span>
+              <span>Made-to-order furniture</span>
             </label>
             <label class="choice">
               <input type="radio" name="projekt" value="komponendid">
-              <span>Mööblikomponendid</span>
+              <span>Furniture components</span>
             </label>
             <label class="choice">
               <input type="radio" name="projekt" value="selgumisel">
-              <span>Ei ole veel selge</span>
+              <span>Not yet decided</span>
             </label>
           </div>
         </fieldset>
 
         <fieldset class="choice-group wide" aria-describedby="sektor-helper">
-          <legend>Sektor</legend>
-          <span class="helper" id="sektor-helper">Vali kõik, mis sinu projektile sobivad.</span>
+          <legend>Sector</legend>
+          <span class="helper" id="sektor-helper">Select all that fit your project.</span>
           <div class="choice-list cols">
             <label class="choice">
               <input type="checkbox" name="sektor" value="kruiisilaevad">
-              <span>Kruiisilaevade sisustus</span>
+              <span>Cruise ship fit-out</span>
             </label>
             <label class="choice">
               <input type="checkbox" name="sektor" value="hotellid" checked>
-              <span>Hotellide sisustamine</span>
+              <span>Hotel fit-out</span>
             </label>
             <label class="choice">
               <input type="checkbox" name="sektor" value="koogid">
-              <span>Köögid</span>
+              <span>Kitchens</span>
             </label>
             <label class="choice">
               <input type="checkbox" name="sektor" value="kontorid">
-              <span>Kontorid</span>
+              <span>Offices</span>
             </label>
             <label class="choice">
               <input type="checkbox" name="sektor" value="kauplused">
-              <span>Kauplused</span>
+              <span>Shops</span>
             </label>
           </div>
         </fieldset>
 
         <div class="field">
-          <label for="maht">Maht</label>
+          <label for="maht">Volume</label>
           <input id="maht" name="maht" type="text" aria-describedby="maht-helper">
-          <span class="helper" id="maht-helper">Detailide arv, jooksvad meetrid või ruutmeetrid.</span>
+          <span class="helper" id="maht-helper">Number of parts, running metres or square metres.</span>
         </div>
 
         <div class="field">
-          <label for="tahtaeg">Soovitud tarneaeg</label>
+          <label for="tahtaeg">Desired delivery time</label>
           <select id="tahtaeg" name="tahtaeg" aria-describedby="tahtaeg-helper">
-            <option value="">Vali</option>
-            <option value="lahtine">Ei ole veel paigas</option>
-            <option value="kuni-3">Kuni 3 kuud</option>
-            <option value="3-6">3 kuni 6 kuud</option>
-            <option value="ule-6">Rohkem kui 6 kuud</option>
+            <option value="">Select</option>
+            <option value="lahtine">Not yet set</option>
+            <option value="kuni-3">Up to 3 months</option>
+            <option value="3-6">3 to 6 months</option>
+            <option value="ule-6">More than 6 months</option>
           </select>
-          <span class="helper" id="tahtaeg-helper">Sinu projekti graafik, mitte tootmise järjekord.</span>
+          <span class="helper" id="tahtaeg-helper">Your project's schedule, not the production queue.</span>
         </div>
 
         <div class="field wide">
-          <label for="joonised">Joonised</label>
+          <label for="joonised">Drawings</label>
           <input id="joonised" name="joonised" type="file" multiple accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png" aria-describedby="joonised-helper">
-          <span class="helper" id="joonised-helper">PDF, DWG, DXF või foto. Võid lisada mitu faili.</span>
+          <span class="helper" id="joonised-helper">PDF, DWG, DXF or a photo. You can add several files.</span>
         </div>
 
         <div class="field">
-          <label for="nimi">Nimi</label>
+          <label for="nimi">Name</label>
           <input id="nimi" name="nimi" type="text" autocomplete="name">
         </div>
 
         <div class="field">
-          <label for="ettevote">Ettevõte</label>
+          <label for="ettevote">Company</label>
           <input id="ettevote" name="ettevote" type="text" autocomplete="organization">
         </div>
 
         <!-- DEMO STATE, NOT A BUG: this field ships pre-filled with an invalid
-             address so the error pattern (border and message, both --accent-text)
-             is visible in a static mockup with no JavaScript validation. Remove
-             the value, the is-error class and aria-invalid to reset it. -->
+             address so the error pattern (border and message, both
+             --accent-text) is visible in a static mockup with no JavaScript
+             validation. Mirrors kontakt.html's own note. Remove the value,
+             the is-error class and aria-invalid to reset it. -->
         <div class="field is-error">
-          <label for="epost">E-post</label>
+          <label for="epost">Email</label>
           <input id="epost" name="epost" type="email" autocomplete="email" value="indrek.lillemae@halver" aria-invalid="true" aria-describedby="epost-error">
-          <span class="error" id="epost-error">Kontrolli e-posti aadressi vormingut.</span>
+          <span class="error" id="epost-error">Check the format of the email address.</span>
         </div>
 
-        <!-- DEMO STATE, NOT A BUG: is-focus-demo paints the global focus ring on
-             a field that is not really focused, so the keyboard focus pattern is
-             visible in a screenshot. It reuses the same two declarations as
-             :focus-visible in 01-base.css; it is not a second focus treatment.
-             Remove the class to reset it. -->
+        <!-- DEMO STATE, NOT A BUG: is-focus-demo paints the global focus ring
+             on a field that is not really focused, so the keyboard focus
+             pattern is visible in a screenshot. Mirrors kontakt.html's own
+             note. Remove the class to reset it. -->
         <div class="field is-focus-demo">
-          <label for="telefon">Telefon</label>
+          <label for="telefon">Phone</label>
           <input id="telefon" name="telefon" type="tel" autocomplete="tel" aria-describedby="telefon-helper">
-          <span class="helper" id="telefon-helper">Helistame ainult siis, kui joonis vajab täpsustust.</span>
+          <span class="helper" id="telefon-helper">We only call if a drawing needs clarifying.</span>
         </div>
 
         <div class="field wide">
-          <label for="kirjeldus">Projekti kirjeldus</label>
+          <label for="kirjeldus">Project description</label>
           <textarea id="kirjeldus" name="kirjeldus" rows="5" aria-describedby="kirjeldus-helper"></textarea>
-          <span class="helper" id="kirjeldus-helper">Objekt, materjalid, viimistlus ja kõik muu, mis pakkumist täpsustab.</span>
+          <span class="helper" id="kirjeldus-helper">Site, materials, finish and anything else that helps the quote.</span>
         </div>
 
         <div class="enquiry-submit wide">
-          <button class="btn btn-primary" type="submit">Saada päring</button>
-          <p class="enquiry-note">Eelistad e-posti? Saada joonised aadressile <a href="mailto:info@halver.ee">info@halver.ee</a>.</p>
+          <button class="btn btn-primary" type="submit">Send enquiry</button>
+          <p class="enquiry-note">Prefer email? Send your drawings to <a href="mailto:info@halver.ee">info@halver.ee</a>.</p>
         </div>
       </form>
     </div>
   </div>
 </section>
 
-<!-- TWO ENTITIES, ONE CARD TEMPLATE. Both units use the same .contact-card with
-     the same left alignment, the same four blocks in the same order (place,
-     legal entity, address, contacts) and the same map well, so neither reads as
-     the more important one. The live site centres one on grey and left-aligns
-     the other on white at four different heights.
+<!-- TWO ENTITIES, ONE CARD TEMPLATE. Mirrors kontakt.html: both units use the
+     same .contact-card with the same left alignment and the same four blocks
+     in the same order (place, legal entity, address, contacts), so neither
+     reads as the more important one.
      AUTHORED: halver.ee lists no general phone for the Haljala unit, only
-     puit@halver.ee. To keep the two cards parallel, the Haljala card carries the
-     real direct number of Raivo Vidder, Halver Arendus tegevjuht, taken from the
-     live contact page. Verify with the client before this goes live. -->
+     puit@halver.ee. To keep the two cards parallel, the Haljala card carries
+     the real direct number of Raivo Vidder, Halver Arendus's managing
+     director, taken from the live contact page. Verify with the client
+     before this goes live. -->
 <section class="units">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <h2>Tootmisüksused.</h2>
-      <p>Kaks juriidilist ettevõtet ja üks tootmine kahes asukohas.</p>
+      <h2>Production units.</h2>
+      <p>Two legal companies and one production in two locations.</p>
     </div>
     <div class="contact-grid" data-reveal>
-      <!-- Entity label above the h3, the order DESIGN.md specifies for this card
-           ("mono entity label, display h3, address") and the order the shipped
-           .contact-card CSS is written for: only the h3 carries a top margin.
-           index.html and components.html still have the two reversed, which is
-           why the mono label crowds the heading there. Integrator's to align. -->
       <div class="contact-card">
         <p class="entity">Halver Mööbel OÜ</p>
-        <h3>Kose tootmine</h3>
-        <address>Karla küla, Kose vald<br>Harjumaa, 75106, Eesti</address>
+        <h3>Kose production</h3>
+        <address>Karla küla, Kose vald<br>Harjumaa, 75106, Estonia</address>
         <div class="links">
           <a href="tel:+3726056076">+372 605 6076</a>
           <a href="mailto:info@halver.ee">info@halver.ee</a>
         </div>
-        <!-- No loading="lazy" on the two map wells: the frames sit below the
-             fold, so a lazy iframe is still empty when a capture scrolls past
-             and every screenshot of this page showed two blank plates. -->
+        <!-- No loading="lazy" on the two map wells: mirrors kontakt.html's own
+             note, since the frames sit below the fold and a lazy iframe is
+             still empty when a capture scrolls past. -->
         <div class="map-frame">
           <iframe title="Halver Mööbel, Karla küla, Kose vald" src="https://www.openstreetmap.org/export/embed.html?bbox=25.0903595%2C59.1395864%2C25.1503595%2C59.1795864&layer=mapnik&marker=59.1595864%2C25.1203595"></iframe>
         </div>
@@ -275,8 +268,8 @@
       </div>
       <div class="contact-card">
         <p class="entity">Halver Arendus OÜ</p>
-        <h3>Haljala tootmine</h3>
-        <address>Vanamõisa küla, Haljala vald<br>Lääne-Virumaa, 45319, Eesti</address>
+        <h3>Haljala production</h3>
+        <address>Vanamõisa küla, Haljala vald<br>Lääne-Virumaa, 45319, Estonia</address>
         <div class="links">
           <a href="tel:+3725035942">+372 503 5942</a>
           <a href="mailto:puit@halver.ee">puit@halver.ee</a>
@@ -290,27 +283,19 @@
   </div>
 </section>
 
-<!-- PHONE FORMAT, one rule for the whole page: country code, then the
-     subscriber number in two groups. Estonian 7-digit numbers group 3 + 4
-     (+372 605 6076), 8-digit numbers group 4 + 4 (+372 5553 0661); the Finnish
-     number keeps its operator prefix as its own group per Finnish convention
-     and its subscriber tail follows the same 3 + 4 rhythm.
-     Every digit was checked against halver.ee/kontakt on 2026-08-11. Several
-     tel: hrefs on this page disagreed with the number printed beside them
-     (Indrek, Raivo, Erki, Kaidi, Kristi had an extra digit in the href) and
-     Birgit's printed number was missing its last digit. Both sides now carry
-     the live-site digits. The same extra digit was fixed by the integrator in
-     index.html, components.html, tood.html, tootmine.html, toetused.html,
-     projekt-kruiisilaeva-sisustus.html and shop/index.html. -->
+<!-- PHONE FORMAT, one rule for the whole page: mirrors kontakt.html's own
+     rule, country code then the subscriber number in two groups. Every digit
+     is unchanged from the Estonian page, which was itself checked against
+     halver.ee/kontakt on 2026-08-11. -->
 <section class="team-section">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <h2>Meeskond.</h2>
-      <p>Võta otse ühendust õige valdkonna inimesega.</p>
+      <h2>Team.</h2>
+      <p>Contact the right person for your area directly.</p>
     </div>
     <div class="team-grid" data-reveal>
       <div class="team-card">
-        <p class="role">Tegevjuht</p>
+        <p class="role">Managing Director</p>
         <p class="name">Indrek Lillemäe</p>
         <div class="meta">
           <a href="tel:+3726056076">+372 605 6076</a>
@@ -318,7 +303,7 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Tegevjuht</p>
+        <p class="role">Managing Director</p>
         <p class="name">Raivo Vidder</p>
         <div class="meta">
           <a href="tel:+3725035942">+372 503 5942</a>
@@ -326,7 +311,7 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Müük · eritellimusmööbel</p>
+        <p class="role">Sales · made-to-order furniture</p>
         <p class="name">Indrek Lillemäe</p>
         <div class="meta">
           <a href="tel:+3726056076">+372 605 6076</a>
@@ -334,7 +319,7 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Müük · komponendid</p>
+        <p class="role">Sales · components</p>
         <p class="name">Birgit</p>
         <div class="meta">
           <a href="tel:+37256628507">+372 5662 8507</a>
@@ -342,15 +327,19 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Müük Soome</p>
+        <p class="role">Sales, Finland</p>
         <p class="name">Ilkka Ahola</p>
         <div class="meta">
           <a href="tel:+358406309630">+358 40 630 9630</a>
           <a href="mailto:Ilkka@halver.fi">Ilkka@halver.fi</a>
         </div>
       </div>
+      <!-- "Ost" is translated as "Purchasing", not "Buyer": "Buyer" reads as
+           the customer rather than Halver's own purchasing department. This
+           corrects a drift found in a prior audit of the live site's English
+           pages. -->
       <div class="team-card">
-        <p class="role">Ost</p>
+        <p class="role">Purchasing</p>
         <p class="name">Riina Leo</p>
         <div class="meta">
           <a href="tel:+37255530661">+372 5553 0661</a>
@@ -358,7 +347,7 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Tootmisjuht</p>
+        <p class="role">Production Manager</p>
         <p class="name">Erki Sillakivi</p>
         <div class="meta">
           <a href="tel:+3725172183">+372 517 2183</a>
@@ -366,7 +355,7 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Tootmisjuht</p>
+        <p class="role">Production Manager</p>
         <p class="name">Kristjan Vidder</p>
         <div class="meta">
           <a href="tel:+37253407997">+372 5340 7997</a>
@@ -374,7 +363,7 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Tehnoloog</p>
+        <p class="role">Technologist</p>
         <p class="name">Anu Pärn</p>
         <div class="meta">
           <a href="tel:+3726056077">+372 605 6077</a>
@@ -382,7 +371,7 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Raamatupidaja</p>
+        <p class="role">Accountant</p>
         <p class="name">Kaidi Kaaret</p>
         <div class="meta">
           <a href="tel:+3725115142">+372 511 5142</a>
@@ -390,7 +379,7 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Raamatupidaja</p>
+        <p class="role">Accountant</p>
         <p class="name">Kristi Vidder</p>
         <div class="meta">
           <a href="tel:+3725217549">+372 521 7549</a>
@@ -398,8 +387,8 @@
         </div>
       </div>
       <div class="team-card">
-        <p class="role">Arved</p>
-        <p class="name">Raamatupidamine</p>
+        <p class="role">Invoices</p>
+        <p class="name">Accounting</p>
         <div class="meta">
           <a href="mailto:arved@halver.ee">arved@halver.ee</a>
         </div>
@@ -412,29 +401,29 @@
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/images/halver-logo.png" alt="Halver">
-        <p>Eritellimusmööbel ja mööblikomponendid. Tootmises Kosel ja Haljalas alates 1992. aastast.</p>
+        <img src="../assets/images/halver-logo.png" alt="Halver">
+        <p>Made-to-order furniture and furniture components. In production in Kose and Haljala since 1992.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h3>Sisukord</h3>
+          <h3>Site map</h3>
           <ul>
-            <li><a href="index.html#ettevottest">Ettevõttest</a></li>
-            <li><a href="tootmine.html">Tootmine</a></li>
-            <li><a href="tood.html">Tööd</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
-            <li><a href="toetused.html">Toetused</a></li>
+            <li><a href="index.html#ettevottest">About</a></li>
+            <li><a href="tootmine.html">Production</a></li>
+            <li><a href="tood.html">Work</a></li>
+            <li><a href="kontakt.html">Contact</a></li>
+            <li><a href="toetused.html">Grants</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h3>Ostjatele</h3>
+          <h3>For buyers</h3>
           <ul>
-            <li><a href="https://shop.halver.ee" target="_blank" rel="noopener">E-pood</a></li>
-            <li><a href="#paring">Küsi pakkumist</a></li>
+            <li><a href="https://shop.halver.ee" target="_blank" rel="noopener">Shop</a></li>
+            <li><a href="#paring">Request a quote</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h3>Kontakt</h3>
+          <h3>Contact</h3>
           <ul>
             <li><a href="tel:+3726056076">+372 605 6076</a></li>
             <li><a href="mailto:info@halver.ee">info@halver.ee</a></li>
@@ -444,11 +433,11 @@
     </div>
     <div class="footer-bottom">
       <span>Halver Mööbel OÜ · Halver Arendus OÜ</span>
-      <span>Eesti Kaubandus- ja Tööstuskoja liige</span>
+      <span>Member of the Estonian Chamber of Commerce and Industry.</span>
     </div>
   </div>
 </footer>
 
-<script src="nav.js"></script>
+<script src="../nav.js"></script>
 </body>
 </html>

@@ -1,0 +1,294 @@
+/* ==========================================================================
+   Halver — project detail (projekt-*.html)
+
+   Page-specific layout only. Every primitive used inside these sections
+   (buttons, spec tile, material chip, contact card, section head, page
+   header) comes from 02-components.css unchanged; this file supplies the
+   containers around them and four page-local pieces:
+
+     .titleblock-grid   the drawing title block, a hairline grid of field
+                        and value cells. Built with the Hairline-Is-A-Gap
+                        rule (gap: 2px over a --border-soft background,
+                        each cell painting its own --bg, cells square).
+     .project-lead .tag the opaque-floor caption chip. Same pattern and the
+                        same computed values as `.hero-visual .tag`, which
+                        holds 8.37:1 over any photograph at 78%. It is a
+                        fourth call site of that pattern, not a fifth chip
+                        style; the three existing call sites each carry
+                        their own selector for the same reason (different
+                        parent). A shared .photo-tag class would be the
+                        right consolidation, see the task report.
+     .brief-grid        the dark panel for this page, mirroring .spec-grid
+                        from the home page so the two read as one system.
+                        Cells are real .spec-tile elements; .spec-tile.brief
+                        only adds the span and top alignment a prose tile
+                        needs. Nothing here modifies the shared component.
+     .spec-table        the specification block, a two-column <dl> laid out
+                        on the same hairline grid as the title block.
+
+   No new token, no new clamp() pair, no new breakpoint, no shadow, no
+   keyframe. Motion on this page is the shared 600ms [data-reveal] and the
+   160ms state transition on the next-project link. Neither photograph is a
+   link, so neither carries a hover scale.
+   ========================================================================== */
+
+/* ---------- Page opener: eyebrow breadcrumb, title block, lead image ---------- */
+
+/* The eyebrow doubles as the up-navigation to the section index, so the
+   reader can leave a project without going through the nav. */
+.page-header .eyebrow a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 160ms var(--ease-out);
+}
+.page-header .eyebrow a:hover { color: var(--fg); }
+
+.project-opener {
+  padding-top: clamp(32px, 5vw, 64px);
+  padding-bottom: clamp(28px, 4vw, 48px);
+}
+
+.titleblock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
+}
+.titleblock-grid > div {
+  background: var(--bg);
+  padding: 20px;
+}
+.tb-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.tb-value {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+/* Legal entity names are mono by the Mono-Means-Measured rule, and take the
+   same treatment they already have in .contact-card .entity. */
+.tb-value.entity {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  line-height: 1.8;
+}
+@media (max-width: 760px) {
+  .titleblock-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.project-note {
+  margin-top: 20px;
+  max-width: 62ch;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+.project-lead {
+  position: relative;
+  margin: clamp(24px, 4vw, 48px) 0 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--fixed-dark);
+}
+.project-lead img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-lead .tag {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: color-mix(in srgb, var(--fixed-dark) 78%, transparent);
+  color: var(--fixed-light);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- What this work demands (dark panel) ---------- */
+
+.project-brief {
+  background: var(--fixed-dark);
+  color: var(--fixed-light);
+}
+.project-brief .section-head h2 { color: var(--fixed-light); }
+.project-brief .section-head p { color: color-mix(in srgb, var(--fixed-light) 68%, transparent); }
+
+.brief-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(160px, auto);
+  gap: 2px;
+  background: color-mix(in srgb, var(--fixed-light) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fixed-light) 12%, transparent);
+}
+.spec-tile.brief {
+  grid-column: span 2;
+  justify-content: flex-start;
+}
+.spec-tile.brief h3 {
+  font-size: 24px;
+  color: var(--fixed-light);
+}
+.spec-tile.brief p {
+  margin-top: 12px;
+  max-width: 42ch;
+  font-size: 16px;
+  color: color-mix(in srgb, var(--fixed-light) 82%, transparent);
+}
+@media (max-width: 960px) {
+  .brief-grid { grid-template-columns: repeat(2, 1fr); }
+  .spec-tile.brief { min-height: 180px; }
+}
+
+/* ---------- What Halver manufactures ---------- */
+
+.project-make .wrap {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+.project-make .make-copy p {
+  max-width: 52ch;
+  color: var(--fg-muted);
+}
+.project-make .make-copy p + p { margin-top: 16px; }
+
+.project-figure {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+}
+.project-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-figure .tag {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: color-mix(in srgb, var(--fixed-dark) 78%, transparent);
+  color: var(--fixed-light);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  letter-spacing: 0.02em;
+}
+/* Collapses at 860, not 760: this is a copy-plus-image pair like the home
+   hero, and at 768 the 0.85fr column is too narrow to carry a photograph
+   with a caption chip on it. */
+@media (max-width: 860px) {
+  .project-make .wrap { grid-template-columns: 1fr; }
+}
+
+/* ---------- Specification block ---------- */
+
+.spec-table {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2px;
+  margin: 0;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
+}
+.spec-table dt,
+.spec-table dd {
+  margin: 0;
+  padding: 20px;
+  background: var(--bg);
+}
+.spec-table dt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.spec-table dd { font-size: 16px; }
+/* Machine names, areas and counts are measured data, so they are mono at
+   the annotate step: data attached to the label beside it. The loud mono
+   on this page is the dark panel, and there is only one loud place. */
+.spec-table dd.data {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.spec-table dd.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-content: flex-start;
+}
+@media (max-width: 760px) {
+  .spec-table { grid-template-columns: 1fr; }
+  .spec-table dt { padding-bottom: 0; background: var(--bg); }
+  .spec-table dt + dd { padding-top: 14px; }
+}
+
+/* ---------- Enquiry and next project ---------- */
+
+/* The shared .trust strip carries only a border-bottom, so this page adds
+   the rule that closes the specification block above it. */
+.project-trust { border-top: 1px solid var(--border-soft); }
+
+/* No border-top: the trust strip immediately above closes itself with a
+   border-bottom, and two adjacent hairlines would double the line. */
+.project-cta {
+  background: var(--bg-raised);
+}
+.project-cta .contact-card { max-width: 640px; }
+.project-cta .contact-card h2 { font-size: 24px; }
+.project-cta .contact-card p {
+  margin-top: 12px;
+  max-width: 52ch;
+  color: var(--fg-muted);
+}
+
+/* Label above title, matching the label-above-value pattern the title block
+   and the specification table already use. */
+.next-link {
+  display: block;
+  margin-top: clamp(24px, 4vw, 48px);
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-decoration: none;
+  transition: border-color 160ms var(--ease-out);
+}
+.next-link .next-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.next-link h2 {
+  margin-top: 12px;
+  font-size: clamp(30px, 3.6vw, 46px);
+  transition: color 160ms var(--ease-out);
+}
+.next-link:hover { border-color: var(--fg); }
+.next-link:hover h2 { color: var(--accent-text); }

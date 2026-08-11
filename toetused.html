@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toetused · Halver</title>
+<meta name="description" content="Halver Mööbel OÜ ressursitõhususe investeeringute projekt ja tööstuse digitaliseerimise toetus. Avalik teave rahastaja ja toetuse summa kohta.">
+<link rel="stylesheet" href="styles/00-tokens.css">
+<link rel="stylesheet" href="styles/01-base.css">
+<link rel="stylesheet" href="styles/02-components.css">
+<link rel="stylesheet" href="styles/15-page-grants.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+
+<!-- Nav deliberately does NOT carry a Toetused link. On the live site this page
+     occupies a primary nav slot with the longest label in the menu, ahead of any
+     services or quote page. Here it is reachable from the footer only. -->
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Halver, avaleht">
+      <img src="assets/images/halver-logo.png" alt="Halver">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+      <li><a href="index.html#tootmisvoimekus">Tootmine</a></li>
+      <li><a href="tood.html">Tööd</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-outline" href="https://shop.halver.ee" target="_blank" rel="noopener">E-pood</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ava menüü" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+    <li><a href="index.html#tootmisvoimekus">Tootmine</a></li>
+    <li><a href="tood.html">Tööd</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <a class="btn btn-primary" href="https://shop.halver.ee" target="_blank" rel="noopener">Ava e-pood</a>
+</div>
+
+<!-- .eyebrow is used exactly once here, inside .page-header, to name the section
+     of the site the reader is in. This page is not in the primary nav, so the
+     reader arrives from the footer with no nav item highlighted. -->
+<header class="page-header wrap">
+  <p class="eyebrow">Toetused</p>
+  <h1>Investeeringud tootmisse.</h1>
+  <p>Avalik teave Halverile eraldatud toetustest ja nendega rahastatud projektidest.</p>
+</header>
+
+<section class="grants">
+  <div class="wrap">
+    <div class="grant-list" data-reveal>
+
+      <!-- Source: halver.ee/ressursitohususe-investeeringud/. The live page reads
+           `Projekt " Halver Mööbel OÜ ressursitõhususe investeeringud"`, opening
+           the project name with a CLOSING curly quote followed by a stray space.
+           Corrected here to Estonian quotation marks (low opening, high closing)
+           with no leading space. Project name, fund and amount are otherwise
+           verbatim from the live page. -->
+      <article class="grant">
+        <div class="grant-body">
+          <h2>Ressursitõhususe investeeringud</h2>
+          <p class="grant-text">Projekti sisuks on asendada vananenud ja vähese automatiseeritusega servapealistusseade. Uue servapealistusliiniga kaasneb automaatne tagastussüsteem, mis vähendab praagi teket ja materjalikulu toodanguühiku kohta.</p>
+        </div>
+        <dl class="grant-spec">
+          <div>
+            <dt>Toetuse summa</dt>
+            <dd class="amount">255 775 €</dd>
+          </div>
+          <div>
+            <dt>Rahastaja</dt>
+            <dd>Euroopa Liidu Ühtekuuluvuspoliitika fond</dd>
+          </div>
+          <div>
+            <dt>Projekt</dt>
+            <dd>„Halver Mööbel OÜ ressursitõhususe investeeringud“</dd>
+          </div>
+        </dl>
+      </article>
+
+      <!-- The live page names this measure in a heading and gives no project
+           description, no recipient entity and no euro amount. Nothing has been
+           supplied for those here. The one sentence below restates the measure's
+           own name (digitalisation and automation of industry) and adds no claim
+           beyond it. The Toetuse andja line is read off the ministry/EAS mark
+           shown alongside this text on the live page; Halver should confirm the
+           exact granting body before this goes live. -->
+      <article class="grant">
+        <div class="grant-body">
+          <h2>Tööstuse digitaliseerimine</h2>
+          <p class="grant-text">Toetus on suunatud tootmisprotsesside digitaliseerimisse ja automatiseerimisse.</p>
+        </div>
+        <dl class="grant-spec">
+          <div>
+            <dt>Rahastaja</dt>
+            <dd>Majandus- ja Kommunikatsiooniministeerium · EAS</dd>
+          </div>
+          <div>
+            <dt>Toetusmeede</dt>
+            <dd>Tööstuse digitaliseerimise ja automatiseerimise toetus</dd>
+          </div>
+        </dl>
+      </article>
+
+    </div>
+
+    <!-- assets/images/badges/ holds four marks, and only ONE of them is a funding
+         logo: eas-mkm.jpg (ministry coat of arms + EAS). The other three are
+         credibility marks, not funders: since-1992.png is the Halver Mööbel
+         wordmark, creditinfo.png is a Creditinfo "Edukas Eesti ettevõte 2021"
+         seal, top-ettevote-2021.png is an Äripäev TOP mark. None of them stands
+         in for a funder here.
+         MISSING ASSET: the Ressursitõhususe investeeringud project is financed
+         from the EU Cohesion Policy fund, which obliges the EU emblem with a
+         co-funding statement. That emblem is not in assets/images/badges/ and has
+         deliberately NOT been substituted with another badge. See task report. -->
+    <div class="funder">
+      <p class="funder-label">Toetuse andja</p>
+      <div class="funder-mark">
+        <img src="assets/images/badges/eas-mkm.jpg" alt="Majandus- ja Kommunikatsiooniministeeriumi ning Ettevõtluse Arendamise Sihtasutuse (EAS) toetuse andja märk" width="600" height="120">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/images/halver-logo.png" alt="Halver">
+        <p>Eritellimusmööbel ja mööblikomponendid. Tootmises Kosel ja Haljalas alates 1992. aastast.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h3>Sisukord</h3>
+          <ul>
+            <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+            <li><a href="index.html#tootmisvoimekus">Tootmine</a></li>
+            <li><a href="tood.html">Tööd</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="toetused.html" aria-current="page">Toetused</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Ostjatele</h3>
+          <ul>
+            <li><a href="https://shop.halver.ee" target="_blank" rel="noopener">E-pood</a></li>
+            <li><a href="mailto:info@halver.ee">Küsi pakkumist</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Kontakt</h3>
+          <ul>
+            <li><a href="tel:+37260565076">+372 605 6076</a></li>
+            <li><a href="mailto:info@halver.ee">info@halver.ee</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Halver Mööbel OÜ · Halver Arendus OÜ</span>
+      <span>Eesti Kaubandus- ja Tööstuskoja liige</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

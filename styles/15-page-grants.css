@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Halver — Toetused (grant / public funding disclosure page)
+   Owns toetused.html only. Every primitive it can reuse comes from
+   02-components.css (.page-header, .eyebrow, .site-nav, .site-footer);
+   what is below is only the grant record and the funder mark, which exist
+   nowhere else on the site.
+
+   Two constraints drive the layout:
+   1. Body measure stays inside 45-75 rendered characters. The live page runs
+      about 110. `.grant-text` is capped at the system's 52ch prose cap and the
+      record's two columns collapse at 960px rather than 760px, so the prose
+      column is never squeezed narrower than its own cap on the way down.
+   2. A funding logo is a third-party asset that must not be inverted, recoloured
+      or dimmed, so it sits on a fixed-tone plate (see .funder-mark).
+   ========================================================================== */
+
+/* ---------- Grant records ---------- */
+
+/* Every other page opens its first section with a .section-head, which fills the
+   112px section top padding. This page has none: the first record follows the
+   page-header rule directly, and the full section rhythm left ~150px of dead
+   space above it at 1440. Reduced to the page-header padding-bottom pair, which
+   is an already inventoried responsive pair, not a new clamp. */
+.grants { padding-top: clamp(28px, 4vw, 48px); }
+
+/* Hairline-Is-A-Gap Rule: the 2px seam between records is this grid's own
+   background showing through the gap, not a border on the record. Do not add a
+   border to .grant, it would double the line. Cells in a hairline grid carry no
+   corner of their own (DESIGN.md, Shapes). */
+.grant-list {
+  display: grid;
+  gap: 2px;
+  background: var(--border-soft);
+}
+
+.grant {
+  background: var(--bg);
+  border-radius: 0;
+  padding-block: clamp(22px, 3vw, 32px);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+
+/* The funder used to sit here as a 0.10em uppercase mono label above the
+   heading, the way .contact-card .entity carries a legal entity name. It was
+   removed: every sanctioned use of that pattern in this system is a short
+   string ("Halver Mööbel OÜ", "Sisukord"), and these two funders run 40 and 47
+   characters, which set two lines of all-caps mono at 375px. Uppercase strips
+   the word shapes we read by, so it only pays for short labels. The attribution
+   moved into .grant-spec below, where a short uppercase label sits over a
+   sentence-case value. */
+
+.grant h2 { font-size: clamp(24px, 2.6vw, 32px); }
+
+.grant-text {
+  margin-top: 14px;
+  max-width: 52ch;
+  font-size: 16px;
+}
+
+/* ---------- Record title block ---------- */
+
+/* The right column of a record, read as the title block on a drawing: mono
+   micro-labels at 0.06em over their values. The euro figure is the one loud
+   thing on the page and is mono because it is a measured, sourceable number
+   (Mono-Means-Measured Rule). */
+.grant-spec {
+  display: grid;
+  gap: 20px;
+  margin: 0;
+}
+.grant-spec > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.grant-spec dt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.grant-spec dd {
+  margin: 0;
+  font-size: 13px;
+  color: var(--fg);
+}
+.grant-spec dd.amount {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1;
+}
+
+/* ---------- Funder mark ---------- */
+
+/* Closed off with a 1px hairline rather than left floating in the section's
+   bottom padding. The rule also grades the page: a 2px machined seam separates
+   two records of the same kind, a 1px --border-soft rule marks the step down to
+   the attribution that closes them. */
+.funder {
+  border-top: 1px solid var(--border-soft);
+  padding-top: clamp(28px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 4vw, 40px);
+  flex-wrap: wrap;
+}
+.funder-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* Fixed-Tone Rule. The funder mark is an opaque white JPEG carrying a state
+   coat of arms and two institutional logos. It cannot be inverted, recoloured
+   or faded the way the decorative trust-strip marks are, so it gets a
+   --fixed-light plate that reads identically in both schemes instead of a
+   dark-mode filter. Full opacity for the same reason. */
+.funder-mark {
+  background: var(--fixed-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+}
+.funder-mark img {
+  height: 44px;
+  width: auto;
+}
+
+/* Collapses at 960, not 760: below this the prose column would be narrower than
+   its own 52ch cap and the measure would drop under 45 characters. */
+@media (max-width: 960px) {
+  .grant { grid-template-columns: 1fr; }
+}

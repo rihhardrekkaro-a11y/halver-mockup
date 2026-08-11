@@ -51,10 +51,56 @@
 .lines-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
+  grid-template-rows: auto auto;
   gap: 2px;
   background: var(--border-soft);
   border: 1px solid var(--border-soft);
 }
+
+/* THE OPAQUE FLOOR RULE, applied. ------------------------------------------
+   These two cards previously set their copy on the shared .line-card gradient
+   scrim, so legibility was a property of whichever photograph landed in the
+   slot: sampling rendered pixels over the Kose kitchen gave 1.50:1 worst /
+   2.05:1 median on the heading and 1.46:1 worst on the entity label, against
+   a required 4.5:1. DESIGN.md's Opaque Floor Rule
+   says overlay text goes on an opaque floor or on a scrim whose worst case
+   has been computed, so the copy comes off the photograph entirely and onto
+   the page's own paper: photo above, opaque title block below, the two butted
+   against the grid's 2px seam. The floor is --bg rather than --fixed-dark on
+   purpose: DESIGN.md calls the capability panel "the only inversion" on the
+   site, and a second dark surface directly above it would spend that.
+
+   INTEGRATOR: this is a defect in the shared .line-card component, not a
+   home-page preference. Scoped to .lines-grid only because a parallel task
+   may not edit 02-components.css. See the task report for the promotion
+   patch; components.html renders the unfixed gradient version today.
+   -------------------------------------------------------------------------- */
+.lines-grid .line-card {
+  grid-row: span 2;
+  grid-template-rows: auto auto; /* fallback where subgrid is unsupported */
+  grid-template-rows: subgrid;   /* one shared seam height across both cards */
+  display: grid;
+  min-height: 0;
+}
+.lines-grid .line-card::before { content: none; }
+.lines-grid .line-card img {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+/* The card keeps overflow:hidden, so the 700ms hover scale is clipped at the
+   card edge and passes behind this opaque body rather than over it. */
+.lines-grid .line-card-body {
+  padding: clamp(22px, 3vw, 32px); /* the on-paper card pair, not the over-photography one */
+  color: var(--fg);
+}
+.lines-grid .line-card-body .entity { color: var(--accent-text); }
+.lines-grid .line-card-body h3 { color: var(--fg); }
+.lines-grid .line-card-body p { color: var(--fg-muted); }
 
 @media (max-width: 760px) {
   .lines-grid { grid-template-columns: 1fr; }
@@ -66,34 +112,83 @@
 .capability .section-head h2 { color: var(--fixed-light); }
 .capability .section-head p { color: color-mix(in srgb, var(--fixed-light) 68%, transparent); }
 
+/* The panel is one object: the bento and the materials strip are cells of it,
+   separated by the same 2px seam the bento draws between its own tiles. The
+   panel paints the seam colour once; every cell inside paints --fixed-dark
+   over it (The Hairline-Is-A-Gap Rule, one level up). */
+.spec-panel {
+  display: grid;
+  /* minmax(0, 1fr), not the implicit auto track: the materials strip below
+     holds a horizontally scrolling chip row whose max-content width is 724px,
+     and an auto track sizes to that, pushing the whole panel (and the page)
+     into a horizontal scroll at 768 and 375. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  background: color-mix(in srgb, var(--fixed-light) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fixed-light) 12%, transparent);
+}
+
 .spec-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(160px, auto);
   grid-auto-flow: dense;
   gap: 2px;
-  background: color-mix(in srgb, var(--fixed-light) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--fixed-light) 12%, transparent);
 }
 
-@media (max-width: 960px) {
-  .spec-grid { grid-template-columns: repeat(2, 1fr); }
+/* Every stat label reserves two lines. The tiles are a fixed 160px row and
+   .spec-tile bottom-aligns the label with justify-content: space-between, so
+   a label that wraps to two lines ("erikujulist detaili servatakse kuus")
+   started 20px higher than its single-line neighbour: measured label-top
+   offsets were {99, 119} across the six tiles, and row 3 put one of each
+   side by side. They are a single value now. Reserving the box
+   aligns them without touching the 24ch cap or the space-between
+   distribution, both of which DESIGN.md fixes.
+
+   INTEGRATOR: candidate for promotion to .spec-tile .label in
+   02-components.css; scoped here because the panel only exists on this page. */
+.spec-grid .spec-tile.stat .label { min-height: 2lh; }
+
+/* ---------- Materials, as the panel's bottom cell ---------- */
+
+/* Was a standalone section: a single row of chips inside 112px of empty
+   padding top and bottom, carrying no weight of its own. Materials are
+   shop-floor facts, so they belong to the capability argument rather than to
+   a band of their own. Chips are recoloured for the fixed-dark surface here
+   the same way .capability already recolours the section head. */
+.spec-materials {
+  background: var(--fixed-dark);
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 4vw, 40px);
 }
-
-/* ---------- Materials strip ---------- */
-
-.materials { border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
-.materials .wrap { display: flex; align-items: center; gap: clamp(20px, 4vw, 40px); }
-.materials-label { font-size: 14.5px; color: var(--fg-muted); flex-shrink: 0; }
+.materials-label {
+  font-size: 14.5px;
+  color: color-mix(in srgb, var(--fixed-light) 66%, transparent);
+  flex-shrink: 0;
+}
 .materials-track {
   display: flex;
   gap: 10px;
+  min-width: 0; /* let the row scroll instead of widening its parent */
   overflow-x: auto;
   scroll-snap-type: x proximity;
   padding-block: 4px;
   scrollbar-width: none;
 }
 .materials-track::-webkit-scrollbar { display: none; }
+.spec-materials .material-chip {
+  color: var(--fixed-light);
+  border-color: color-mix(in srgb, var(--fixed-light) 12%, transparent);
+}
+
+@media (max-width: 960px) {
+  .spec-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .spec-materials { flex-direction: column; align-items: stretch; gap: 14px; }
+}
 
 /* ---------- Work preview ---------- */
 

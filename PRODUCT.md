@@ -38,7 +38,7 @@ The claim a neighbouring workshop cannot truthfully copy is **measured industria
 
 ## Capabilities and Constraints
 
-**Scope of this artifact (confirmed):** the marketing site only. Home, selected work, project detail, capabilities, contact and an EU grant page. `shop.halver.ee` stays an external link; the shop landing, browse, product and catalogue screens listed in earlier planning are **out of scope and must not be built**.
+**Scope of this artifact (confirmed 2026-08-11):** the marketing site plus a two-screen trade-portal demonstration. Home, selected work, project detail, capabilities, contact and an EU grant page, plus a shop shell (`shop/index.html`) and one product detail page. The shop **browse and catalogue** screens are out of scope and must not be built. `shop.halver.ee` remains the external link from the marketing header.
 
 **Technical:**
 - Static HTML and CSS with a single vanilla JS file. No framework, no build step, no package manager, no dependencies.

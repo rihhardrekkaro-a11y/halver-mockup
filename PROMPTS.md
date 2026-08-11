@@ -229,6 +229,16 @@ edges do not vanish, which is what happens on the live site.
 ## T12 - English locale
 Owns `en/`. No CSS. **ET + EN only, no Finnish.** See resolved decision 1.
 
+> **Dangling link you must resolve.** `shop/index.html` ships a language switcher whose
+> EN href is `../en/shop/index.html`. That file does not exist and this task as scoped
+> builds marketing pages only, so it is the one broken local link in the build. Either
+> mirror the two shop screens under `en/shop/`, or point the shop switcher at `../en/`.
+> Do not leave it dangling into the pitch.
+>
+> **`index.html` has no language switcher at all.** T9's brief said to match the
+> marketing one; there was nothing to match, so T9 defined one in the shop shell. Copy
+> that pattern into the marketing header rather than inventing a second.
+
 Mirror the marketing pages. Fix the drift found in the audit, do not copy it. The live
 English says "over 45 000 sq meters" where Estonian says "u." (approximately). It drops
 "furniture components" from Halver Arendus's services. It deletes the 1992 founding date
@@ -241,6 +251,16 @@ real (`/en/`), not JS-only with empty hrefs as the live shop does.
 
 ## T13 - Responsive sweep
 Owns responsive blocks in page partials.
+
+> **Already measured for you, do not rediscover.** At 375 there are 11 tap targets under
+> 44px, and they are all in the shared header and footer chrome rather than on any one
+> page, so they repeat on all eight pages: footer links at 16px tall, a 38x38 nav toggle
+> and a 102x26 brand link. Fixing them in `02-components.css` fixes every page at once.
+>
+> Also outstanding: `shop/index.html` carries one body paragraph running 85 characters
+> excluding spaces at 1440. DESIGN.md sets no blanket measure rule, so this is a
+> readability judgement rather than a contract violation, but it is the only line in the
+> build over 75.
 
 Every page at 1440, 1024, 768 and 375, both colour schemes. The live site fails all of the
 following, so check each explicitly: no two-column layout survives into 375px (the live

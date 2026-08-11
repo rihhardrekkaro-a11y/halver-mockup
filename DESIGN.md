@@ -268,9 +268,9 @@ Uppercase mono needs tracking to stay legible; sentence case does not, which is 
 | Business lines | `1.15fr 0.85fr` | `1fr` at ≤760px |
 | Capability bento | `repeat(4, 1fr)`, rows `minmax(160px, auto)`, `dense` flow; stat spans 2 columns, photo spans 2×2 | `repeat(2, 1fr)` at ≤960px; photo drops to 2×1 |
 | Work preview | `repeat(4, 1fr)`, first item spans 2×2 | `repeat(2, 1fr)` at ≤760px |
-| Gallery | `repeat(3, 1fr)` | `repeat(2, 1fr)` at ≤760px |
+| Work grid (tood.html) | `repeat(2, 1fr)` | `1fr` at ≤760px |
 | Contact | `repeat(2, 1fr)` | `1fr` at ≤760px |
-| Team | `auto-fill, minmax(220px, 1fr)` | intrinsic |
+| Team | `auto-fill, minmax(280px, 1fr)` | intrinsic |
 
 **Breakpoints:** three, all `max-width`. **960px** (capability bento only), **860px** (navigation collapses to the drawer, hero stacks), **760px** (every other multi-column grid collapses). These are the only three permitted. A new section picks the one that matches its content, and does not add a fourth.
 

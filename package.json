@@ -1,0 +1,13 @@
+{
+  "name": "halver-mockup",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nordic-industrial redesign pitch mockup for Halver Mööbel OÜ / Halver Arendus OÜ. Static HTML/CSS, no build step.",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "shots": "node scripts/shots.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  }
+}

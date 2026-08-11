@@ -1,0 +1,270 @@
+/* ==========================================================================
+   Halver — shop product page (shop/toode-*.html)
+   Owned by T11. One product's detail screen: an elevation drawing with
+   millimetre callouts as the hero, a clustered spec block, finish swatches
+   and a quantity/add-to-order control that reuses the order-drawer pattern
+   from 20-shop-shell.css (`.order-panel`, `.order-line`, `data-order-open`)
+   unedited.
+
+   Everything here is additive to 00-tokens.css, 01-base.css,
+   02-components.css and 20-shop-shell.css. No shared class is redefined;
+   every selector below is scoped to a class introduced in this file.
+   ========================================================================== */
+
+/* ---------- Product header ----------
+   `.page-header` and its default `p` styling come from 02-components.css.
+   The product code needs the "Mono / data" role instead of the muted lede
+   treatment every other `<p>` in a page-header gets, so it is overridden by
+   a two-class selector (`.page-header .product-code`), which already beats
+   `.page-header p` on specificity without touching the shared file. */
+
+.page-header .product-code {
+  margin-top: 14px;
+  max-width: none;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: clamp(30px, 3vw, 44px); /* the capability-panel data step, reused */
+  line-height: 1;
+  color: var(--fg);
+}
+.page-header .product-code span {
+  color: var(--fg-muted);
+}
+
+/* ---------- Hero row: elevation + buy box ---------- */
+
+.product-layout {
+  align-items: start;
+}
+
+/* The elevation card. Always `--fixed-dark`/`--fixed-light`, in both
+   themes, per the Fixed-Tone Rule: it is the background treatment that
+   keeps a near-white carcass drawing legible instead of vanishing into the
+   page paper, which is the defect this task was told not to repeat. */
+.elevation {
+  margin: 0;
+  background: var(--fixed-dark);
+  border-radius: var(--radius);
+  padding: clamp(24px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  overflow: hidden;
+}
+.elevation-svg {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+}
+.elevation-caption {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: color-mix(in srgb, var(--fixed-light) 82%, transparent); /* matches .spec-tile .cap, 11.68:1 */
+}
+
+/* Carcass silhouette: the fill is the "white carcass," always fixed-light
+   so it never inherits --white (which inverts under dark mode and would
+   turn the cabinet the same near-black as its own panel). */
+.elevation-cabinet {
+  fill: var(--fixed-light);
+  stroke: var(--fixed-dark);
+  stroke-width: 2;
+}
+/* Door split and handle ticks: drawn on top of the light carcass fill, so
+   they read in the dark ink, not the light ink. */
+.elevation-detail {
+  stroke: var(--fixed-dark);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.elevation-shelf {
+  stroke: var(--fixed-dark);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  opacity: 0.4;
+}
+/* Dimension lines and callouts sit on the dark panel, outside the light
+   carcass, so they take the opposite ink. */
+.elevation-dim {
+  stroke: var(--fixed-light);
+  stroke-width: 1.5;
+}
+.elevation-label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 24px;
+  fill: var(--fixed-light);
+}
+
+/* The buy box: finish picker + quantity/add-to-order, one card, one sparse
+   rule between its two blocks rather than a border on every control. */
+.product-buy {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(22px, 3vw, 32px);
+  background: var(--bg);
+}
+.product-buy > * + * {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.finish-picker__title {
+  margin: 0 0 14px;
+  font-size: 24px; /* the card-title step, same as .contact-card h3 */
+}
+
+.finish-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.finish-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+/* Visually hidden, still focusable and in the accessibility tree: the
+   native radio carries the real state, the swatch and name below are its
+   visual proxy. */
+.finish-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.finish-swatch {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+}
+/* Grain direction differentiates spoon/täispuit without inventing a colour
+   token: --veneer is reserved and unused per DESIGN.md, so every swatch
+   here stays inside the grayscale palette. */
+.finish-swatch--spoon {
+  background-image: repeating-linear-gradient(100deg, var(--border) 0 1px, transparent 1px 7px);
+}
+.finish-swatch--taispuit {
+  background-image: repeating-linear-gradient(100deg, var(--border) 0 2px, transparent 2px 5px);
+}
+.finish-swatch--varv {
+  background: var(--bg);
+}
+/* The global focus ring's exact values (2px accent, 3px offset), applied to
+   the visible proxy because the real control is intentionally offscreen.
+   Not a second focus treatment, the same one relocated. */
+.finish-option input:focus-visible + .finish-swatch {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.finish-option input:checked + .finish-swatch {
+  border-color: var(--fg);
+  border-width: 2px;
+}
+.finish-option__name {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+.finish-option input:checked ~ .finish-option__name {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.qty-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.qty-field {
+  max-width: 120px;
+}
+
+/* ---------- Spec block ----------
+   "Group specs into two or three clusters with sparse rules" per the task
+   brief: at desktop the three clusters sit side by side with nothing but
+   grid gap between them; at 760px, where they stack, exactly one hairline
+   appears between adjacent clusters, never one per row. */
+
+.spec-block {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+}
+@media (max-width: 760px) {
+  .spec-block {
+    grid-template-columns: 1fr;
+  }
+  .spec-cluster + .spec-cluster {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-soft);
+  }
+}
+
+.spec-cluster__title {
+  margin: 0 0 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted); /* matches .footer-col h3 exactly: a structural label */
+}
+.spec-cluster dl {
+  margin: 0;
+}
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+}
+.spec-row + .spec-row {
+  margin-top: 14px;
+}
+.spec-row dt {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--fg-muted);
+}
+.spec-row dd {
+  margin: 0;
+  text-align: right;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fg);
+}
+/* Measured values (the Mono-Means-Measured Rule): only numbers that came
+   off the shop floor go in mono. Material and hardware descriptions stay
+   in the body face because they are prose, not data. */
+.spec-row dd.num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 760px) {
+  .qty-row {
+    align-items: stretch;
+  }
+  .qty-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

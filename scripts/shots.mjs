@@ -4,7 +4,10 @@
 // directory walk, not by a hardcoded list, because pages get added in
 // parallel by other agents while this script is not being edited.
 //
-// Usage: npm run shots
+// Usage: npm run shots                    every page in the repo
+//        npm run shots -- index.html tood.html   only the named pages
+// Page arguments are repo-relative substrings; parallel agents pass their own
+// pages so seven concurrent runs do not each shoot the whole repo.
 // Expects (or starts) the dev server from scripts/dev-server.mjs on :8899.
 
 import { chromium } from 'playwright';
@@ -111,7 +114,15 @@ async function main() {
 
   await mkdir(OUT_DIR, { recursive: true });
 
-  const htmlFiles = (await findHtmlFiles(ROOT)).sort();
+  const wanted = process.argv.slice(2);
+  let htmlFiles = (await findHtmlFiles(ROOT)).sort();
+  if (wanted.length > 0) {
+    htmlFiles = htmlFiles.filter((rel) => wanted.some((w) => rel.includes(w)));
+    if (htmlFiles.length === 0) {
+      console.error(`No .html files matched: ${wanted.join(', ')}`);
+      process.exit(1);
+    }
+  }
   if (htmlFiles.length === 0) {
     console.error('No .html files found in the repo. Nothing to shoot.');
   }

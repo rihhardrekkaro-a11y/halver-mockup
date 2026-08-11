@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-pood · Halver</title>
+<meta name="description" content="Halveri tellimiskeskkond püsikliendile. Köögikappide, fassaadide ja furnituuri tellimine tootekoodi järgi, sama kujundussüsteem mis halver.ee lehel.">
+<link rel="stylesheet" href="../styles/00-tokens.css">
+<link rel="stylesheet" href="../styles/01-base.css">
+<link rel="stylesheet" href="../styles/02-components.css">
+<link rel="stylesheet" href="../styles/20-shop-shell.css">
+<link rel="icon" href="data:,">
+</head>
+<body class="shop">
+
+<!-- Header row one. This is the marketing site's .site-nav from
+     02-components.css, unchanged: same logo file, same 72px height, same
+     backdrop blur, same hairline. The only additions are the shop's own
+     actions. That sameness is the deliverable. -->
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Halveri e-pood, avaleht">
+      <img src="../assets/images/halver-logo.png" alt="Halver">
+    </a>
+    <div class="shop-nav-actions">
+      <!-- Language switcher. ET first, EN second, no Finnish.
+           The marketing site does not ship a switcher yet (T12 owns en/),
+           so this is the definition rather than a copy: mono label step,
+           real hrefs, no JS. The live shop runs FI EN ET with the active
+           code inside a filled orange circle. -->
+      <div class="lang-switch">
+        <a href="index.html" hreflang="et" aria-current="true">ET</a>
+        <a href="../en/shop/index.html" hreflang="en">EN</a>
+      </div>
+      <a class="shop-account" href="#konto">Minu konto</a>
+      <button class="btn btn-primary" type="button" id="orderToggle" aria-expanded="false" aria-controls="orderPanel">
+        Tellimus <span class="order-count">3</span>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Ava menüü" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="../index.html">Halver.ee</a></li>
+    <li><a href="../index.html#tootmisvoimekus">Tootmine</a></li>
+    <li><a href="../tood.html">Tööd</a></li>
+    <li><a href="../kontakt.html">Kontakt</a></li>
+    <li><a href="#konto">Minu konto</a></li>
+  </ul>
+  <div class="lang-switch">
+    <a href="index.html" hreflang="et" aria-current="true">ET</a>
+    <a href="../en/shop/index.html" hreflang="en">EN</a>
+  </div>
+</div>
+
+<!-- Header row two. In flow, so it costs nothing against the mobile
+     fixed-chrome budget. Replaces the live shop's 74px full-bleed orange
+     band whose white breadcrumb text measured 2.23:1. -->
+<div class="shop-bar">
+  <div class="wrap">
+    <nav class="shop-crumbs" aria-label="Teerada">
+      <ol>
+        <li><a href="../index.html">Halver.ee</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li><span aria-current="page">E-pood</span></li>
+      </ol>
+    </nav>
+    <!-- No form action: this mockup has no backend and must not appear to
+         search. The field is the shell's real control, shown at rest. -->
+    <form class="shop-search" role="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="search" name="q" aria-label="Otsi tootekoodi järgi" placeholder="Tootekood, nt KK H=1922">
+    </form>
+  </div>
+</div>
+
+<header class="page-header wrap">
+  <p class="eyebrow">Tellimiskeskkond</p>
+  <h1>E-pood.</h1>
+  <p>Köögikappide, fassaadide ja furnituuri tellimiskeskkond püsikliendile. Otsi tootekoodi järgi ja kogu read ühte tellimusse.</p>
+</header>
+
+<section class="shop-section">
+  <div class="wrap shop-split">
+    <div>
+      <div class="section-head">
+        <h2>Tellimuse sahtel.</h2>
+        <p>Tellimus avaneb päisest sahtlina. Suletuna ei kata see midagi, avatuna katab lehe ainult siis, kui lugeja on selle ise avanud.</p>
+      </div>
+      <p>Praeguses e-poes hõljub tellimuse nupp toote pildi peal igal kerimiskõrgusel ja jääb kaubaloendis ühe tootekaardi ette. Sahtel lahendab sama ülesande ilma sisu katmata: see sulgub Esc klahviga, taustale klõpsates ja päise samast nupust, mis selle avas.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" data-order-open>Ava tellimuse sahtel</button>
+      </div>
+    </div>
+    <div>
+      <span class="specimen-label">Sahtli sisu</span>
+      <!-- Static specimen of .order-panel's body, so the order lines are
+           legible in a screenshot without the drawer covering the page.
+           Same classes as the live drawer below. -->
+      <div class="shop-specimen">
+        <ul class="order-lines">
+          <li class="order-line">
+            <p class="order-line__code">KY H=450</p>
+            <p class="order-line__group">Alakapid sügavus 565</p>
+            <p class="order-line__dim">Kõrgus 450 mm</p>
+            <p class="order-line__qty">12 tk</p>
+          </li>
+          <li class="order-line">
+            <p class="order-line__code">KKK60UM H=2202</p>
+            <p class="order-line__group">Kõrged kapid sügavus 565</p>
+            <p class="order-line__dim">Kõrgus 2202 mm</p>
+            <p class="order-line__qty">4 tk</p>
+          </li>
+          <li class="order-line">
+            <p class="order-line__code">SYME H=284</p>
+            <p class="order-line__group">Seinakapid sügavus 337</p>
+            <p class="order-line__dim">Kõrgus 284 mm</p>
+            <p class="order-line__qty">8 tk</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shop-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Mis muutub.</h2>
+      <p>Praegune e-pood ei loe sama ettevõtte omana. Iga rida allpool on mõõdetud, mitte hinnatud.</p>
+    </div>
+    <!-- Every figure in this table is a measurement of the live
+         shop.halver.ee, taken from the T9 brief and the live-site audit
+         screenshots, not from PRODUCT.md's production evidence list. The
+         7,9% figure is this page's own measured fixed chrome at 375x812. -->
+    <div class="ledger">
+      <div class="lh">Element</div>
+      <div class="lh">Praegu</div>
+      <div class="lh">Uues raamistikus</div>
+
+      <div class="ledger-row">
+        <div class="lk">Kirjatüüp</div>
+        <div class="lv-old">Inter e-poes, Roboto kodulehel</div>
+        <div class="lv-new">Archivo, Big Shoulders Display ja IBM Plex Mono mõlemal</div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="lk">Teerada</div>
+        <div class="lv-old">Valge tekst oranžil täisribal, <span class="fig">2,23:1</span></div>
+        <div class="lv-new">Teras paberil, päise all real, <span class="fig">5,86:1</span></div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="lk">Tellimus</div>
+        <div class="lv-old">Hõljuv nupp toote pildi peal</div>
+        <div class="lv-new">Sahtel, mis avaneb päisest ja sulgub Esc klahviga</div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="lk">Keelevalik</div>
+        <div class="lv-old">FI, EN, ET, aktiivne oranžis ringis</div>
+        <div class="lv-new">ET, EN, sama loogika mis kodulehel</div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="lk">Jalus</div>
+        <div class="lv-old">Puudub</div>
+        <div class="lv-new">Sama jalus mis kodulehel, kontaktide ja tagasiviivate linkidega</div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="lk">Püsipäis mobiilis</div>
+        <div class="lv-old"><span class="fig">21%</span> ekraani kõrgusest</div>
+        <div class="lv-new"><span class="fig">7,9%</span> ekraani kõrgusest</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The order drawer. Closed at rest, so it never overlaps a product
+     image. Reused by the product page. -->
+<div class="order-scrim" id="orderScrim"></div>
+<aside class="order-panel" id="orderPanel" role="dialog" aria-modal="true" aria-labelledby="orderPanelTitle">
+  <div class="order-panel__head">
+    <h2 id="orderPanelTitle">Minu tellimus</h2>
+    <button class="icon-btn" type="button" id="orderClose" aria-label="Sulge tellimuse sahtel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+  </div>
+  <div class="order-panel__body">
+    <!-- Tootekoodid ja rühmanimed on päris, võetud praeguse e-poe
+         tootefiltrist. Kogused on näidisandmed. -->
+    <ul class="order-lines">
+      <li class="order-line">
+        <p class="order-line__code">KY H=450</p>
+        <p class="order-line__group">Alakapid sügavus 565</p>
+        <p class="order-line__dim">Kõrgus 450 mm</p>
+        <p class="order-line__qty">12 tk</p>
+        <button class="icon-btn" type="button" aria-label="Eemalda rida KY H=450">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </li>
+      <li class="order-line">
+        <p class="order-line__code">KKK60UM H=2202</p>
+        <p class="order-line__group">Kõrged kapid sügavus 565</p>
+        <p class="order-line__dim">Kõrgus 2202 mm</p>
+        <p class="order-line__qty">4 tk</p>
+        <button class="icon-btn" type="button" aria-label="Eemalda rida KKK60UM H=2202">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </li>
+      <li class="order-line">
+        <p class="order-line__code">SYME H=284</p>
+        <p class="order-line__group">Seinakapid sügavus 337</p>
+        <p class="order-line__dim">Kõrgus 284 mm</p>
+        <p class="order-line__qty">8 tk</p>
+        <button class="icon-btn" type="button" aria-label="Eemalda rida SYME H=284">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="order-panel__foot">
+    <dl class="order-total">
+      <div><dt>Ridu tellimuses</dt><dd>3</dd></div>
+      <div><dt>Ühikuid kokku</dt><dd>24</dd></div>
+    </dl>
+    <!-- Mockup: tellimuse esitamise vaadet ei ole ehitatud, nupp ei saada
+         midagi. -->
+    <button class="btn btn-primary" type="button">Kinnita tellimus</button>
+  </div>
+</aside>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/images/halver-logo.png" alt="Halver">
+        <p>Eritellimusmööbel ja mööblikomponendid. Tootmises Kosel ja Haljalas alates 1992. aastast.</p>
+        <p class="footer-note">E-pood on püsikliendi tellimiskeskkond. Eritellimuse päring käib halver.ee kontaktide kaudu.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h3>E-pood</h3>
+          <ul>
+            <li><a href="index.html">Avaleht</a></li>
+            <li><a href="#konto">Minu konto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Halver.ee</h3>
+          <ul>
+            <li><a href="../index.html#ettevottest">Ettevõttest</a></li>
+            <li><a href="../index.html#tootmisvoimekus">Tootmine</a></li>
+            <li><a href="../tood.html">Tööd</a></li>
+            <li><a href="../kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Kontakt</h3>
+          <ul>
+            <li><a href="tel:+37260565076">+372 605 6076</a></li>
+            <li><a href="mailto:info@halver.ee">info@halver.ee</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Halver Mööbel OÜ · Halver Arendus OÜ</span>
+      <span>Eesti Kaubandus- ja Tööstuskoja liige</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+<script src="shop.js"></script>
+</body>
+</html>

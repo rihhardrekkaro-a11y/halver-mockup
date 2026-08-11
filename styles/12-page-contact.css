@@ -63,7 +63,26 @@
 }
 .route .name { margin-top: 8px; font-weight: 600; }
 .route .meta { margin-top: 6px; font-size: 13px; color: var(--fg-muted); display: flex; flex-direction: column; gap: 3px; }
-.route .meta a { text-decoration: none; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+/* T13: each meta line (phone, email) rendered at ~18-20px tall in a
+   3px-gap stack, well under the 44px tap target floor. A min-height on
+   the anchor would triple the height of every routing card, which fights
+   the page's own density (12 team cards run the same pattern below).
+   Expanding the hit area on a pseudo-element instead keeps the visible
+   list untouched: position:relative on the link, an absolutely
+   positioned ::after with a negative inset does not participate in
+   layout, so it enlarges what is tappable without moving anything. */
+.route .meta a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+.route .meta a::after {
+  content: '';
+  position: absolute;
+  inset: -13px 0;
+}
 .route .meta a:hover { color: var(--accent-text); }
 
 /* ---------- Enquiry form ---------- */
@@ -175,10 +194,15 @@
   .choice-list.cols { grid-template-columns: 1fr; }
 }
 
+/* T13: the label wraps the input, so the whole row is clickable, but at
+   font-size 14.5px the row's own box was only ~22px tall, still under the
+   44px tap target floor. min-height on the label (not the 18px input)
+   keeps the visible checkbox/radio size untouched. */
 .choice {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-height: 44px;
   font-size: 14.5px;
   cursor: pointer;
 }
@@ -265,5 +289,19 @@
 .team-card .role { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-text); }
 .team-card .name { margin-top: 8px; font-weight: 600; font-size: 16px; }
 .team-card .meta { margin-top: 10px; font-size: 13px; color: var(--fg-muted); display: flex; flex-direction: column; gap: 3px; }
-.team-card .meta a { text-decoration: none; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+/* T13: same hit-area expansion as .route .meta a above, for the same
+   reason (twelve cards, two links each; a min-height fix would blow the
+   grid's row height out). */
+.team-card .meta a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+.team-card .meta a::after {
+  content: '';
+  position: absolute;
+  inset: -13px 0;
+}
 .team-card .meta a:hover { color: var(--accent-text); }

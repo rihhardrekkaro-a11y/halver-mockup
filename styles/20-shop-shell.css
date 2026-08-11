@@ -36,29 +36,10 @@ body.shop { --nav-h: 72px; }
   gap: 20px;
 }
 
-/* Language switcher. ET first, EN second, Estonian-first per PRODUCT.md.
-   Structural mono label step: 12px, uppercase, 0.10em tracking. The live
-   shop runs FI EN ET with the active code inside a filled orange circle,
-   which is both the wrong order and a 999px radius this system does not
-   have. Codes here are separated by a hairline, not a pill. */
-.lang-switch {
-  display: flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.lang-switch a {
-  padding: 6px 10px;
-  text-decoration: none;
-  color: var(--fg-muted);
-  transition: color 160ms var(--ease-out);
-}
-.lang-switch a + a { border-left: 1px solid var(--border); }
-.lang-switch a:hover { color: var(--fg); }
-.lang-switch a[aria-current="true"] { color: var(--fg); }
+/* Language switcher markup (.lang-switch) now lives in 02-components.css:
+   T9 defined it here first, T12 reused it verbatim in the marketing
+   header, so it moved to the shared component layer to avoid drift
+   between two copies. Only the shop's mobile hide rule stays here, below. */
 
 .shop-account {
   font-size: 14.5px;
@@ -365,6 +346,17 @@ body.shop { --nav-h: 72px; }
    clear a static 24px rather than the shared clamp(32px, 5vw, 56px). */
 .shop-section .section-head { margin-bottom: 24px; }
 .shop-split .hero-actions { margin-top: 24px; }
+
+/* T13: the paragraph following .section-head in the first .shop-split
+   column carried no measure cap, so it ran the full 1.15fr track width
+   (688px at 1440, no ch limit) and set an 85-char line, the one line in
+   the build over the system's ~75-char practical cap. Every other prose
+   block in the system caps at 52ch (.section-head p, .contact-card p,
+   .hero-copy .lede); this one just never got the rule because it sits
+   directly in the column rather than inside .section-head. Direct-child
+   selector so it does not also catch .order-line__code etc. two levels
+   deeper in the second column. */
+.shop-split > div > p { max-width: 52ch; }
 
 /* Static specimen of the drawer body, so the order panel is legible in a
    screenshot without the drawer being open over the page. */

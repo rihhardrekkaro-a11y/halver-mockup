@@ -1,0 +1,197 @@
+/* ==========================================================================
+   Halver — capabilities page (tootmine.html)
+   Section wrappers and page-specific layout only. Shared primitives used
+   inside these sections (buttons, spec tile, material chip, section head,
+   page header) live in 02-components.css.
+
+   Four bands, in order:
+     .facts          light strip, the scale facts (was "Ettevõttest")
+     .cap-panel      the always-dark signature panel, monthly throughput
+     .register       the machine register, five named machines
+     .materials-band the material and finish chips
+     .closing        raised band, one primary action
+
+   Note for the integrator: .cap-panel / .cap-grid duplicate .capability /
+   .spec-grid from 10-page-home.css almost exactly. Two pages now need that
+   dark bento, so it belongs in 02-components.css; it is copied here only
+   because a parallel task may not edit the home partial or the shared
+   component layer. See the task report.
+   ========================================================================== */
+
+/* ---------- Scale facts strip ---------- */
+
+/* A strip, not a section: 48px is a static spacing step, matching the way
+   .trust (28px) and .site-footer (48px) sit tighter than a full section. */
+.facts {
+  padding-block: 48px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
+}
+
+.fact {
+  background: var(--bg);
+  padding: 20px;
+}
+.fact-num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1;
+  color: var(--fg);
+}
+.fact-label {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--fg-muted);
+  max-width: 24ch;
+}
+
+@media (max-width: 760px) {
+  .facts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Capability panel (signature element) ---------- */
+
+.cap-panel { background: var(--fixed-dark); color: var(--fixed-light); }
+.cap-panel .section-head h2 { color: var(--fixed-light); }
+.cap-panel .section-head p { color: color-mix(in srgb, var(--fixed-light) 68%, transparent); }
+
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(160px, auto);
+  grid-auto-flow: dense;
+  gap: 2px;
+  background: color-mix(in srgb, var(--fixed-light) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fixed-light) 12%, transparent);
+}
+
+@media (max-width: 960px) {
+  .cap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Machine register ---------- */
+
+/* One hairline sheet: the list draws the horizontal rules with its gap, each
+   row draws its own vertical rule the same way, and every cell paints an
+   opaque background over it. No borders on the cells, no corners. */
+.register-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
+}
+
+.register-row {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2px;
+  background: var(--border-soft);
+}
+
+.register-body {
+  background: var(--bg);
+  padding: clamp(22px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.register-meta {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.register-row h3 {
+  margin-top: 10px;
+  font-size: clamp(24px, 2.6vw, 32px);
+}
+.register-note {
+  margin-top: 12px;
+  font-size: 16px;
+  color: var(--fg-muted);
+  max-width: 52ch;
+}
+
+.register-media {
+  position: relative;
+  overflow: hidden;
+  min-height: 260px;
+  background: var(--bg-raised);
+}
+.register-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 760px) {
+  .register-row { grid-template-columns: 1fr; }
+  .register-media {
+    order: -1;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- Materials and finishes ---------- */
+
+.materials-band {
+  padding-block: 48px;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+.materials-band .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 5vw, 56px);
+}
+.materials-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.materials-group-label {
+  font-size: 14.5px;
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+.materials-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Narrow: the chip row wraps to three lines, and a vertically centred label
+   beside it leaves the chips indented off the container edge. Stack instead. */
+@media (max-width: 760px) {
+  .materials-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* ---------- Closing band ---------- */
+
+.closing {
+  background: var(--bg-raised);
+  border-top: 1px solid var(--border-soft);
+}
+/* .section-head already clears its own space; the button row does not need
+   its default 32px on top of it. */
+.closing .hero-actions { margin-top: 0; }

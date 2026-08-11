@@ -117,7 +117,12 @@ async function main() {
   const wanted = process.argv.slice(2);
   let htmlFiles = (await findHtmlFiles(ROOT)).sort();
   if (wanted.length > 0) {
-    htmlFiles = htmlFiles.filter((rel) => wanted.some((w) => rel.includes(w)));
+    // Exact repo-relative match first, so "index.html" does not also select
+    // "shop/index.html". Substring is the fallback for directory arguments
+    // like "shop/".
+    htmlFiles = htmlFiles.filter((rel) =>
+      wanted.some((w) => rel === w || (w.endsWith('/') && rel.startsWith(w)))
+    );
     if (htmlFiles.length === 0) {
       console.error(`No .html files matched: ${wanted.join(', ')}`);
       process.exit(1);

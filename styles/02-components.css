@@ -24,6 +24,7 @@
   padding: 14px 24px;
   border-radius: var(--radius);
   border: 1px solid transparent;
+  text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
   transition: transform 160ms var(--ease-out), background 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
@@ -78,6 +79,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  padding-block: 9px;
 }
 .brand img { height: 26px; width: auto; }
 
@@ -108,7 +110,7 @@
   display: none;
   background: none;
   border: none;
-  padding: 8px;
+  padding: 11px;
   cursor: pointer;
   color: var(--fg);
 }
@@ -118,7 +120,41 @@
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; }
   .nav-actions .btn-outline { display: none; }
+  .nav-actions .lang-switch { display: none; }
 }
+
+/* Language switcher. ET first, EN second, Estonian-first per PRODUCT.md.
+   Structural mono label step: 12px, uppercase, 0.10em tracking. Started
+   as a shop-only pattern (T9) and was reused verbatim in the marketing
+   header (T12), so it lives here in the shared component layer rather
+   than in the shop-scoped partial. min-width/min-height plus flex
+   centering guarantees a 44x44 tap target regardless of "ET" vs "EN"
+   glyph width. On mobile it is hidden from .nav-actions above and shown
+   only inside the drawer instead (marketing) or hidden entirely
+   (shop, see .shop-nav-actions .lang-switch in 20-shop-shell.css). */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 10px;
+  text-decoration: none;
+  color: var(--fg-muted);
+  transition: color 160ms var(--ease-out);
+}
+.lang-switch a + a { border-left: 1px solid var(--border); }
+.lang-switch a:hover { color: var(--fg); }
+.lang-switch a[aria-current="true"] { color: var(--fg); }
 
 .mobile-menu {
   display: none;
@@ -422,7 +458,7 @@
 .contact-card h3 { margin-top: 10px; font-size: 24px; }
 .contact-card address { font-style: normal; margin-top: 14px; color: var(--fg-muted); line-height: 1.7; }
 .contact-card .links { margin-top: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; }
-.contact-card .links a { text-decoration: none; color: var(--fg); font-weight: 600; }
+.contact-card .links a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--fg); font-weight: 600; }
 .contact-card .links a:hover { color: var(--accent-text); }
 
 /* ---------- Form field ---------- */
@@ -499,6 +535,6 @@
 .footer-cols { display: flex; gap: clamp(32px, 6vw, 80px); flex-wrap: wrap; }
 .footer-col h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); font-weight: 600; margin: 0 0 14px; }
 .footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; }
-.footer-col a { text-decoration: none; color: var(--fg); }
+.footer-col a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--fg); }
 .footer-col a:hover { color: var(--accent-text); }
 .footer-bottom { padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--fg-muted); }

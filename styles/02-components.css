@@ -552,3 +552,81 @@
 .footer-col a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--fg); }
 .footer-col a:hover { color: var(--accent-text); }
 .footer-bottom { padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--fg-muted); }
+
+/* ---------- Change ledger ----------
+   Hairline grid per DESIGN.md: gap: 2px over a --border-soft background,
+   every cell painting its own opaque fill. No borders on the cells.
+   Started as a shop-only pattern (T9) for shop/index.html's "Mis muutub"
+   table; moved here once vordlus.html reused it for a second, sitewide
+   comparison, same reasoning as .lang-switch's move. */
+.ledger {
+  display: grid;
+  grid-template-columns: 0.8fr 1.1fr 1.1fr;
+  gap: 2px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
+}
+/* `display: contents` lets a semantic row wrapper exist in the DOM while
+   its three cells still sit on the parent grid. At 760px the wrapper
+   becomes a real block and the row is a single cell, so the seam falls
+   between rows instead of between a key and its own values. */
+.ledger-row { display: contents; }
+.ledger > .lh,
+.ledger-row > * {
+  background: var(--bg);
+  padding: 20px;
+}
+.ledger .lh {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.ledger .lk {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.ledger .lv-old {
+  font-size: 14.5px;
+  color: var(--fg-muted);
+}
+.ledger .lv-new {
+  font-size: 14.5px;
+  color: var(--fg);
+}
+/* Highlighted measured figure, used wherever a real sampled number sits
+   inline in prose (ledger cells, compare captions) rather than in its own
+   spec-tile. Not scoped to .ledger: vordlus.html reuses it standalone. */
+.fig {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 760px) {
+  .ledger { grid-template-columns: 1fr; }
+  /* The column headings only make sense beside their columns. Stacked,
+     each value labels itself with ::before instead. */
+  .ledger .lh { display: none; }
+  .ledger-row { display: block; background: var(--bg); padding: 20px; }
+  .ledger-row > * { padding: 0; }
+  .ledger .lv-old { margin-top: 14px; }
+  .ledger .lv-new { margin-top: 14px; }
+  .ledger .lv-old::before,
+  .ledger .lv-new::before {
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .ledger .lv-old::before { content: 'Praegu'; }
+  .ledger .lv-new::before { content: 'Uues raamistikus'; }
+}

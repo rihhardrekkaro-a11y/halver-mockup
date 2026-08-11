@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Halver — vordlus.html (client-facing before/after)
+   Owns .compare-*. Reuses .ledger and .fig from 02-components.css, and the
+   real screenshots in assets/images/before-after/ (four live-site crops,
+   four matching crops of this mockup, each pairing anchored to a number
+   sampled directly from those images, not from memory or an old brief).
+   ========================================================================== */
+
+/* Each .compare row already carries its own padding-block, so the section's
+   default bottom padding (01-base.css, 56-112px) would double up right
+   before the CTA banner. Zeroed here the same way .work-cta-section zeroes
+   its own top for the same reason, in reverse. */
+.compare-section { padding-top: clamp(28px, 4vw, 48px); padding-bottom: 0; }
+
+.compare {
+  padding-block: clamp(32px, 5vw, 56px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.compare:last-of-type { border-bottom: none; }
+.compare-head {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 16px;
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
+}
+@media (max-width: 760px) {
+  .compare-grid { grid-template-columns: 1fr; }
+}
+
+.compare-col { background: var(--bg); }
+.compare-label {
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  border-bottom: 1px solid var(--border-soft);
+}
+.compare-col--new .compare-label { color: var(--fg); }
+
+.compare-frame { background: var(--bg-raised); }
+.compare-frame img { display: block; width: 100%; height: auto; }
+/* No max-height/overflow crop here on purpose: an earlier version capped
+   this at 420px with overflow:auto, which silently clipped more than half
+   of the portfolio "before" crop (the huge mobile map, exactly the thing
+   that row exists to show) with no visible scroll affordance on a static
+   screenshot. Rows are simply as tall as their content now. */
+
+.compare-fact {
+  padding: 16px 18px;
+  font-size: 14.5px;
+  color: var(--fg-muted);
+}
+.compare-col--new .compare-fact { color: var(--fg); }
+.compare-fact .fig { color: var(--accent-text); }
+
+/* ---------- Closing CTA ----------
+   Same pattern as .work-cta in styles/11-page-work.css: .contact-card
+   reused as a banner, not a bespoke component. */
+.vordlus-cta-section { padding-top: 0; }
+.vordlus-cta { max-width: 640px; }
+.vordlus-cta h2 { font-size: clamp(30px, 3.6vw, 46px); }
+.vordlus-cta p { margin-top: 14px; color: var(--fg-muted); max-width: 52ch; }

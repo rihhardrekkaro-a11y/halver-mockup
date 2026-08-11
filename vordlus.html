@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Võrdlus · Halver</title>
+<meta name="description" content="Halver.ee ja selle mockup'i kõrvutus neljas mõõdetud punktis: peamine navigatsioon, päringuvorm, portfoolio mobiilis ja jalus.">
+<link rel="stylesheet" href="styles/00-tokens.css">
+<link rel="stylesheet" href="styles/01-base.css">
+<link rel="stylesheet" href="styles/02-components.css">
+<link rel="stylesheet" href="styles/16-page-vordlus.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+
+<!-- Not in the primary nav, like toetused.html: this is client-presentation
+     material, reachable by direct link, not a page a site visitor lands on.
+     No lang-switch either, on the same logic T12 used for the shop's EN
+     link: there is no en/vordlus.html, so don't ship a switcher that points
+     at one. -->
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Halver, avaleht">
+      <img src="assets/images/halver-logo.png" alt="Halver">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+      <li><a href="tootmine.html">Tootmine</a></li>
+      <li><a href="tood.html">Tööd</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-outline" href="https://shop.halver.ee" target="_blank" rel="noopener">E-pood</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ava menüü" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+    <li><a href="tootmine.html">Tootmine</a></li>
+    <li><a href="tood.html">Tööd</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <a class="btn btn-primary" href="https://shop.halver.ee" target="_blank" rel="noopener">Ava e-pood</a>
+</div>
+
+<header class="page-header wrap">
+  <p class="eyebrow">Võrdlus</p>
+  <h1>Neli mõõdetud erinevust.</h1>
+  <p>Halver.ee ja see mockup kõrvuti, neli korda. Iga paar on ankurdatud mõõdetud arvule
+    või mõõdetud faktile, mitte omadussõnale &mdash; kõik neli on mõõdetud otse
+    kuvatõmmistelt, mitte hinnatud silma järgi.</p>
+</header>
+
+<section class="compare-section">
+  <div class="wrap">
+
+    <div class="compare">
+      <p class="compare-head">1 / Peamine navigatsioon</p>
+      <div class="compare-grid" data-reveal>
+        <div class="compare-col compare-col--old">
+          <p class="compare-label">Praegu (halver.ee)</p>
+          <div class="compare-frame">
+            <img src="assets/images/before-after/before-nav.png" alt="Halver.ee peamine navigatsioon: valge tekst hallil diagonaalsel taustal">
+          </div>
+          <p class="compare-fact">Valge tekst hallil taustal, <span class="fig">2,43:1</span> kontrastisuhe. Alla WCAG AA <span class="fig">4,5:1</span> nõude.</p>
+        </div>
+        <div class="compare-col compare-col--new">
+          <p class="compare-label">Uues raamistikus</p>
+          <div class="compare-frame">
+            <img src="assets/images/before-after/after-nav.png" alt="Uue mockup'i navigatsioon: tumehall tekst helel taustal, keelevalikuga">
+          </div>
+          <p class="compare-fact">Tumehall tekst paberitoonilisel taustal, <span class="fig">5,86:1</span> kontrastisuhe.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare">
+      <p class="compare-head">2 / Päring</p>
+      <div class="compare-grid" data-reveal>
+        <div class="compare-col compare-col--old">
+          <p class="compare-label">Praegu (halver.ee)</p>
+          <div class="compare-frame">
+            <img src="assets/images/before-after/before-form.png" alt="Halver.ee kontaktileht: pelgalt tekstikaardid nimede, telefonide ja e-postiaadressidega" loading="lazy">
+          </div>
+          <p class="compare-fact">Null vormi ja null nuppu avalehel, tehtud töödel, kontaktil ega toetuste lehel &mdash; ainult tekst ja mailto-lingid.</p>
+        </div>
+        <div class="compare-col compare-col--new">
+          <p class="compare-label">Uues raamistikus</p>
+          <div class="compare-frame">
+            <img src="assets/images/before-after/after-form.png" alt="Uue mockup'i päringuvorm: sektori valik, maht, joonise üleslaadimine ja projekti kirjeldus" loading="lazy">
+          </div>
+          <p class="compare-fact">Täisfunktsionaalne päringuvorm: sektor, maht, joonised, tarneaeg ja projekti kirjeldus, koos valideerimisega.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare">
+      <p class="compare-head">3 / Portfoolio, mobiilis</p>
+      <div class="compare-grid" data-reveal>
+        <div class="compare-col compare-col--old">
+          <p class="compare-label">Praegu (halver.ee)</p>
+          <div class="compare-frame">
+            <img src="assets/images/before-after/before-workgrid-mobile.png" alt="Halver.ee tehtud tööd mobiilis: kaksteist pisipilti ilma pealkirjata, seejärel pooleekraanine kaart" loading="lazy">
+          </div>
+          <p class="compare-fact">Pisipildid <span class="fig">47×47px</span>, ilma sektori ega materjalita. Kaart katab ligikaudu poole ekraani kõrgusest.</p>
+        </div>
+        <div class="compare-col compare-col--new">
+          <p class="compare-label">Uues raamistikus</p>
+          <div class="compare-frame">
+            <img src="assets/images/before-after/after-workgrid-mobile.png" alt="Uue mockup'i töökaardid mobiilis: täispildis fotod, sektori märgend ja tehnilised andmed" loading="lazy">
+          </div>
+          <p class="compare-fact">Iga töö oma kaardina: täispildis foto, sektor, kasutatud pinnad ja tehnika.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare">
+      <p class="compare-head">4 / Jalus</p>
+      <div class="compare-grid" data-reveal>
+        <div class="compare-col compare-col--old">
+          <p class="compare-label">Praegu (halver.ee ja e-pood)</p>
+          <div class="compare-frame">
+            <img src="assets/images/before-after/before-footer.png" alt="Halver.ee lehe lõpp: kaart lõppeb, lehel pole jalust ega tagasiviivaid linke" loading="lazy">
+          </div>
+          <p class="compare-fact">Puudub mõlemal saidil. Leht lihtsalt lõpeb kaardiga, ilma sisukorra, ostja info või kontaktideta.</p>
+        </div>
+        <div class="compare-col compare-col--new">
+          <p class="compare-label">Uues raamistikus</p>
+          <div class="compare-frame">
+            <img src="assets/images/before-after/after-footer.png" alt="Uue mockup'i jalus: sisukorra, ostja info ja kontaktidega veerud" loading="lazy">
+          </div>
+          <p class="compare-fact">Sisukorra, ostja info ja kontaktidega jalus igal lehel, sama struktuur kõikjal.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="vordlus-cta-section">
+  <div class="wrap">
+    <div class="contact-card vordlus-cta">
+      <h2>Sama süsteem, kõik lehed läbi.</h2>
+      <p>Need neli näidet on lõikeid samast raamistikust. Ülejäänud lehed &mdash; tootmine, tööd, toetused ja e-pood &mdash; kasutavad sama päist, jalust ja komponente.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="index.html">Vaata algset lehte</a>
+        <a class="btn btn-outline" href="kontakt.html">Küsi pakkumist</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/images/halver-logo.png" alt="Halver">
+        <p>Eritellimusmööbel ja mööblikomponendid. Tootmises Kosel ja Haljalas alates 1992. aastast.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h3>Sisukord</h3>
+          <ul>
+            <li><a href="index.html#ettevottest">Ettevõttest</a></li>
+            <li><a href="tootmine.html">Tootmine</a></li>
+            <li><a href="tood.html">Tööd</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="toetused.html">Toetused</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Ostjatele</h3>
+          <ul>
+            <li><a href="https://shop.halver.ee" target="_blank" rel="noopener">E-pood</a></li>
+            <li><a href="mailto:info@halver.ee">Küsi pakkumist</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Kontakt</h3>
+          <ul>
+            <li><a href="tel:+3726056076">+372 605 6076</a></li>
+            <li><a href="mailto:info@halver.ee">info@halver.ee</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Halver Mööbel OÜ · Halver Arendus OÜ</span>
+      <span>Eesti Kaubandus- ja Tööstuskoja liige</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

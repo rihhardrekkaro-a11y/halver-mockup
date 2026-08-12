@@ -82,9 +82,11 @@
       </div>
     </div>
 
-    <!-- Six cells in a 3x3 grid: the 2x2 case-study card plus exactly one card
+    <!-- Six cells in a 2-column grid: the case-study card plus exactly one card
          per photograph in assets/images/work/ (five). No photo is used twice and
-         there is no empty cell at any of the three breakpoints. Mirrors tood.html. -->
+         there is no empty cell at any of the three breakpoints. The case-study
+         card is one cell, not a 2x2 span; see the measurement in
+         styles/11-page-work.css for why the span was removed. Mirrors tood.html. -->
     <div class="work-grid" data-reveal>
 
       <!-- The one card that links out. projekt-kruiisilaeva-sisustus.html is the
@@ -98,16 +100,48 @@
           <div class="work-card-foot">
             <h3>Fit-out for a ship.</h3>
             <p class="work-card-lead">Halver's made-to-order furniture also goes into ship interiors, built to the client's drawings and dimensions.</p>
+            <!-- Four fields, not two, and the throughput strip below them. A
+                 two-row title block left most of this card empty against its
+                 photo-card neighbours. Both additions are lifted verbatim from
+                 en/projekt-kruiisilaeva-sisustus.html, so the card fills with
+                 sourced specification rather than padding. Mirrors tood.html. -->
             <dl class="work-card-spec">
               <div>
                 <dt>Work</dt>
                 <dd>Made-to-measure fit-out to the client's drawings</dd>
               </div>
               <div>
+                <dt>Materials</dt>
+                <dd>Melamine, veneer, solid wood, engineered stone</dd>
+              </div>
+              <div>
+                <dt>Production</dt>
+                <dd>Kose and Haljala</dd>
+              </div>
+              <div>
                 <dt>Delivered by</dt>
                 <dd>Halver Mööbel OÜ</dd>
               </div>
             </dl>
+            <div class="work-card-stats">
+              <!-- Non-breaking spaces inside the quantities only. At 375px an
+                   English figure is wider than the card at the 24px mono floor
+                   and has to wrap somewhere; these force the break after
+                   "approx." instead of between the number and its unit, which
+                   is the one break that makes a figure unreadable. -->
+              <div>
+                <p class="num">approx.&nbsp;45,000&nbsp;m²</p>
+                <p class="label">of panel material sawn per month</p>
+              </div>
+              <div>
+                <p class="num">approx. 300,000&nbsp;lin.&nbsp;m</p>
+                <p class="label">edged per month</p>
+              </div>
+              <div>
+                <p class="num">6,000,000+</p>
+                <p class="label">holes drilled per month</p>
+              </div>
+            </div>
             <span class="work-card-cta">View project</span>
           </div>
         </div>
@@ -228,6 +262,127 @@
               </div>
             </dl>
           </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Sector index. Mirrors tood.html, including its note: the grid above
+     carries only the work that has a real photograph, which leaves four of the
+     five named sectors unexplained and makes the one card without a photo
+     (ships) read as an omission. Every sentence is sector description plus
+     documented capability; no client, project, quantity or date is claimed for
+     any sector, per PRODUCT.md's "absent, must not be fabricated" list. The
+     ship row reuses the project page's own vetted wording. -->
+<section class="sectors" id="sektorid">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <h2>The sectors Halver works in.</h2>
+      <p>Each one states what that kind of order demands from a furniture manufacturer and what Halver makes for it. All five come out of the same Kose and Haljala production, off the same machines.</p>
+    </div>
+
+    <div class="sector-list" data-reveal>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">01</span>
+          <h3>Cruise ship fit-out</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">A ship fit-out comes from the client's drawings and as repeating modules: cabins and units repeat, and the same element has to come out identical at the end of a batch as it was at the start. Installation runs to the client's schedule, so production has to fit inside a time window that someone else sets.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>What Halver makes</dt>
+              <dd>Made-to-measure fit-out elements to the client's drawings and dimensions</dd>
+            </div>
+            <div>
+              <dt>Delivered by</dt>
+              <dd>Halver Mööbel OÜ</dd>
+            </div>
+          </dl>
+          <a class="sector-link" href="projekt-kruiisilaeva-sisustus.html">See what this order demands from production</a>
+        </div>
+      </article>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">02</span>
+          <h3>Hotel fit-out</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">A hotel room is a module that repeats floor after floor: the same furniture in quantity, at a consistent standard. The public spaces are the opposite — one-off pieces, different on every site. Both come off the same drawings and both have to be ready on the site's schedule.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>What Halver makes</dt>
+              <dd>Made-to-order fit-out to the client's drawings, both the repeating room elements and the one-off pieces</dd>
+            </div>
+            <div>
+              <dt>Delivered by</dt>
+              <dd>Halver Mööbel OÜ</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">03</span>
+          <h3>Kitchens</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">A kitchen is the densest piece of furniture in the building: cabinets, appliances, sink and worktop all have to meet a room that is already built. The photographs above are from Halver's own projects.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>What Halver makes</dt>
+              <dd>Kitchen furniture, tall cabinets, worktops and wall panels; as a made-to-order project and as components for kitchen manufacturers</dd>
+            </div>
+            <div>
+              <dt>Delivered by</dt>
+              <dd class="entity">Halver Mööbel OÜ · Halver Arendus OÜ</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">04</span>
+          <h3>Offices</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">Office fit-out is a repeating element in quantity — workstations, storage, meeting rooms, a reception desk — installed to the building's handover schedule. Volume and deadline matter here as much as the detail does.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>What Halver makes</dt>
+              <dd>Made-to-measure office fit-out to the client's drawings</dd>
+            </div>
+            <div>
+              <dt>Delivered by</dt>
+              <dd>Halver Mööbel OÜ</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">05</span>
+          <h3>Shops</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">Retail fit-out has to take wear and repeat the same solution from one location to the next. Counters, shelving and back-of-house furniture come from the client's drawings and go in inside a short window.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>What Halver makes</dt>
+              <dd>Made-to-measure retail and counter furniture to the client's drawings</dd>
+            </div>
+            <div>
+              <dt>Delivered by</dt>
+              <dd>Halver Mööbel OÜ</dd>
+            </div>
+          </dl>
         </div>
       </article>
 

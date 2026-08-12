@@ -84,9 +84,11 @@
       </div>
     </div>
 
-    <!-- Six cells in a 3x3 grid: the 2x2 case-study card plus exactly one card
+    <!-- Six cells in a 2-column grid: the case-study card plus exactly one card
          per photograph in assets/images/work/ (five). No photo is used twice and
-         there is no empty cell at any of the three breakpoints. -->
+         there is no empty cell at any of the three breakpoints. The case-study
+         card is one cell, not a 2x2 span; see the measurement in
+         styles/11-page-work.css for why the span was removed. -->
     <div class="work-grid" data-reveal>
 
       <!-- The one card that links out. projekt-kruiisilaeva-sisustus.html is
@@ -99,16 +101,48 @@
           <div class="work-card-foot">
             <h3>Sisustus laevale.</h3>
             <p class="work-card-lead">Halveri eritellimusmööbel läheb ka laevade siseruumidesse, kliendi jooniste ja mõõtude järgi.</p>
+            <!-- Four fields, not two. A two-row title block left most of this
+                 card empty against its photo-card neighbours. The two added
+                 rows are lifted verbatim from
+                 projekt-kruiisilaeva-sisustus.html's own title block, so the
+                 card fills with sourced specification rather than padding. -->
             <dl class="work-card-spec">
               <div>
                 <dt>Töö</dt>
                 <dd>Mõõtu valmistatud sisustus kliendi jooniste järgi</dd>
               </div>
               <div>
+                <dt>Materjalid</dt>
+                <dd>Melamiin, spoon, täispuit, tehiskivi</dd>
+              </div>
+              <div>
+                <dt>Tootmine</dt>
+                <dd>Kose ja Haljala</dd>
+              </div>
+              <div>
                 <dt>Teostus</dt>
                 <dd>Halver Mööbel OÜ</dd>
               </div>
             </dl>
+            <!-- The measured throughput, verbatim from the same project page.
+                 A sector claim without a number is an adjective; PRODUCT.md's
+                 first principle is that capability is the pitch. This is the
+                 one loud mono place on this page, per the one-loud-place rule
+                 the project and capability pages already follow. -->
+            <div class="work-card-stats">
+              <div>
+                <p class="num">u. 45 000 m²</p>
+                <p class="label">plaatmaterjali saetakse kuus</p>
+              </div>
+              <div>
+                <p class="num">u. 300 000 jm</p>
+                <p class="label">servatakse kuus</p>
+              </div>
+              <div>
+                <p class="num">6 000 000+</p>
+                <p class="label">ava puuritakse kuus</p>
+              </div>
+            </div>
             <span class="work-card-cta">Vaata projekti</span>
           </div>
         </div>
@@ -231,6 +265,134 @@
               </div>
             </dl>
           </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Sector index. The grid above carries only the work that has a real
+     photograph, which leaves four of the five named sectors unexplained and
+     makes the one card without a photo (ships) read as an omission. This
+     section states what an order in each sector demands from a furniture
+     manufacturer and what Halver makes for it, which is the same structure
+     projekt-kruiisilaeva-sisustus.html already uses, generalised to all five.
+
+     Every sentence here is sector description plus documented capability. No
+     client, project, quantity or date is claimed for any sector, per
+     PRODUCT.md's "absent, must not be fabricated" list; the ship row reuses
+     the project page's own vetted wording rather than inventing a second
+     account of the same work. Rows, not cards: the section immediately above
+     is a hairline card grid and repeating that family back-to-back is the
+     defect AUDIT.md P2-1 records on index.html. -->
+<section class="sectors" id="sektorid">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <h2>Sektorid, kus Halver töötab.</h2>
+      <p>Iga sektori juures on kirjas, mida selline tellimus mööblitootjalt nõuab ja mida Halver selle jaoks teeb. Kõik viis tulevad samast Kose ja Haljala tootmisest, samadelt masinatelt.</p>
+    </div>
+
+    <div class="sector-list" data-reveal>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">01</span>
+          <h3>Kruiisilaevade sisustus</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">Laevasisustus tuleb kliendi joonistelt ja korduvate moodulitena: kajutid ja ühikud korduvad ning sama element peab partii lõpus tulema samasugune nagu alguses. Paigaldus käib kliendi graafikus, nii et tootmine peab mahtuma ajaaknasse, mille määrab keegi teine.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>Mida Halver teeb</dt>
+              <dd>Mõõtu valmistatud sisustuselemendid kliendi jooniste ja mõõtude järgi</dd>
+            </div>
+            <div>
+              <dt>Teostus</dt>
+              <dd>Halver Mööbel OÜ</dd>
+            </div>
+          </dl>
+          <a class="sector-link" href="projekt-kruiisilaeva-sisustus.html">Vaata, mida see tellimus tootmiselt nõuab</a>
+        </div>
+      </article>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">02</span>
+          <h3>Hotellide sisustamine</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">Hotellituba on moodul, mis kordub korruselt korrusele: sama sisustus suures koguses ja ühtlase kvaliteediga. Avalikud ruumid on vastupidi eritükid, igal objektil omad. Mõlemad tulevad samadelt joonistelt ja peavad valmima objekti graafikus.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>Mida Halver teeb</dt>
+              <dd>Mõõtu valmistatud sisustus kliendi jooniste järgi, nii korduvad toaelemendid kui eritükid</dd>
+            </div>
+            <div>
+              <dt>Teostus</dt>
+              <dd>Halver Mööbel OÜ</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">03</span>
+          <h3>Köögid</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">Köök on maja kõige tihedam mööblitükk: kappide, tehnika, valamu ja tööpinna mõõdud peavad klappima ruumiga, mis on juba ehitatud. Ülal olevad fotod on Halveri enda objektidelt.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>Mida Halver teeb</dt>
+              <dd>Köögimööbel, kõrgkapid, tööpinnad ja tagaseinad; nii eritellimusena kui komponentidena köögitootjale</dd>
+            </div>
+            <div>
+              <dt>Teostus</dt>
+              <dd class="entity">Halver Mööbel OÜ · Halver Arendus OÜ</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">04</span>
+          <h3>Kontorid</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">Kontorisisustus on korduv element suures koguses — töökohad, hoiukapid, nõupidamisruumid, vastuvõtulett — ja see paigaldatakse hoone üleandmisgraafikus. Maht ja tähtaeg on siin sama tähtsad kui detail.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>Mida Halver teeb</dt>
+              <dd>Mõõtu valmistatud kontorisisustus kliendi jooniste järgi</dd>
+            </div>
+            <div>
+              <dt>Teostus</dt>
+              <dd>Halver Mööbel OÜ</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="sector-row">
+        <div class="sector-row-id">
+          <span class="sector-num">05</span>
+          <h3>Kauplused</h3>
+        </div>
+        <div class="sector-row-body">
+          <p class="sector-lead">Kaupluse sisustus peab kannatama kulumist ja kordama sama lahendust ühest müügikohast teise. Letid, riiulid ja tagaruumi mööbel tulevad tellija joonistelt ja paigaldatakse lühikeses aknas.</p>
+          <dl class="work-card-spec">
+            <div>
+              <dt>Mida Halver teeb</dt>
+              <dd>Mõõtu valmistatud kaupluse- ja letimööbel kliendi jooniste järgi</dd>
+            </div>
+            <div>
+              <dt>Teostus</dt>
+              <dd>Halver Mööbel OÜ</dd>
+            </div>
+          </dl>
         </div>
       </article>
 

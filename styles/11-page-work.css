@@ -37,10 +37,18 @@
    add a border to a card; it would double the line. */
 /* Two equal columns, six cells, three rows, filled exactly. Equal columns
    rather than an asymmetric pair so the media wells, and therefore the title
-   blocks, line up across a row; in a hairline grid a half-step is visible. */
+   blocks, line up across a row; in a hairline grid a half-step is visible.
+
+   Not three columns with the feature cell spanning 2x2, which is what this
+   file's HTML used to describe. Measured at 1440: that span makes the cell
+   1193px tall against 557px of content, a 545px hole that no honest amount of
+   copy closes, because its height is two photo rows and its content is one
+   card's worth. At two columns the feature cell is one photo-card row and the
+   same content very nearly fills it. Six cells divide by two and by one, so
+   this tiles exactly at every breakpoint either way. */
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2px;
   background: var(--border-soft);
   border: 1px solid var(--border-soft);
@@ -129,8 +137,6 @@
    the edge measures 3.09:1 against the dark page, sampled from a rendered
    screenshot. The capability panel solves the same problem the same way. */
 .work-card--feature {
-  grid-column: span 2;
-  grid-row: span 2;
   background: var(--fixed-dark);
   color: var(--fixed-light);
   border: 1px solid color-mix(in srgb, var(--fixed-light) 34%, transparent);
@@ -140,8 +146,24 @@
 .work-card--feature:hover {
   background: color-mix(in srgb, var(--fixed-dark) 92%, var(--fixed-light));
 }
+/* The card is composed rather than stretched: the sector label holds the top
+   edge, the argument and its figures sit under it, and the link is pinned to
+   the bottom edge so whatever slack the row has left collects in one place
+   below the figures rather than as a gap inside the argument. Do not restore
+   justify-content: space-between here; that is what opened the original hole
+   between the label and the title block. */
 .work-card--feature .work-card-body { justify-content: flex-start; }
-.work-card--feature .work-card-foot { margin-top: 24px; }
+.work-card--feature .work-card-foot {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 24px;
+}
+.work-card--feature .work-card-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  padding-top: 32px;
+}
 /* The label sits on a rule across the card. Without it the label floats alone
    above a large unbroken field and the cell reads as unfinished; with it the
    field is framed and deliberate, which is the job the photograph does in
@@ -167,6 +189,39 @@
 }
 .work-card--feature .work-card-spec dd { color: var(--fixed-light); }
 
+/* Throughput strip inside the feature card. Three figures, mono at the
+   documented data step, on the same --fixed-light mixes every other tone in
+   this card uses. Not .spec-tile: that component paints its own --fixed-dark
+   floor and would draw a panel inside a panel. */
+/* Stacked rows, not columns. Three abreast fits the Estonian figures and
+   breaks the English ones: "approx. 300,000 lin. m" needs ~317px and a third
+   of this card is ~226px, so it wrapped across three lines and stopped reading
+   as one number. Rows hold at any width in any of the three languages, and
+   they are what closes the last of this card's slack against its photo-card
+   neighbours: measured at 1440, content and cell now end on the same pixel. */
+.work-card-stats {
+  display: grid;
+  gap: 20px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in srgb, var(--fixed-light) 22%, transparent);
+}
+/* Label under figure, the same order .spec-tile uses, rather than beside it.
+   Beside it, each row was its own grid and the labels started at a different x
+   on every line; this also keeps the pairing intact when a long label wraps. */
+.work-card-stats > div { display: grid; gap: 6px; }
+.work-card-stats .num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1;
+  color: var(--fixed-light);
+}
+.work-card-stats .label {
+  font-size: 13px;
+  color: color-mix(in srgb, var(--fixed-light) 66%, transparent);
+}
+
 .work-card-cta {
   display: inline-block;
   margin-top: 24px;
@@ -178,6 +233,68 @@
   transition: border-color 160ms var(--ease-out);
 }
 .work-card--feature:hover .work-card-cta { border-bottom-color: var(--fixed-light); }
+
+/* ---------- Sector index ---------- */
+
+/* Rows, not cards, and a raised floor rather than the page floor. The section
+   directly above is a hairline card grid; repeating that family back-to-back
+   is exactly the defect AUDIT.md P2-1 records against index.html, so this
+   block is differentiated on both axes at once — layout (stacked rows on a
+   240px label column, the measure .spec-table already uses on the project
+   page) and tone (--bg-raised). No new token, no new component: the field
+   list inside each row is the page's own .work-card-spec, widened by one
+   declaration because these labels are sentences, not single words. */
+.sectors { background: var(--bg-raised); }
+
+.sector-list { border-top: 1px solid var(--border-soft); }
+
+.sector-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: clamp(20px, 4vw, 56px);
+  padding-block: clamp(28px, 4vw, 44px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* The index number is the cutting-list tell: a part number against a part.
+   It carries no claim, so it stays muted and never competes with the name. */
+.sector-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--fg-muted);
+}
+.sector-row-id h3 {
+  margin-top: 10px;
+  font-size: clamp(24px, 2.2vw, 30px);
+}
+
+.sector-lead {
+  font-size: 16px;
+  color: var(--fg-muted);
+  max-width: 64ch;
+}
+
+/* Sentence-length labels need more than .work-card-spec's 88px card column. */
+.sector-row .work-card-spec { max-width: 64ch; }
+.sector-row .work-card-spec > div { grid-template-columns: 170px 1fr; }
+
+/* Only the ship row links out, because it is the only sector with a project
+   page. Same underline-on-a-rule treatment as .work-card-cta, in page tone. */
+.sector-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding-bottom: 4px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 160ms var(--ease-out);
+}
+.sector-link:hover { border-bottom-color: var(--fg); }
 
 /* ---------- Closing call to action ---------- */
 
@@ -192,5 +309,9 @@
    breakpoint leaves an empty cell. */
 @media (max-width: 760px) {
   .work-grid { grid-template-columns: 1fr; }
-  .work-card--feature { grid-column: auto; grid-row: auto; }
+  /* The 240px label column and the 170px field column both stop paying for
+     themselves here: the number and name stack above the prose, and the
+     field list falls back to .work-card-spec's own card measure. */
+  .sector-row { grid-template-columns: 1fr; gap: 16px; }
+  .sector-row .work-card-spec > div { grid-template-columns: 1fr; gap: 4px; }
 }

@@ -2,13 +2,32 @@
 
 Companion to `PRODUCT.md`, `DESIGN.md`, `BUILD-PLAN.md` and `PROMPTS.md`.
 
-**What this is:** the Estonian copy currently shipped in `index.html`, `tood.html`
-and `kontakt.html`, after a copy-editing pass (see *Estonian changes* below), plus
-an English reference translation of the same copy. It is a copy deck, not a
-build — it does not create `en/` pages, a language switcher, or URL routing.
-That is `PROMPTS.md` task **T12**, which is still open. This deck exists so T12
-can be executed against a translation that already avoids the drift T12 itself
-documents in the live site's current English (see *Translation rules applied*).
+**What this is:** the Estonian copy in `index.html`, `tood.html` and
+`kontakt.html`, after a copy-editing pass (see *Estonian changes* below), plus
+an English reference translation of the same copy.
+
+**Status update:** this deck was originally written while T12 ("English
+locale") was still open, as a translation reference for whoever built it. T12
+has since shipped — `en/index.html`, `en/tood.html`, `en/kontakt.html`,
+`en/tootmine.html` and `en/toetused.html` all exist, with a working ET/EN
+language switcher in the nav. That changes what this file is for:
+
+- **`index.html` / `en/index.html`: reconciled.** `en/index.html` had been
+  built from the Estonian copy as it stood *before* the two edits below, so it
+  had inherited the same vague opener and the same duplicated sector list.
+  Both are now fixed in `en/index.html` to match. The tables below reflect the
+  reconciled, live copy on both pages.
+- **`tood.html` / `en/tood.html`, `kontakt.html` / `en/kontakt.html`: not
+  reconciled.** Both grew far beyond copy drift while this deck existed —
+  `tood.html` went from a 12-photo gallery to a full portfolio with a sector
+  rail, per-sector rows and spec blocks; `kontakt.html` grew similarly. The
+  tables below for those two pages describe the **old, pre-T4/T7 shape** of
+  those pages and no longer match what's live. Treat them as historical, not
+  current, until re-derived. `tootmine.html` and `toetused.html` didn't exist
+  yet when this deck was written and aren't covered at all.
+- Established English terminology from the shipped `en/` pages —
+  **"made-to-order furniture,"** not "custom furniture" — has been adopted
+  below for consistency, superseding this deck's earlier word choice.
 
 **Scope:** visible marketing copy only — headings, body copy, CTAs, nav labels,
 image alt text, team role titles. No numbers, facts, contact details or company
@@ -96,14 +115,14 @@ found on the live English site:
 ### Meta
 | ET | EN |
 | --- | --- |
-| Title: Halver · eritellimusmööbel ja mööblikomponendid aastast 1992 | Halver · custom furniture and furniture components since 1992 |
-| Description: Halver toodab eritellimusmööblit kontoritele, kauplustele, kodudele, laevadele ja hotellidele ning pehmemööbli karkasse, köögimööblit ja komponente. Tootmises Kosel ja Haljalas alates 1992. aastast. | Halver makes custom furniture for offices, shops, homes, ships and hotels, and upholstery frames, kitchen furniture and components. In production in Kose and Haljala since 1992. |
+| Title: Halver · eritellimusmööbel ja mööblikomponendid aastast 1992 | Halver · made-to-order furniture and furniture components since 1992 |
+| Description: Halver toodab eritellimusmööblit kontoritele, kauplustele, kodudele, laevadele ja hotellidele ning pehmemööbli karkasse, köögimööblit ja komponente. Tootmises Kosel ja Haljalas alates 1992. aastast. | Halver manufactures made-to-order furniture for offices, shops, homes, ships and hotels, plus upholstery frames, kitchen furniture and components. In production in Kose and Haljala since 1992. |
 
 ### Hero
 | ET | EN |
 | --- | --- |
-| H1: Eritellimusmööbel tootmises aastast 1992. | Custom furniture, in production since 1992. |
-| Lede: Kontorite, kaupluste, kodude, laevade ja hotellide sisustus, valmistatud oma tootmises Harjumaal ja Lääne-Virumaal. | Fit-out furniture for offices, shops, homes, ships and hotels, made in our own production in Harjumaa and Lääne-Virumaa. |
+| H1: Eritellimusmööbel tootmises aastast 1992. | Made-to-order furniture, in production since 1992. |
+| Lede: Kontorite, kaupluste, kodude, laevade ja hotellide sisustus, valmistatud oma tootmises Harjumaal ja Lääne-Virumaal. | Fit-out for offices, shops, homes, ships and hotels, made in our own production in Harjumaa and Lääne-Virumaa. |
 | Küsi pakkumist | Request a quote |
 | Ava e-pood | Open shop |
 | Alt: Holzma paneelisaag lõikab plaatmaterjali Halveri Kose tootmises | Holzma panel saw cutting board material at Halver's Kose production site |
@@ -113,32 +132,32 @@ found on the live English site:
 | ET | EN |
 | --- | --- |
 | Eesti Kaubandus- ja Tööstuskoja liige | Member of the Estonian Chamber of Commerce and Industry. |
-| Alt: Mööblitootmise kogemus aastast 1992 | Furniture manufacturing experience since 1992 |
-| Alt: Creditinfo usaldusväärsuse märgis | Creditinfo trust rating |
-| Alt: TOP ettevõte 2021 märgis | TOP Enterprise 2021 award |
-| Alt: EAS ja Majandus- ja Kommunikatsiooniministeeriumi ressursitõhususe investeeringu toetus | EAS and Ministry of Economic Affairs and Communications resource-efficiency investment support |
+| Alt: Halver Mööbel, asutatud 1992 | Halver Mööbel, founded 1992 |
+| Alt: Creditinfo usaldusväärsuse märgis | Creditinfo trustworthiness mark |
+| Alt: TOP ettevõte 2021 märgis | TOP Ettevõte 2021 award mark |
+| Alt: EAS ja Majandus- ja Kommunikatsiooniministeeriumi ressursitõhususe investeeringu toetus | EAS and Ministry of Economic Affairs and Communications resource-efficiency investment grant mark |
 
 ### Two companies, one production
 | ET | EN |
 | --- | --- |
 | H2: Kaks ettevõtet, üks tootmine. | Two companies, one production. |
-| Lede: Halver Mööbel valmistab eritellimusmööblit. Halver Arendus toodab pehmemööbli karkasse, köögimööblit ja mööblikomponente. | Halver Mööbel makes custom furniture. Halver Arendus makes upholstery frames, kitchen furniture and furniture components. |
+| Lede: Halver Mööbel valmistab eritellimusmööblit. Halver Arendus toodab pehmemööbli karkasse, köögimööblit ja mööblikomponente. | Halver Mööbel makes made-to-order furniture. Halver Arendus produces upholstery frames, kitchen furniture and furniture components. |
 | Entity: Halver Mööbel OÜ | Halver Mööbel OÜ |
-| Card title: Eritellimusmööbel | Custom furniture |
-| Card body: Eritellimusmööbel kliendi joonistele ja mõõtudele, kontoritest laevade ja hotellideni. | Custom furniture built to the client's drawings and dimensions, from offices to ships and hotels. |
+| Card title: Eritellimusmööbel | Made-to-Order Furniture |
+| Card body: Eritellimusmööbel kliendi joonistele ja mõõtudele, kontoritest laevade ja hotellideni. | Made-to-order furniture built to the client's drawings and dimensions, from offices to ships and hotels. |
 | Entity: Halver Arendus OÜ | Halver Arendus OÜ |
-| Card title: Mööblikomponendid | Furniture components |
+| Card title: Mööblikomponendid | Furniture Components |
 | Card body: Pehmemööbli karkassid, köögimööbel ja mööblikomponendid tellimuse järgi. | Upholstery frames, kitchen furniture and furniture components, made to order. |
 
 ### Capability
 | ET | EN |
 | --- | --- |
-| H2: Tootmisvõimekus kuus. | Production capacity, per month. |
-| Lede: Üle 80 oma ala spetsialisti ja enam kui 8000 m² tootmispinda Kosel ja Haljalas. | 80+ specialists and more than 8,000 m² of production floor across Kose and Haljala. |
+| H2: Tootmisvõimekus kuus. | Production capability, per month. |
+| Lede: Üle 80 oma ala spetsialisti ja enam kui 8000 m² tootmispinda Kosel ja Haljalas. | 80+ trade specialists and more than 8,000 m² of production floor in Kose and Haljala. |
 | Cap: Weeke CNC töötluskeskus | Weeke CNC machining centre |
-| Stat: 45 000 m² / plaatmaterjali saetakse kuus | 45,000 m² / of board sawn per month |
-| Stat: 300 000 jm / servatakse kuus | 300,000 running metres / edge-banded per month |
-| Stat: 10 000+ / erikujulist detaili servatakse kuus | 10,000+ / shaped parts edge-banded per month |
+| Stat: 45 000 m² / plaatmaterjali saetakse kuus | 45,000 m² / of panel material sawn per month |
+| Stat: 300 000 jm / servatakse kuus | 300,000 lin. m / edged per month |
+| Stat: 10 000+ / erikujulist detaili servatakse kuus | 10,000+ / specially shaped parts edged per month |
 | Stat: 6 000 000+ / ava puuritakse kuus | 6,000,000+ / holes drilled per month |
 | Cap: Homag servamisliin | Homag edge-banding line |
 | Stat: 80+ / oma ala spetsialisti meeskonnas | 80+ / specialists on the team |
@@ -161,7 +180,7 @@ found on the live English site:
 | ET | EN |
 | --- | --- |
 | H2: Valminud tööd. | Completed work. |
-| Lede: Väljavõte hiljutistest kodude sisustuslahendustest ja pilk Halveri tootmisse. | A selection of recent home interior projects, and a look inside Halver's production. |
+| Lede: Väljavõte hiljutistest kodude sisustuslahendustest ja pilk Halveri tootmisse. | A selection of recent home fit-outs and a look inside Halver's production. |
 | Cat: Kodu | Home |
 | Cat: Köök | Kitchen |
 | Cat: Tootmine | Production |
@@ -170,8 +189,8 @@ found on the live English site:
 ### Contact preview
 | ET | EN |
 | --- | --- |
-| H2: Kaks tootmisüksust. | Two production sites. |
-| Lede: Külasta meid kohapeal või küsi pakkumist e-posti teel. | Visit us on site, or request a quote by email. |
+| H2: Kaks tootmisüksust. | Two production units. |
+| Lede: Külasta meid kohapeal või küsi pakkumist e-posti teel. | Visit us in person or request a quote by email. |
 | Kose tootmine | Kose production |
 | Haljala tootmine | Haljala production |
 

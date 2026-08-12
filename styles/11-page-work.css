@@ -40,7 +40,7 @@
    blocks, line up across a row; in a hairline grid a half-step is visible. */
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2px;
   background: var(--border-soft);
   border: 1px solid var(--border-soft);
@@ -129,6 +129,8 @@
    the edge measures 3.09:1 against the dark page, sampled from a rendered
    screenshot. The capability panel solves the same problem the same way. */
 .work-card--feature {
+  grid-column: span 2;
+  grid-row: span 2;
   background: var(--fixed-dark);
   color: var(--fixed-light);
   border: 1px solid color-mix(in srgb, var(--fixed-light) 34%, transparent);
@@ -138,8 +140,8 @@
 .work-card--feature:hover {
   background: color-mix(in srgb, var(--fixed-dark) 92%, var(--fixed-light));
 }
-.work-card--feature .work-card-body { justify-content: space-between; gap: 32px; }
-.work-card--feature .work-card-foot { margin-top: 0; }
+.work-card--feature .work-card-body { justify-content: flex-start; }
+.work-card--feature .work-card-foot { margin-top: 24px; }
 /* The label sits on a rule across the card. Without it the label floats alone
    above a large unbroken field and the cell reads as unfinished; with it the
    field is framed and deliberate, which is the job the photograph does in
@@ -190,4 +192,5 @@
    breakpoint leaves an empty cell. */
 @media (max-width: 760px) {
   .work-grid { grid-template-columns: 1fr; }
+  .work-card--feature { grid-column: auto; grid-row: auto; }
 }

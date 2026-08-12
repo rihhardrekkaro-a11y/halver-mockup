@@ -38,8 +38,11 @@ language switcher in the nav. That changes what this file is for:
     `tood.html`, `tootmine.html` and both their English mirrors. `index.html`
     was the outlier; it now carries the qualifier too.
 
-  `tootmine.html` and `toetused.html` weren't part of this pass and aren't
-  covered below.
+  `tootmine.html` / `en/tootmine.html` and `toetused.html` / `en/toetused.html`
+  were also read in full and needed **no copy changes** — specific, no em
+  dashes, ET/EN already tightly matched (including the earlier curly-quote fix
+  on the grant project name and a plain-language explainer for "u."). Every
+  page in the site has now been through this pass.
 - Established English terminology from the shipped `en/` pages —
   **"made-to-order furniture,"** not "custom furniture" — has been adopted
   below for consistency, superseding this deck's earlier word choice.

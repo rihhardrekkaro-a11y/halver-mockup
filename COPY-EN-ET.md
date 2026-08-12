@@ -17,14 +17,29 @@ language switcher in the nav. That changes what this file is for:
   had inherited the same vague opener and the same duplicated sector list.
   Both are now fixed in `en/index.html` to match. The tables below reflect the
   reconciled, live copy on both pages.
-- **`tood.html` / `en/tood.html`, `kontakt.html` / `en/kontakt.html`: not
-  reconciled.** Both grew far beyond copy drift while this deck existed —
-  `tood.html` went from a 12-photo gallery to a full portfolio with a sector
-  rail, per-sector rows and spec blocks; `kontakt.html` grew similarly. The
-  tables below for those two pages describe the **old, pre-T4/T7 shape** of
-  those pages and no longer match what's live. Treat them as historical, not
-  current, until re-derived. `tootmine.html` and `toetused.html` didn't exist
-  yet when this deck was written and aren't covered at all.
+- **`tood.html` / `en/tood.html`, `kontakt.html` / `en/kontakt.html`:
+  re-reviewed against their current, expanded shape.** Both grew far beyond
+  copy drift while this deck existed — `tood.html` went from a 12-photo
+  gallery to a full portfolio with a sector rail, per-sector rows and spec
+  blocks; `kontakt.html` gained a full enquiry form and grew similarly. The
+  full copy on both pages was re-read start to finish (not just diffed
+  against the old snapshot below, which is now out of date and not repeated
+  here). Findings:
+  - `kontakt.html` / `en/kontakt.html` needed **no copy changes** — specific,
+    consistent, no em dashes, no vague adjectives, the ET/EN pair already
+    matched (including the "Ost" → "Purchasing" fix).
+  - `tood.html`'s Offices sector row used two em dashes, violating the
+    site-wide zero-em-dash rule; `en/tood.html`'s mirror had the same two plus
+    a third in the Hotels row that wasn't even in the Estonian source. All
+    three fixed (colon/period instead of the dash pairs; meaning unchanged).
+  - Cross-page find, fixed in `index.html`/`en/index.html`: the two capability
+    stats (45,000 m² sawn, 300,000 running metres edged) were stated as exact
+    figures there, while the same two figures carry "u."/"approx." on
+    `tood.html`, `tootmine.html` and both their English mirrors. `index.html`
+    was the outlier; it now carries the qualifier too.
+
+  `tootmine.html` and `toetused.html` weren't part of this pass and aren't
+  covered below.
 - Established English terminology from the shipped `en/` pages —
   **"made-to-order furniture,"** not "custom furniture" — has been adopted
   below for consistency, superseding this deck's earlier word choice.
@@ -155,8 +170,8 @@ found on the live English site:
 | H2: Tootmisvõimekus kuus. | Production capability, per month. |
 | Lede: Üle 80 oma ala spetsialisti ja enam kui 8000 m² tootmispinda Kosel ja Haljalas. | 80+ trade specialists and more than 8,000 m² of production floor in Kose and Haljala. |
 | Cap: Weeke CNC töötluskeskus | Weeke CNC machining centre |
-| Stat: 45 000 m² / plaatmaterjali saetakse kuus | 45,000 m² / of panel material sawn per month |
-| Stat: 300 000 jm / servatakse kuus | 300,000 lin. m / edged per month |
+| Stat: u. 45 000 m² / plaatmaterjali saetakse kuus | approx. 45,000 m² / of panel material sawn per month |
+| Stat: u. 300 000 jm / servatakse kuus | approx. 300,000 lin. m / edged per month |
 | Stat: 10 000+ / erikujulist detaili servatakse kuus | 10,000+ / specially shaped parts edged per month |
 | Stat: 6 000 000+ / ava puuritakse kuus | 6,000,000+ / holes drilled per month |
 | Cap: Homag servamisliin | Homag edge-banding line |

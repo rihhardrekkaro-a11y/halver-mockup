@@ -27,10 +27,19 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload repo root as the Pages artifact
+      # Publish the website only. The working notes (*.md, PROMPTS, AUDIT,
+      # scripts, package files) and the internal components.html catalogue
+      # stay in the repo but are not served at the public link.
+      - name: Collect the website files
+        run: |
+          mkdir _site
+          cp -R *.html nav.js assets styles en shop _site/
+          rm _site/components.html
+
+      - name: Upload the website as the Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

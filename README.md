@@ -46,4 +46,4 @@ Read `BUILD-PLAN.md` and `DESIGN.md` before changing anything.
 
 ## GitHub Pages
 
-`.github/workflows/pages.yml` deploys only the website files (the HTML pages except `components.html`, `nav.js`, `assets/`, `styles/`, `en/`, `shop/`) to GitHub Pages on every push to `main`. **GitHub Pages is not yet enabled on this repository.** Before the workflow can succeed, go to Settings → Pages on GitHub and set the source to "GitHub Actions".
+`.github/workflows/pages.yml` deploys only the website files (the HTML pages except `components.html`, `nav.js`, `assets/`, `styles/`, `en/`, `shop/`, with developer comments stripped by `scripts/strip-comments.mjs`) to GitHub Pages on every push to `main`. **GitHub Pages is not yet enabled on this repository.** Before the workflow can succeed, go to Settings → Pages on GitHub and set the source to "GitHub Actions".

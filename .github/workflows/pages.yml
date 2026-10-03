@@ -29,12 +29,14 @@ jobs:
 
       # Publish the website only. The working notes (*.md, PROMPTS, AUDIT,
       # scripts, package files) and the internal components.html catalogue
-      # stay in the repo but are not served at the public link.
+      # stay in the repo but are not served at the public link, and the
+      # comments inside the served pages, styles and scripts are stripped.
       - name: Collect the website files
         run: |
           mkdir _site
           cp -R *.html nav.js assets styles en shop _site/
           rm _site/components.html
+          node scripts/strip-comments.mjs _site
 
       - name: Upload the website as the Pages artifact
         uses: actions/upload-pages-artifact@v3
